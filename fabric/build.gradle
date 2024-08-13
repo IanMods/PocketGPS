@@ -25,8 +25,11 @@ configurations {
 }
 
 dependencies {
-    modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+    modImplementation("net.fabricmc:fabric-loader:${project.fabric_loader_version}")
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
+
     common(project(path: ":common", configuration: "namedElements")) { transitive = false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
@@ -49,14 +52,6 @@ dependencies {
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1"
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
-}
-
-processResources {
-    inputs.property 'version', project.version
-
-    filesMatching('fabric.mod.json') {
-        expand version: project.version
-    }
 }
 
 shadowJar {

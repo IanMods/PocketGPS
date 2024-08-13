@@ -8,8 +8,8 @@ pluginManagement {
     }
 }
 
+rootProject.name = "pocketgps"
+
 include("common")
 include("fabric")
 include("forge")
-
-rootProject.name = "pocketgps"
