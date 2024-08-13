@@ -1,0 +1,61 @@
+[10:55:40] [main/INFO] (Launcher) ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 1.20.1-5, --assetsDir, C:\Users\ianan\.gradle\caches\fabric-loom\assets, --gameDir, ., --fml.forgeVersion, 47.3.5, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, -mixin.config, pocketgps.mixins.json, --mixin.config, pocketgps.mixins.json]
+[10:55:40] [main/INFO] (Launcher) ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.10 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[10:55:40] [main/WARN] (FMLConfig) Configuration file C:\Users\ianan\IdeaProjects\PocketGPS\1.20.1\forge\run\config\fml.toml is not correct. Correcting
+[10:55:40] [main/INFO] (FMLConfig) Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
+[10:55:40] [main/INFO] (FMLConfig) Incorrect key [earlyWindowSquir] was corrected from null to false
+[10:55:40] [main/INFO] (FMLConfig) Incorrect key [earlyWindowShowCPU] was corrected from null to false
+[10:55:40] [main/INFO] (ImmediateWindowHandler) Loading ImmediateWindowProvider fmlearlywindow
+[10:55:40] [main/INFO] (EARLYDISPLAY) Trying GL version 4.6
+[10:55:41] [main/INFO] (EARLYDISPLAY) Requested GL version 4.6 got version 4.6
+[10:55:41] [main/INFO] (mixin) SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/ianan/.gradle/caches/modules-2/files-2.1/dev.architectury/mixin-patched/0.8.5.11/dd886ad7af30604cbd9aa0f1eb9fb95b079013ca/mixin-patched-0.8.5.11.jar%23127!/ Service=ModLauncher Env=CLIENT
+[10:55:41] [pool-5-thread-1/INFO] (EARLYDISPLAY) GL info: NVIDIA GeForce RTX 4070 Ti/PCIe/SSE2 GL version 4.6.0 NVIDIA 556.12, NVIDIA Corporation
+[10:55:41] [main/WARN] (ModFileParser) Mod file C:\Users\ianan\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.5\4c589c051ef533f8898fb5d83514d4186faa0eeb\javafmllanguage-1.20.1-47.3.5.jar is missing mods.toml file
+[10:55:41] [main/WARN] (ModFileParser) Mod file C:\Users\ianan\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.5\8251eee89645828a05f3b04f5df8945baa0743c4\lowcodelanguage-1.20.1-47.3.5.jar is missing mods.toml file
+[10:55:41] [main/WARN] (ModFileParser) Mod file C:\Users\ianan\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.5\53971d6fe08ae7ce74a72fa7d14a82de70a8bd1\mclanguage-1.20.1-47.3.5.jar is missing mods.toml file
+[10:55:41] [main/WARN] (ModFileParser) Mod file C:\Users\ianan\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.5\cc377ceca3274bd1e429c0da17f73720ce29a4d6\fmlcore-1.20.1-47.3.5.jar is missing mods.toml file
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file javafmllanguage-1.20.1-47.3.5.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file lowcodelanguage-1.20.1-47.3.5.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file mclanguage-1.20.1-47.3.5.jar of type LANGPROVIDER with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file fmlcore-1.20.1-47.3.5.jar of type LIBRARY with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file forge-1.20.1-47.3.5-minecraft-merged-1.20.1-loom.mappings.1_20_1.layered+hash.1413125907-v2-forge-1.20.1-47.3.5.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file main of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file  of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.MinecraftLocator@36796121
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file 18060811513518049289.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator@64bb22
+[10:55:41] [main/INFO] (ModDiscoverer) Found mod file 18060811513518049289.jar of type MOD with provider net.minecraftforge.fml.loading.moddiscovery.ClasspathLocator@64bb22
+[10:55:41] [main/INFO] (JarInJarDependencyLocator) No dependencies to load found. Skipping!
+[10:55:43] [main/INFO] (mixin) Compatibility level set to JAVA_17
+[10:55:43] [main/INFO] (LaunchServiceHandler) Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\ianan\.gradle\caches\fabric-loom\assets, --assetIndex, 1.20.1-5]
+[10:55:43] [main/ERROR] (EventSubclassTransformer) Could not find parent eud for class net/minecraftforge/client/loading/ForgeLoadingOverlay in classloader cpw.mods.modlauncher.TransformingClassLoader@7212e7e3 on thread Thread[main,5,main]
+[10:55:43] [main/ERROR] (EventSubclassTransformer) An error occurred building event handler
+java.lang.ClassNotFoundException: eud
+	at cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:141) ~[securejarhandler-2.1.10.jar:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?]
+	at net.minecraftforge.eventbus.EventSubclassTransformer.buildEvents(EventSubclassTransformer.java:97) ~[eventbus-6.0.5.jar:?]
+	at net.minecraftforge.eventbus.EventSubclassTransformer.transform(EventSubclassTransformer.java:48) ~[eventbus-6.0.5.jar:?]
+	at net.minecraftforge.eventbus.EventBusEngine.processClass(EventBusEngine.java:26) ~[eventbus-6.0.5.jar:?]
+	at net.minecraftforge.eventbus.service.ModLauncherService.processClassWithFlags(ModLauncherService.java:32) ~[eventbus-6.0.5.jar:6.0.5+6.0.5+master.eb8e549b]
+	at cpw.mods.modlauncher.LaunchPluginHandler.offerClassNodeToPlugins(LaunchPluginHandler.java:88) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.ClassTransformer.transform(ClassTransformer.java:120) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.TransformingClassLoader.maybeTransformClassBytes(TransformingClassLoader.java:50) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.cl.ModuleClassLoader.readerToClass(ModuleClassLoader.java:113) ~[securejarhandler-2.1.10.jar:?]
+	at cpw.mods.cl.ModuleClassLoader.lambda$findClass$15(ModuleClassLoader.java:219) ~[securejarhandler-2.1.10.jar:?]
+	at cpw.mods.cl.ModuleClassLoader.loadFromModule(ModuleClassLoader.java:229) ~[securejarhandler-2.1.10.jar:?]
+	at cpw.mods.cl.ModuleClassLoader.findClass(ModuleClassLoader.java:219) ~[securejarhandler-2.1.10.jar:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:637) ~[?:?]
+	at java.lang.Class.forName(Class.java:545) ~[?:?]
+	at net.minecraftforge.fml.earlydisplay.DisplayWindow.lambda$updateModuleReads$14(DisplayWindow.java:601) ~[fmlearlydisplay-1.20.1-47.3.5.jar%23106!/:1.0]
+	at java.util.Optional.map(Optional.java:260) ~[?:?]
+	at net.minecraftforge.fml.earlydisplay.DisplayWindow.updateModuleReads(DisplayWindow.java:601) ~[fmlearlydisplay-1.20.1-47.3.5.jar%23106!/:1.0]
+	at net.minecraftforge.fml.loading.ImmediateWindowHandler.acceptGameLayer(ImmediateWindowHandler.java:71) ~[fmlloader-1.20.1-47.3.5.jar%23107!/:1.0]
+	at net.minecraftforge.fml.loading.FMLLoader.beforeStart(FMLLoader.java:207) ~[fmlloader-1.20.1-47.3.5.jar%23107!/:1.0]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.launchService(CommonLaunchHandler.java:92) ~[fmlloader-1.20.1-47.3.5.jar%23107!/:?]
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:108) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar%23111!/:?]
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[?:?]
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86) ~[dev-launch-injector-0.2.1+build.8.jar%23197!/:?]
+	at dev.architectury.transformer.TransformerRuntime.main(TransformerRuntime.java:219) ~[?:?]
