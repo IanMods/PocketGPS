@@ -7,6 +7,10 @@
 /fabric/build/
 /forge/.gradle/
 /forge/build/
+/forge/run/
+/fabric/run/
+/forge/run/logs/
+/fabric/run/logs/
 
 # eclipse
 bin
