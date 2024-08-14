@@ -1,8 +1,7 @@
 package club.iananderson.pocketgps.forge.event;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.minimaps.JourneyMap;
-import club.iananderson.pocketgps.minimaps.XaerosMinimap;
+import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
@@ -16,8 +15,7 @@ public class InventoryEvent {
   @SubscribeEvent
   public static void onPlayerTickEvent(PlayerTickEvent event) {
     if (event.player instanceof LocalPlayer player) {
-      XaerosMinimap.DisplayMap(player);
-      JourneyMap.DisplayMap(player);
+      CurrentMinimap.displayMinimap(player);
     }
   }
 }

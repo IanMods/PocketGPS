@@ -23,4 +23,6 @@ dependencies {
     // dependencies must also be pulled in to minimize problems, from remapping issues to compile errors.
     modCompileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}"
     modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_fabric_version}"
+    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
+    modCompileOnly "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
 }

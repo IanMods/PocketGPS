@@ -40,7 +40,7 @@ dependencies {
     modCompileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_forge_version}"
 
     //JourneyMap
-    modImplementation "curse.maven:journeymap-32274:${project.journeymap_forge_version}"
+    modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_forge_version}"
 
     //FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
