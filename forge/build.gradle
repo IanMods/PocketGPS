@@ -37,21 +37,21 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     //Xaero's Minimap
-    compileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_forge_version}"
+    modCompileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_forge_version}"
 
     //JourneyMap
-    compileOnly "curse.maven:journeymap-32274:${project.journeymap_forge_version}"
+    modImplementation "curse.maven:journeymap-32274:${project.journeymap_forge_version}"
 
     //FTB Chunks + Dependencies
-    compileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
-    compileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-    compileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
-    compileOnly "curse.maven:architectury-api-419699:${project.architectury_api_forge_version}"
+    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
+    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
+    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+    modCompileOnly "curse.maven:architectury-api-419699:${project.architectury_api_forge_version}"
 
     //Curios + Accessories
-    compileOnly "curse.maven:accessories-938917:${project.accessories_forge_version}"
-    compileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_forge_version}"
-    compileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+    modCompileOnly "curse.maven:accessories-938917:${project.accessories_forge_version}"
+    modCompileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_forge_version}"
+    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 }
 
 shadowJar {

@@ -29,10 +29,10 @@ subprojects {
         maven { url = "https://maven.blamejared.com/" } // JEI
         maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
         maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
-        maven { url = 'https://maven.ladysnake.org/releases'} // Cardinal Components
+        maven { url = 'https://maven.ladysnake.org/releases' } // Cardinal Components
         exclusiveContent {
             forRepository {
-                maven { url = "https://cursemaven.com"}
+                maven { url = "https://cursemaven.com" }
             }
             filter {
                 includeGroup "curse.maven"
@@ -40,18 +40,17 @@ subprojects {
         }
     }
 
-//    dependencies {
-//        minecraft "net.minecraft:minecraft:${project.minecraft_version}"
-//        mappings loom.officialMojangMappings()
-//    }
+    loom {
+        silentMojangMappingsLicense()
+    }
 
     dependencies {
         minecraft "com.mojang:minecraft:${project.minecraft_version}"
-        // layered mappings - Mojmap names, parchment and QM docs and parameters
-        mappings(loom.layered {
-            officialMojangMappings { nameSyntheticMembers = false }
-            parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
-        })
+        mappings loom.officialMojangMappings()
+//        mappings(loom.layered {
+//            officialMojangMappings()
+//            parchment("org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_version}@zip")
+//        })
     }
 
     java {
@@ -60,8 +59,8 @@ subprojects {
         // If you remove this line, sources will not be generated.
         //withSourcesJar()
 
-        sourceCompatibility = JavaLanguageVersion.of(project.java_version)
-        targetCompatibility = JavaLanguageVersion.of(project.java_version)
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType(JavaCompile).configureEach {

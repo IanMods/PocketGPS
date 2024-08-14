@@ -1,7 +1,7 @@
 # PocketGPS
 
-This mod makes the common minimap mods only display if the PocketGPS item  is in the players inventory or 
-Curios/Trinkets/Accessories slot. 
+This mod makes the common minimap mods only display if the PocketGPS item is in the players inventory or
+Curios/Trinkets/Accessories slot.
 
 Includes support for the following minimaps:
 

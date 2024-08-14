@@ -1,0 +1,23 @@
+package club.iananderson.pocketgps.forge.event;
+
+import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.minimaps.JourneyMap;
+import club.iananderson.pocketgps.minimaps.XaerosMinimap;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.TickEvent.PlayerTickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+
+@Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Bus.FORGE, value = Dist.CLIENT)
+public class InventoryEvent {
+
+  @SubscribeEvent
+  public static void onPlayerTickEvent(PlayerTickEvent event) {
+    if (event.player instanceof LocalPlayer player) {
+      XaerosMinimap.DisplayMap(player);
+      JourneyMap.DisplayMap(player);
+    }
+  }
+}
