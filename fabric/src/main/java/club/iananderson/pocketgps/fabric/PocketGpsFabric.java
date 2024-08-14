@@ -1,6 +1,7 @@
 package club.iananderson.pocketgps.fabric;
 
 import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.fabric.registry.FabricRegistration;
 import net.fabricmc.api.ModInitializer;
 
 public final class PocketGpsFabric implements ModInitializer {
@@ -12,5 +13,6 @@ public final class PocketGpsFabric implements ModInitializer {
 
     // Run our common setup.
     PocketGps.init();
+    FabricRegistration.init();
   }
 }

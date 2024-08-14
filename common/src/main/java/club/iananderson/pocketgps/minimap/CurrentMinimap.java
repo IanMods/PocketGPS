@@ -8,7 +8,7 @@ import java.util.List;
 import journeymap.client.ui.UIManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Item;
 import xaero.common.settings.ModOptions;
 import xaero.minimap.XaeroMinimap;
 
@@ -46,14 +46,14 @@ public class CurrentMinimap {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
   }
 
-  public static void displayMinimap(LocalPlayer player) {
+  public static void displayMinimap(LocalPlayer player, Item item) {
     Minecraft mc = Minecraft.getInstance();
 
     if (mc.level == null || mc.player == null) {
       return;
     }
 
-    boolean hasGps = FindItem.findItem(player.getInventory(), Items.SPYGLASS);
+    boolean hasGps = FindItem.findItem(player.getInventory(), item);
 
     if (journeyMapLoaded()) {
       UIManager.INSTANCE.setMiniMapEnabled(hasGps);
