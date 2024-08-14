@@ -1,10 +1,9 @@
 # PocketGPS
 
-This mod makes the common minimap mods only display if the PocketGPS item is in the players inventory or
-Curios/Trinkets/Accessories slot.
+This mod minimap mods only display if the PocketGPS item is in the players inventory or
+Curios/Trinkets/Accessories slot. Useful if you want to limit minimap usage in the early game.
 
 Includes support for the following minimaps:
-
 - Xaero's Minimap
 - FTB Chunks
 - JourneyMap
