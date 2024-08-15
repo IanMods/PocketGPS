@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Fabric" pattern="file[pocketgps.fabric.main]:*/||file[pocketgps.fabric]:build.gradle||file[pocketgps.fabric*]:*//*" />
+</component>

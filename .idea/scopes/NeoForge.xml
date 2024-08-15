@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+    <scope name="NeoForge" pattern="file[pocketgps.neoforge*]:*/||file[pocketgps.neoforge]:build.gradle||file[pocketgps]:neoforge/*" />
+</component>
