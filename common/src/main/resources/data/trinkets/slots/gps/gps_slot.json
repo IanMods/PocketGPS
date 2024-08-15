@@ -1,0 +1,8 @@
+{
+  "icon": "pocketgps:gui/slots/gps_slot",
+  "amount": 1,
+  "order": -256,
+  "validator_predicates": [
+    "trinkets:tag"
+  ]
+}

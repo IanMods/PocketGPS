@@ -1,0 +1,8 @@
+{
+  "entities": [
+    "player"
+  ],
+  "slots": [
+    "gps/gps_slot"
+  ]
+}

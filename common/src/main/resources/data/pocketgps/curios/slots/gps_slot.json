@@ -1,0 +1,8 @@
+{
+  "icon": "pocketgps:slot/gps_slot",
+  "size": 1,
+  "order": -256,
+  "validator_predicates": [
+    "curios:tag"
+  ]
+}

@@ -46,23 +46,31 @@ public class CurrentMinimap {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
   }
 
-  public static void displayMinimap(LocalPlayer player, Item item) {
+  public static boolean hasGps(LocalPlayer player, Item item) {
+    Minecraft mc = Minecraft.getInstance();
+
+    if (mc.level == null || mc.player == null) {
+      return false;
+    }
+
+    return FindItem.findItem(player.getInventory(), item);
+  }
+
+  public static void displayMinimap(Boolean displayMap) {
     Minecraft mc = Minecraft.getInstance();
 
     if (mc.level == null || mc.player == null) {
       return;
     }
 
-    boolean hasGps = FindItem.findItem(player.getInventory(), item);
-
     if (journeyMapLoaded()) {
-      UIManager.INSTANCE.setMiniMapEnabled(hasGps);
+      UIManager.INSTANCE.setMiniMapEnabled(displayMap);
     }
     if (xaeroLoaded()) {
-      XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, hasGps);
+      XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, displayMap);
     }
     if (onlyFtbChunksLoaded()) {
-      FTBChunksClientConfig.MINIMAP_ENABLED.set(hasGps);
+      FTBChunksClientConfig.MINIMAP_ENABLED.set(displayMap);
     }
   }
 

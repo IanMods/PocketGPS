@@ -2,5 +2,8 @@
   "tab.pocketgps": "PocketGPS",
   "item.pocketgps.gps": "Pocket GPS",
   "item.pocketgps.gps.tooltip.shift": "Hold Shift for More Info",
-  "item.pocketgps.gps.tooltip": ""
+  "item.pocketgps.gps.tooltip": "",
+  "trinkets.slot.gps.gps_slot": "GPS",
+  "curios.identifier.gps_slot": "GPS",
+  "accessories.slot.gps_slot": "GPS"
 }
