@@ -31,5 +31,5 @@ public final class PocketGps {
   //TODO:
   //      * Add a tooltip to the item.
   //      * Add CurseForge/Modrinth uploader.
-  //      * Add a Recipe. Something mid game
+
 }

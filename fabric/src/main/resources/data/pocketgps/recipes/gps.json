@@ -1,14 +1,9 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"category": "equipment",
-	"pattern": [
-		"cii",
-		"imi",
-		"idi"
-	],
 	"key": {
 		"i": {
-			"item": "c:iron_ingots"
+			"tag": "c:iron_ingots"
 		},
 		"m": {
 			"item": "minecraft:map"
@@ -17,12 +12,16 @@
 			"item": "minecraft:lightning_rod"
 		},
 		"d": {
-			"item": "c:diamonds"
+			"tag": "c:diamonds"
 		}
 	},
+	"pattern": [
+		"cii",
+		"imi",
+		"idi"
+	],
 	"result": {
-		"item": "pocketgps:gps",
-		"count": 1
+		"item": "pocketgps:gps"
 	},
 	"show_notification": false
 }
