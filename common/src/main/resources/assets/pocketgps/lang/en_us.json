@@ -1,8 +1,13 @@
 {
   "tab.pocketgps": "PocketGPS",
   "item.pocketgps.gps": "Pocket GPS",
-  "item.pocketgps.gps.tooltip.shift": "Hold Shift for More Info",
-  "item.pocketgps.gps.tooltip": "",
+  "item.pocketgps.gps.tooltip.default": "Hold SHIFT for more info",
+  "item.pocketgps.gps.tooltip": "Having this item in your inventory allows the use of minimaps",
+  "item.pocketgps.gps.tooltip.minimap.current": "Current Loaded Minimap: ",
+  "minimap.pocketgps.none": "[NONE]",
+  "minimap.pocketgps.journeymap": "[JourneyMap]",
+  "minimap.pocketgps.xaero": "[Xaero's Minimap]",
+  "minimap.pocketgps.ftb": "[FTB Chunks]",
   "trinkets.slot.gps.gps_slot": "GPS",
   "curios.identifier.gps_slot": "GPS",
   "accessories.slot.gps_slot": "GPS"

@@ -8,6 +8,8 @@ import java.util.List;
 import journeymap.client.ui.UIManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import xaero.common.settings.ModOptions;
 import xaero.minimap.XaeroMinimap;
@@ -75,22 +77,29 @@ public class CurrentMinimap {
   }
 
   public enum Minimaps {
-    XAERO("xaerominimap"),
+    XAERO("xaerominimap", Component.translatable("minimap.pocketgps.xaero")),
 
-    XAERO_FAIRPLAY("xaerominimapfair"),
+    XAERO_FAIRPLAY("xaerominimapfair", Component.translatable("minimap.pocketgps.xaero")),
 
-    JOURNEYMAP("journeymap"),
+    JOURNEYMAP("journeymap", Component.translatable("minimap.pocketgps.journeymap")),
 
-    FTB_CHUNKS("ftbchunks");
+    FTB_CHUNKS("ftbchunks", Component.translatable("minimap.pocketgps.ftb"));
 
     private final String modID;
 
-    Minimaps(String modID) {
+    private final MutableComponent modName;
+
+    Minimaps(String modID, MutableComponent modName) {
       this.modID = modID;
+      this.modName = modName;
     }
 
     public String getModID() {
       return this.modID;
+    }
+
+    public MutableComponent getModName() {
+      return this.modName;
     }
   }
 }
