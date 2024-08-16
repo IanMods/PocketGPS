@@ -29,9 +29,6 @@ public final class PocketGps {
   }
 
   //TODO:
-  //      * Draw a new GPS texture/model, instead of using placeholder.
-  //      * Draw mod icon and make sure it is named correctly in mods.toml and fabric.mod.json
-  //      * Draw the Curios/Trinket/Accessories texture
   //      * Add a tooltip to the item.
   //      * Add CurseForge/Modrinth uploader.
   //      * Add a Recipe. Something mid game
