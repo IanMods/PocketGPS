@@ -52,6 +52,9 @@ dependencies {
     modCompileOnly "curse.maven:accessories-938917:${project.accessories_forge_version}"
     modCompileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_forge_version}"
     modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+
+    // Development QOL
+    modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
 }
 
 shadowJar {
