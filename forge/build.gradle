@@ -1,5 +1,7 @@
 plugins {
     id 'com.github.johnrengelman.shadow'
+    id 'net.darkhax.curseforgegradle'
+    id 'com.modrinth.minotaur'
 }
 
 architectury {
@@ -37,7 +39,7 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     //Xaero's Minimap
-    modCompileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_forge_version}"
+    modLocalRuntime "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_forge_version}"
 
     //JourneyMap
     modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_forge_version}"
@@ -64,4 +66,70 @@ shadowJar {
 
 remapJar {
     input.set shadowJar.archiveFile
+}
+
+String changelogText = projectDir.toPath().getParent().resolve("CHANGELOG.md").getText('UTF-8')
+
+modrinth {
+    int firstHeading = changelogText.indexOf("## [")
+    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
+    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
+
+    debugMode = false
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = modrinth_project_id
+    versionNumber = minecraft_version + "-" + version
+    versionName = base.archivesName.get() + "-" + mod_version
+    versionType = "release"
+    uploadFile = jar
+
+    List<String> mcVersions = minecraft_game_versions.split(",")
+    gameVersions = mcVersions
+    loaders = ["forge", "neoforge"]
+
+    changelog = recentChangelogText
+
+    dependencies {
+        optional.project "xaeros-minimap"
+        optional.project "xaeros-minimap-fair"
+        optional.project "journeymap"
+        optional.project "curios"
+        optional.project "accessories"
+    }
+}
+
+task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    int firstHeading = changelogText.indexOf("## [")
+    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
+    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
+
+    debugMode = false
+    disableVersionDetection()
+    apiToken = System.getenv("CURSEFORGE_TOKEN")
+
+    def mainFile = upload(curseforge_project_id, remapJar)
+    mainFile.changelogType = "markdown"
+    mainFile.changelog = recentChangelogText
+    mainFile.releaseType = "release"
+
+    List<String> mcVersions = minecraft_game_versions.split(",")
+    mainFile.gameVersions = mcVersions
+    mainFile.addModLoader("Forge")
+    mainFile.addModLoader("NeoForge")
+    mainFile.addJavaVersion("Java 17")
+
+    mainFile.addOptional("xaeros-minimap")
+    mainFile.addOptional("xaeros-minimap-fair-play-edition")
+    mainFile.addOptional("journeymap")
+    mainFile.addOptional("ftb-chunks-forge")
+    mainFile.addOptional("curios")
+    mainFile.addOptional("accessories")
+}
+
+task publishForge {
+    group = "publishing"
+    afterEvaluate {
+        dependsOn(tasks.publishCurseForge)
+        dependsOn(tasks.modrinth)
+    }
 }

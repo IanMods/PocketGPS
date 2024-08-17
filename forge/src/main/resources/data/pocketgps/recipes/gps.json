@@ -1,27 +1,27 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"category": "equipment",
-	"key": {
-		"i": {
-			"tag": "forge:ingots/iron"
-		},
-		"m": {
-			"item": "minecraft:map"
-		},
-		"c": {
-			"item": "minecraft:lightning_rod"
-		},
-		"d": {
-			"tag": "forge:gems/diamond"
-		}
-	},
-	"pattern": [
-		"cii",
-		"imi",
-		"idi"
-	],
-	"result": {
-		"item": "pocketgps:gps"
-	},
-	"show_notification": false
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "m": {
+      "item": "minecraft:map"
+    },
+    "c": {
+      "item": "minecraft:lightning_rod"
+    },
+    "d": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "pattern": [
+    "cii",
+    "imi",
+    "idi"
+  ],
+  "result": {
+    "item": "pocketgps:gps"
+  },
+  "show_notification": false
 }
