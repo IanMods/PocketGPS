@@ -6,6 +6,8 @@ import club.iananderson.pocketgps.items.GpsItem;
 import net.fabricmc.api.ModInitializer;
 
 public final class PocketGpsFabric implements ModInitializer {
+  public static final GpsItem POCKET_GPS = new GpsItem();
+
   @Override
   public void onInitialize() {
     // This code runs as soon as Minecraft is in a mod-load-ready state.

@@ -13,8 +13,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 public class GpsItem extends Item {
-  public GpsItem(Properties properties) {
-    super(properties.stacksTo(1));
+  public GpsItem() {
+    super(new Properties().stacksTo(1));
   }
 
   @Override
