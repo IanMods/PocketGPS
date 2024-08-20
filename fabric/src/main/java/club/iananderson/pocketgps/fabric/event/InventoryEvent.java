@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.fabric.event;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.fabric.PocketGpsFabric;
 import club.iananderson.pocketgps.fabric.registry.FabricRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import dev.emi.trinkets.api.TrinketComponent;

@@ -36,44 +36,44 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     //Xaero's Minimap
-    modCompileOnly ("curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}")
+    modCompileOnly("curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}")
 
     //JourneyMap
-    modCompileOnly ("curse.maven:journeymap-32274:${project.journeymap_fabric_version}"){
+    modCompileOnly("curse.maven:journeymap-32274:${project.journeymap_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     //FTB Chunks + Dependencies
-    modCompileOnly ("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"){
+    modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly ("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"){
+    modCompileOnly("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly ("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}"){
+    modCompileOnly("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly ("curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}"){
+    modCompileOnly("curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     //Trinkets + Accessories
-    modCompileOnly ("dev.emi:trinkets:${project.trinkets_fabric_version}"){
+    modCompileOnly("dev.emi:trinkets:${project.trinkets_fabric_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly ("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.2"){
+    modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.2") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modCompileOnly ("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.2"){
+    modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.2") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
     // Development QOL
-    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}"){
+    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
-    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}"){
+    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -81,17 +81,17 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {
         case "jei":
-            modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}"){
+            modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
                 exclude group: 'net.fabricmc', module: 'fabric-loader'
             }
             break
         case "rei":
-            modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"){
+            modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
                 exclude group: 'net.fabricmc', module: 'fabric-loader'
             }
             break
         case "emi":
-            modLocalRuntime("dev.emi:emi:${project.emi_version}"){
+            modLocalRuntime("dev.emi:emi:${project.emi_version}") {
                 exclude group: 'net.fabricmc', module: 'fabric-loader'
             }
             break

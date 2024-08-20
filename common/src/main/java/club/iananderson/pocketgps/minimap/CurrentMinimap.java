@@ -8,8 +8,8 @@ import java.util.List;
 import journeymap.client.ui.UIManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import xaero.common.settings.ModOptions;
 import xaero.minimap.XaeroMinimap;
@@ -77,13 +77,13 @@ public class CurrentMinimap {
   }
 
   public enum Minimaps {
-    XAERO("xaerominimap", Component.translatable("minimap.pocketgps.xaero")),
+    XAERO("xaerominimap", new TranslatableComponent("minimap.pocketgps.xaero")),
 
-    XAERO_FAIRPLAY("xaerominimapfair", Component.translatable("minimap.pocketgps.xaero")),
+    XAERO_FAIRPLAY("xaerominimapfair", new TranslatableComponent("minimap.pocketgps.xaero")),
 
-    JOURNEYMAP("journeymap", Component.translatable("minimap.pocketgps.journeymap")),
+    JOURNEYMAP("journeymap", new TranslatableComponent("minimap.pocketgps.journeymap")),
 
-    FTB_CHUNKS("ftbchunks", Component.translatable("minimap.pocketgps.ftb"));
+    FTB_CHUNKS("ftbchunks", new TranslatableComponent("minimap.pocketgps.ftb"));
 
     private final String modID;
 

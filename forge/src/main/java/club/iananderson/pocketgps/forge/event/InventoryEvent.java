@@ -28,7 +28,7 @@ public class InventoryEvent {
 
     if (PocketGps.curiosLoaded()) {
       ICuriosHelper curiosInventory = CuriosApi.getCuriosHelper();
-      if (curiosInventory.findFirstCurio(player,item).isPresent()) {
+      if (curiosInventory.findFirstCurio(player, item).isPresent()) {
         slot += 1;
       }
     }

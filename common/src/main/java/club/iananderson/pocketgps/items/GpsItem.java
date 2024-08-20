@@ -7,6 +7,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -23,18 +25,19 @@ public class GpsItem extends Item {
     MutableComponent loadedMinimap;
 
     if (currentMinimaps.isEmpty()) {
-      loadedMinimap = Component.translatable("minimap.pocketgps.none");
+      loadedMinimap = new TranslatableComponent("minimap.pocketgps.none");
     } else {
       loadedMinimap = currentMinimaps.get(0).getModName();
     }
 
     if (Screen.hasShiftDown()) {
-      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip").withStyle(ChatFormatting.GRAY));
-      tooltip.add(Component.literal(""));
-      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.minimap.current").withStyle(ChatFormatting.YELLOW)
-                      .append(loadedMinimap.withStyle(ChatFormatting.AQUA)));
+      tooltip.add(new TranslatableComponent("item.pocketgps.gps.tooltip").withStyle(ChatFormatting.GRAY));
+      tooltip.add(new TextComponent(""));
+      tooltip.add(
+          new TranslatableComponent("item.pocketgps.gps.tooltip.minimap.current").withStyle(ChatFormatting.YELLOW)
+              .append(loadedMinimap.withStyle(ChatFormatting.AQUA)));
     } else {
-      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
+      tooltip.add(new TranslatableComponent("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
     }
 
     super.appendHoverText(stack, level, tooltip, flag);

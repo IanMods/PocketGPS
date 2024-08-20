@@ -2,7 +2,6 @@ package club.iananderson.pocketgps.fabric;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.fabric.registry.FabricRegistration;
-import club.iananderson.pocketgps.items.GpsItem;
 import net.fabricmc.api.ModInitializer;
 
 public final class PocketGpsFabric implements ModInitializer {

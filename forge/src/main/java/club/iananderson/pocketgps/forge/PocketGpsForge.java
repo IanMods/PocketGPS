@@ -4,8 +4,6 @@ import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.forge.event.InventoryEvent;
 import club.iananderson.pocketgps.forge.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,7 +12,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
 
 @Mod(PocketGps.MOD_ID)
 public final class PocketGpsForge {
@@ -36,8 +33,9 @@ public final class PocketGpsForge {
         new CuriosCompat().setup(event);
       }
     }
+
     @SubscribeEvent
-    public static void curioTexture(TextureStitchEvent.Pre evt){
+    public static void curioTexture(TextureStitchEvent.Pre evt) {
       evt.addSprite(PocketGps.slotIcon);
     }
   }
