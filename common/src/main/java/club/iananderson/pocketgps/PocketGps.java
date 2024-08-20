@@ -9,9 +9,9 @@ public final class PocketGps {
   public static final String MOD_ID = "pocketgps";
   public static final String MOD_NAME = "PocketGPS";
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+  public static ResourceLocation slotIcon = new ResourceLocation(MOD_ID, "slot/gps_slot");
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;
-  public static ResourceLocation slotIcon = new ResourceLocation(MOD_ID, "slot/gps_slot");
 
   //public static final GpsItem POCKET_GPS = new GpsItem();
   private PocketGps() {
