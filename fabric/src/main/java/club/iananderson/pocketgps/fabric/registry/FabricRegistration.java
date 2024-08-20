@@ -11,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class FabricRegistration {
   public static final FabricItemGroupBuilder TABS = FabricItemGroupBuilder.create(
-      new ResourceLocation(PocketGps.MOD_ID, "tab"));  public static final GpsItem POCKET_GPS = new GpsItem(defaultProperties());
+      new ResourceLocation(PocketGps.MOD_ID, "tab"));
 
   private static Item.Properties defaultProperties() {
     return new Item.Properties().tab(TAB);
@@ -19,12 +19,12 @@ public class FabricRegistration {
 
   public static void init() {
     Registry.register(Registry.ITEM, new ResourceLocation(PocketGps.MOD_ID, "gps"), POCKET_GPS);
-  }  public static CreativeModeTab TAB = TABS.icon(POCKET_GPS::getDefaultInstance).appendItems(stacks -> {
-        stacks.add(new ItemStack(POCKET_GPS));
-      })
-      .build();
+  }  public static final GpsItem POCKET_GPS = new GpsItem(defaultProperties());
 
 
 
+  public static CreativeModeTab TAB = TABS.icon(POCKET_GPS::getDefaultInstance).appendItems(stacks -> {
+    stacks.add(new ItemStack(POCKET_GPS));
+  }).build();
 
 }

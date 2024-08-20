@@ -35,7 +35,8 @@ public class GpsItem extends Item {
       tooltip.add(new TextComponent(""));
       tooltip.add(
           new TranslatableComponent("item.pocketgps.gps.tooltip.minimap.current").withStyle(ChatFormatting.YELLOW)
-              .append(loadedMinimap.withStyle(ChatFormatting.AQUA)));
+                                                                                 .append(loadedMinimap.withStyle(
+                                                                                     ChatFormatting.AQUA)));
     } else {
       tooltip.add(new TranslatableComponent("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
     }

@@ -1,7 +1,7 @@
 # PocketGPS
 
-This mod adds a "PocketGPS" item and changes minimap mods to only display if it is in the players inventory or
-Curios/Trinkets/Accessories slot. Useful if you want to limit minimap usage in the early game.
+This mod adds a "PocketGPS" item and changes minimap mods to only display if it is in the player's
+inventory or Curios/Trinkets/Accessories slot. Useful if you want to limit minimap usage in the early game.
 
 Includes support for the following minimaps currently:
 

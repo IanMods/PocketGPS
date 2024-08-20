@@ -1,6 +1,7 @@
 package club.iananderson.pocketgps.forge.registry;
 
 import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.items.GpsItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -15,19 +16,19 @@ public class ForgeRegistration {
 
   private static Item.Properties defaultProperties() {
     return new Item.Properties().tab(TAB);
-  }  public static final RegistryObject<Item> POCKET_GPS = ITEMS.register("gps",
-                                                                       () -> new Item(defaultProperties().stacksTo(1)));
+  }
 
   public static void init(IEventBus modEventBus) {
     ITEMS.register(modEventBus);
-  }  public static final CreativeModeTab TAB = new CreativeModeTab(PocketGps.MOD_ID + ".tab") {
+  }
+
+  public static final RegistryObject<Item> POCKET_GPS = ITEMS.register("gps",
+      () -> new GpsItem(defaultProperties().stacksTo(1)));
+
+  public static final CreativeModeTab TAB = new CreativeModeTab(PocketGps.MOD_ID + ".tab") {
     @Override
     public @NotNull ItemStack makeIcon() {
       return POCKET_GPS.get().getDefaultInstance();
     }
   };
-
-
-
-
 }
