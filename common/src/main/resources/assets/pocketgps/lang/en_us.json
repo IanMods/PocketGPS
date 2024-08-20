@@ -1,5 +1,5 @@
 {
-  "tab.pocketgps": "PocketGPS",
+  "itemGroup.pocketgps.tab": "PocketGPS",
   "item.pocketgps.gps": "Pocket GPS",
   "item.pocketgps.gps.tooltip.default": "Hold SHIFT for more info",
   "item.pocketgps.gps.tooltip": "Having this item in your inventory allows the use of minimaps",

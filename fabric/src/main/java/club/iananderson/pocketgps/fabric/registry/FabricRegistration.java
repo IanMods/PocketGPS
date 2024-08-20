@@ -2,28 +2,34 @@ package club.iananderson.pocketgps.fabric.registry;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.fabric.PocketGpsFabric;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import club.iananderson.pocketgps.items.GpsItem;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class FabricRegistration {
-  public static final CreativeModeTab.Builder TABS = FabricItemGroup.builder();
+  public static final GpsItem POCKET_GPS = new GpsItem(defaultProperties());
 
-  public static CreativeModeTab TAB = TABS.icon(() -> new ItemStack(PocketGpsFabric.POCKET_GPS))
-      .title(Component.translatable("tab.pocketgps"))
-      .icon(() -> new ItemStack(PocketGpsFabric.POCKET_GPS)).displayItems((featureFlags, output) -> {
-        output.accept(PocketGpsFabric.POCKET_GPS);
+  public static final FabricItemGroupBuilder TABS = FabricItemGroupBuilder.create(
+      new ResourceLocation(PocketGps.MOD_ID, "tab"));
+
+  public static CreativeModeTab TAB = TABS
+      .icon(POCKET_GPS::getDefaultInstance)
+      .appendItems(stacks -> {
+        stacks.add(new ItemStack(POCKET_GPS));
       })
       .build();
 
+  private static Item.Properties defaultProperties() {
+    return new Item.Properties().tab(TAB);
+  }
+
   public static void init() {
-    Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(PocketGps.MOD_ID, "gps"),
-                      PocketGpsFabric.POCKET_GPS);
-    Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(PocketGps.MOD_ID, "pocket_gps_tab"),
-                      TAB);
+    Registry.register(Registry.ITEM, new ResourceLocation(PocketGps.MOD_ID, "gps"), POCKET_GPS);
   }
 }

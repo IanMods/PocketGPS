@@ -2,10 +2,12 @@ package club.iananderson.pocketgps.forge;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.forge.event.InventoryEvent;
-import club.iananderson.pocketgps.forge.impl.accessories.AccessoriesCompat;
 import club.iananderson.pocketgps.forge.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,8 +18,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod(PocketGps.MOD_ID)
 public final class PocketGpsForge {
-  public static RegistryObject<Item> POCKET_GPS;
-
   public PocketGpsForge() {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -27,7 +27,7 @@ public final class PocketGpsForge {
     modEventBus.addListener(ClientModEvents::commonSetup);
   }
 
-  @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+  @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModEvents {
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
@@ -35,10 +35,10 @@ public final class PocketGpsForge {
         PocketGps.LOG.info("Talking to Curios");
         new CuriosCompat().setup(event);
       }
-      if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
-        PocketGps.LOG.info("Talking to Accessories");
-        new AccessoriesCompat().setup(event);
-      }
+    }
+    @SubscribeEvent
+    public static void curioTexture(TextureStitchEvent.Pre evt){
+      evt.addSprite(PocketGps.slotIcon);
     }
   }
 }
