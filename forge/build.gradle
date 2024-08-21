@@ -84,7 +84,7 @@ modrinth {
 
     List<String> mcVersions = minecraft_game_versions.split(",")
     gameVersions = mcVersions
-    loaders = ["forge", "neoforge"]
+    loaders = ["forge"]
 
     changelog = recentChangelogText
 
