@@ -2,6 +2,7 @@ package club.iananderson.pocketgps.forge.event;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.forge.PocketGpsForge;
+import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import io.wispforest.accessories.api.AccessoriesCapability;
 import io.wispforest.accessories.api.AccessoriesContainer;
@@ -44,8 +45,8 @@ public class InventoryEvent {
   @SubscribeEvent
   public static void onPlayerTickEvent(PlayerTickEvent event) {
     if (event.player instanceof LocalPlayer player) {
-      boolean hasGpsInv = CurrentMinimap.hasGps(player, PocketGpsForge.POCKET_GPS.get());
-      boolean hasGpsCurio = findCurio(player, PocketGpsForge.POCKET_GPS.get());
+      boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
+      boolean hasGpsCurio = findCurio(player, ForgeRegistration.POCKET_GPS.get());
 
       CurrentMinimap.displayMinimap(hasGpsInv || hasGpsCurio);
     }

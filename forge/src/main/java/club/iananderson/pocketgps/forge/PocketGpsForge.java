@@ -16,8 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 @Mod(PocketGps.MOD_ID)
 public final class PocketGpsForge {
-  public static RegistryObject<Item> POCKET_GPS;
-
   public PocketGpsForge() {
     IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 

@@ -2,6 +2,7 @@ package club.iananderson.pocketgps.forge.impl.curios;
 
 import club.iananderson.pocketgps.forge.PocketGpsForge;
 import club.iananderson.pocketgps.forge.impl.curios.item.CuriosGps;
+import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -14,7 +15,7 @@ public class CuriosCompat {
   }
 
   public void setup(final FMLCommonSetupEvent evt) {
-    CuriosApi.registerCurio(PocketGpsForge.POCKET_GPS.get(), new CuriosGps());
+    CuriosApi.registerCurio(ForgeRegistration.POCKET_GPS.get(), new CuriosGps());
   }
 
 }
