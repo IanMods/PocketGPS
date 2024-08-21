@@ -1,6 +1,5 @@
 package club.iananderson.pocketgps.forge.impl.curios;
 
-import club.iananderson.pocketgps.forge.PocketGpsForge;
 import club.iananderson.pocketgps.forge.impl.curios.item.CuriosGps;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import net.minecraftforge.eventbus.api.IEventBus;

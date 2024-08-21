@@ -1,6 +1,5 @@
 package club.iananderson.pocketgps.forge.impl.accessories;
 
-import club.iananderson.pocketgps.forge.PocketGpsForge;
 import club.iananderson.pocketgps.forge.impl.accessories.item.AccessoriesGps;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import io.wispforest.accessories.api.AccessoriesAPI;

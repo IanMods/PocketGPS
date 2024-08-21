@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.forge.event;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.forge.PocketGpsForge;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import io.wispforest.accessories.api.AccessoriesCapability;

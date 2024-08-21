@@ -17,8 +17,7 @@ public class ForgeRegistration {
   public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(
       Registries.CREATIVE_MODE_TAB, PocketGps.MOD_ID);
 
-  public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps",
-                                                                 () -> new GpsItem(new Item.Properties()));;
+  public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps", () -> new GpsItem(new Item.Properties()));
 
   public static RegistryObject<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
       .title(Component.translatable("tab.pocketgps"))
