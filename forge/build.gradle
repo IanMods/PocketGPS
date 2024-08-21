@@ -114,7 +114,6 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     List<String> mcVersions = minecraft_game_versions.split(",")
     mainFile.gameVersions = mcVersions
     mainFile.addModLoader("Forge")
-    mainFile.addModLoader("NeoForge")
     mainFile.addJavaVersion("Java 17")
 
     mainFile.addOptional("xaeros-minimap")
