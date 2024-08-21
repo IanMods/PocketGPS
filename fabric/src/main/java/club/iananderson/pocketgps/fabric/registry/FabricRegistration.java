@@ -19,13 +19,12 @@ public class FabricRegistration {
 
   public static final GpsItem POCKET_GPS = new GpsItem(defaultProperties());
 
-  public static void init() {
-    Registry.register(Registry.ITEM, new ResourceLocation(PocketGps.MOD_ID, "gps"), POCKET_GPS);
-  }
-
   public static CreativeModeTab TAB = TABS.icon(POCKET_GPS::getDefaultInstance).appendItems(stacks -> {
         stacks.add(new ItemStack(POCKET_GPS));
       })
       .build();
 
+  public static void init() {
+    Registry.register(Registry.ITEM, new ResourceLocation(PocketGps.MOD_ID, "gps"), POCKET_GPS);
+  }
 }

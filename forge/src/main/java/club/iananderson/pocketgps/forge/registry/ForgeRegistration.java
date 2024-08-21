@@ -18,10 +18,6 @@ public class ForgeRegistration {
     return new Item.Properties().tab(TAB);
   }
 
-  public static void init(IEventBus modEventBus) {
-    ITEMS.register(modEventBus);
-  }
-
   public static final RegistryObject<Item> POCKET_GPS = ITEMS.register("gps", () -> new GpsItem(
       defaultProperties().stacksTo(1)));
 
@@ -31,4 +27,8 @@ public class ForgeRegistration {
       return POCKET_GPS.get().getDefaultInstance();
     }
   };
+
+  public static void init(IEventBus modEventBus) {
+    ITEMS.register(modEventBus);
+  }
 }
