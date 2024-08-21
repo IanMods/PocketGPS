@@ -10,7 +10,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
 
 public class GpsItem extends Item {
   public GpsItem(Properties properties) {
@@ -18,7 +17,8 @@ public class GpsItem extends Item {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> tooltip,
+      TooltipFlag flag) {
     List<Minimaps> currentMinimaps = CurrentMinimap.loadedMinimaps();
     MutableComponent loadedMinimap;
 
@@ -37,6 +37,6 @@ public class GpsItem extends Item {
       tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
     }
 
-    super.appendHoverText(stack, level, tooltip, flag);
+    super.appendHoverText(stack, tooltipContext, tooltip, flag);
   }
 }

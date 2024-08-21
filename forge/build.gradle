@@ -44,16 +44,16 @@ dependencies {
     //JourneyMap
     modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_forge_version}"
 
-    //FTB Chunks + Dependencies
-    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
-    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
-    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
-    modCompileOnly "curse.maven:architectury-api-419699:${project.architectury_api_forge_version}"
+//    //FTB Chunks + Dependencies
+//    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
+//    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
+//    modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_forge_version}"
+//    modCompileOnly "curse.maven:architectury-api-419699:${project.architectury_api_forge_version}"
 
-    //Curios + Accessories
-    modCompileOnly "curse.maven:accessories-938917:${project.accessories_forge_version}"
-    modCompileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_forge_version}"
-    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+//    //Curios + Accessories
+//    modCompileOnly "curse.maven:accessories-938917:${project.accessories_forge_version}"
+//    modCompileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_forge_version}"
+//    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
     // Development QOL
     modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
@@ -85,7 +85,7 @@ modrinth {
 
     List<String> mcVersions = minecraft_game_versions.split(",")
     gameVersions = mcVersions
-    loaders = ["forge", "neoforge"]
+    loaders = ["forge"]
 
     changelog = recentChangelogText
 
@@ -93,8 +93,8 @@ modrinth {
         optional.project "xaeros-minimap"
         optional.project "xaeros-minimap-fair"
         optional.project "journeymap"
-        optional.project "curios"
-        optional.project "accessories"
+//        optional.project "curios"
+//        optional.project "accessories"
     }
 }
 
@@ -115,15 +115,14 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     List<String> mcVersions = minecraft_game_versions.split(",")
     mainFile.gameVersions = mcVersions
     mainFile.addModLoader("Forge")
-    mainFile.addModLoader("NeoForge")
-    mainFile.addJavaVersion("Java 17")
+    mainFile.addJavaVersion("Java 21")
 
     mainFile.addOptional("xaeros-minimap")
     mainFile.addOptional("xaeros-minimap-fair-play-edition")
     mainFile.addOptional("journeymap")
-    mainFile.addOptional("ftb-chunks-forge")
-    mainFile.addOptional("curios")
-    mainFile.addOptional("accessories")
+//    mainFile.addOptional("ftb-chunks-forge")
+//    mainFile.addOptional("curios")
+//    mainFile.addOptional("accessories")
 }
 
 task publishForge {

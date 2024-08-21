@@ -1,6 +1,7 @@
 package club.iananderson.pocketgps;
 
 import club.iananderson.pocketgps.platform.Services;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +14,10 @@ public final class PocketGps {
 
   //public static final GpsItem POCKET_GPS = new GpsItem();
   private PocketGps() {
+  }
+
+  public static ResourceLocation location(String path) {
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
   }
 
   public static void init() {

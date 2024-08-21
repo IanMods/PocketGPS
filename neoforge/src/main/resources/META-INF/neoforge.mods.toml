@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "${neoforge_loader_version_range}"
+issueTrackerURL = "https://github.com/lanAnderson/PocketGPS/issues"
+license = "MIT"
+
+[[mods]]
+modId = "${mod_id}" #mandatory
+version = "${mod_version}" #mandatory
+displayName = "${mod_name}" #mandatory
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/pocketgps"
+logoFile = "${mod_id}.png"
+authors = "${mod_author}" #optional
+description = "${description}"
+
+[[dependencies.${ mod_id }]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neoforge_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${ mod_id }]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "pocketgps.mixins.json"
