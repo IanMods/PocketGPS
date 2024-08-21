@@ -36,16 +36,16 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     //Xaero's Minimap
-    modLocalRuntime "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}"
+    modCompileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}"
 
     //JourneyMap
     modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_fabric_version}"
 
     //FTB Chunks + Dependencies
-    modCompileOnly "curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"
-    modCompileOnly "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
-    modCompileOnly "curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}"
-    modCompileOnly "curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}"
+    modLocalRuntime "curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"
+    modLocalRuntime "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
+    modLocalRuntime "curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}"
+    modLocalRuntime "curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}"
 
     //Trinkets + Accessories
     modCompileOnly "curse.maven:accessories-938917:${project.accessories_fabric_version}"

@@ -30,6 +30,10 @@ configurations {
         canBeResolved = true
         canBeConsumed = false
     }
+
+    configureEach {
+        resolutionStrategy.force("net.sf.jopt-simple:jopt-simple:5.0.4")
+    }
 }
 
 dependencies {
@@ -56,7 +60,7 @@ dependencies {
 //    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
     // Development QOL
-    modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
+//    modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
 }
 
 shadowJar {
