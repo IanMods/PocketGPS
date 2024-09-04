@@ -2,7 +2,9 @@ package club.iananderson.pocketgps.fabric.event;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.fabric.registry.FabricRegistration;
+import club.iananderson.pocketgps.items.PocketGpsItems;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
+import club.iananderson.pocketgps.util.FindItem;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import java.util.Optional;
@@ -36,10 +38,9 @@ public class InventoryEvent {
   public static void register() {
     ClientTickEvents.END_CLIENT_TICK.register(client -> {
       LocalPlayer player = client.player;
-      boolean hasGpsInv = CurrentMinimap.hasGps(player, FabricRegistration.POCKET_GPS);
-      boolean hasGpsCurio = findCurio(player, FabricRegistration.POCKET_GPS);
+      boolean hasGps = FindItem.itemFound(player, FabricRegistration.POCKET_GPS);
 
-      CurrentMinimap.displayMinimap(hasGpsInv || hasGpsCurio);
+      CurrentMinimap.displayMinimap(hasGps);
     });
   }
 }

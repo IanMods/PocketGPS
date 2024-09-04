@@ -1,27 +1,28 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
+  "pattern": [
+    "CII",
+    "IMI",
+    "IDI"
+  ],
   "key": {
-    "i": {
-      "tag": "c:iron_ingots"
+    "I": {
+      "tag": "c:ingots/iron"
     },
-    "m": {
+    "M": {
       "item": "minecraft:map"
     },
-    "c": {
+    "C": {
       "item": "minecraft:lightning_rod"
     },
-    "d": {
-      "tag": "c:diamonds"
+    "D": {
+      "tag": "c:gems/diamond"
     }
   },
-  "pattern": [
-    "cii",
-    "imi",
-    "idi"
-  ],
   "result": {
-    "item": "pocketgps:gps"
+    "id": "pocketgps:gps",
+    "count": 1
   },
   "show_notification": false
 }

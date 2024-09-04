@@ -31,41 +31,76 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}")
-
-    common(project(path: ":common", configuration: "namedElements")) { transitive = false }
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     //Xaero's Minimap
-    modCompileOnly "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}"
+    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //JourneyMap
-    modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_fabric_version}"
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-fabric', version: project.journeymap_api_version_fabric, changing: true
+    modCompileOnly("maven.modrinth:journeymap:1.21-${project.journeymap_version}+fabric") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //FTB Chunks + Dependencies
-    modLocalRuntime "curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"
-    modLocalRuntime "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
-    modLocalRuntime "curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}"
-    modLocalRuntime "curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}"
+    modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("maven.modrinth:architectury-api:${project.architectury_version}+fabric") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //Trinkets + Accessories
-    modCompileOnly "curse.maven:accessories-938917:${project.accessories_fabric_version}"
-    modCompileOnly "curse.maven:accessories-tc-layer-1005680:${project.tclayer_fabric_version}"
-    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+    modCompileOnly("dev.emi:trinkets:${project.trinkets_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
     modCompileOnly "org.ladysnake.cardinal-components-api:cardinal-components-base:6.1.0"
     modCompileOnly "org.ladysnake.cardinal-components-api:cardinal-components-entity:6.1.0"
 
-    // Development QOL
-//    modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
-    modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
+    modImplementation("io.wispforest:accessories-fabric:${project.accessories_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
-    // Recipe Viewers - Create Fabric supports JEI, REI, and EMI.
+    // Development QOL
+    modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
+    // Development QOL
+    modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+
+    // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
-    switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {
-        case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"); break
-        case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"); break
-        case "emi": modLocalRuntime("dev.emi:emi:${emi_version}"); break
-        case "disabled": break
-        default: println("Unknown recipe viewer specified: ${fabric_recipe_viewer}. Must be JEI, REI, EMI, or disabled.")
+    switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
+        case "xaero":
+            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21")
+            break
+        case "journey":
+            modLocalRuntime("maven.modrinth:journeymap:1.21-${project.journeymap_version}+fabric")
+            break
+        case "ftb":
+            modLocalRuntime("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}")
+            modLocalRuntime("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}")
+            modLocalRuntime("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}")
+            modLocalRuntime("maven.modrinth:architectury-api:${project.architectury_version}+fabric")
+            break
+        case "atlas":
+            break
+        case "none":
+            break
+        default: println("Unknown recipe viewer specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
+                "atlas, or none")
     }
 }
 

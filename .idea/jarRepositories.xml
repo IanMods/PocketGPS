@@ -126,5 +126,30 @@
       <option name="name" value="maven9" />
       <option name="url" value="https://maven.neoforged.net/releases" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven14" />
+      <option name="name" value="maven14" />
+      <option name="url" value="https://maven.su5ed.dev/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven13" />
+      <option name="name" value="maven13" />
+      <option name="url" value="https://maven.wispforest.io/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven10" />
+      <option name="name" value="maven10" />
+      <option name="url" value="https://maven.minecraftforge.net" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven7" />
+      <option name="name" value="maven7" />
+      <option name="url" value="https://maven.theillusivec4.top/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven9" />
+      <option name="name" value="maven9" />
+      <option name="url" value="https://jm.gserv.me/repository/maven-public/" />
+    </remote-repository>
   </component>
 </project>

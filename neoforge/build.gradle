@@ -33,26 +33,52 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 
     //Xaero's Minimap
-    modLocalRuntime "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_neoforge_version}"
+    modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
 
     //JourneyMap
-    modCompileOnly "curse.maven:journeymap-32274:${project.journeymap_neoforge_version}"
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version_fabric, changing: true
+    modCompileOnly "maven.modrinth:journeymap:1.21-${project.journeymap_version}+neoforge"
 
     //FTB Chunks + Dependencies
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
     modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_neoforge_version}"
     modCompileOnly "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_neoforge_version}"
-    modCompileOnly "curse.maven:architectury-api-419699:${project.architectury_api_neoforge_version}"
+    modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
 
     //Curios + Accessories
-    modCompileOnly "curse.maven:accessories-938917:${project.accessories_neoforge_version}"
-    modCompileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_neoforge_version}"
+    modCompileOnly("io.wispforest:accessories-neoforge:${project.accessories_version}")
     modCompileOnly("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
     // Development QOL
     modLocalRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
+
+    // Development QOL
+    modLocalRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
+
+    // Minimap Mod Dev Tests
+    // See root gradle.properties to choose which to use at runtime.
+    switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
+        case "xaero":
+            modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
+            break
+        case "journey":
+            modLocalRuntime "maven.modrinth:journeymap:1.21-${project.journeymap_version}+neoforge"
+            break
+        case "ftb":
+            modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
+            modLocalRuntime "curse.maven:ftb-library-forge-404465:${project.ftb_library_neoforge_version}"
+            modLocalRuntime "curse.maven:ftb-teams-forge-404468:${project.ftb_teams_neoforge_version}"
+            modLocalRuntime "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
+            break
+        case "atlas":
+            break
+        case "none":
+            break
+        default: println("Unknown recipe viewer specified: ${project.minimap_mod}. Must be xaero, journey, ftb, " +
+                "atlas, or none")
+    }
 }
 
 

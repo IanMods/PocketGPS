@@ -1,16 +1,13 @@
 package club.iananderson.pocketgps.minimap;
 
 import club.iananderson.pocketgps.platform.Services;
-import club.iananderson.pocketgps.util.FindItem;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
 import journeymap.client.ui.UIManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.item.Item;
 import xaero.common.settings.ModOptions;
 import xaero.minimap.XaeroMinimap;
 
@@ -46,16 +43,6 @@ public class CurrentMinimap {
 
   public static boolean onlyFtbChunksLoaded() {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
-  }
-
-  public static boolean hasGps(LocalPlayer player, Item item) {
-    Minecraft mc = Minecraft.getInstance();
-
-    if (mc.level == null || mc.player == null) {
-      return false;
-    }
-
-    return FindItem.findItem(player.getInventory(), item);
   }
 
   public static void displayMinimap(Boolean displayMap) {

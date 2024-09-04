@@ -1,7 +1,12 @@
 package club.iananderson.pocketgps;
 
+import club.iananderson.pocketgps.items.PocketGpsItems;
 import club.iananderson.pocketgps.platform.Services;
+import java.util.function.Supplier;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTab.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,8 +16,8 @@ public final class PocketGps {
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;
+  private static String platformName;
 
-  //public static final GpsItem POCKET_GPS = new GpsItem();
   private PocketGps() {
   }
 
@@ -21,8 +26,13 @@ public final class PocketGps {
   }
 
   public static void init() {
+    platformName = Services.PLATFORM.getPlatformName();
     curiosLoaded = Services.PLATFORM.isModLoaded("trinkets") || Services.PLATFORM.isModLoaded("curios");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
+  }
+
+  public static String platformName() {
+    return PocketGps.platformName;
   }
 
   public static boolean curiosLoaded() {
@@ -32,8 +42,4 @@ public final class PocketGps {
   public static boolean accessoriesLoaded() {
     return PocketGps.accessoriesLoaded;
   }
-
-  //TODO:
-  //      * Add CurseForge/Modrinth uploader.
-
 }
