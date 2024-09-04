@@ -123,7 +123,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
 }
 
 task publishNeoForge {
-    group = "publishing"
+    group = "upload"
     afterEvaluate {
         dependsOn(tasks.publishCurseForge)
         dependsOn(tasks.modrinth)

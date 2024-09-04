@@ -105,6 +105,6 @@ subprojects {
 task publishAll {
     group = "upload"
     dependsOn("fabric:publishFabric")
-    dependsOn("forge:publishForge")
+//    dependsOn("forge:publishForge")
     dependsOn("neoforge:publishNeoForge")
 }
