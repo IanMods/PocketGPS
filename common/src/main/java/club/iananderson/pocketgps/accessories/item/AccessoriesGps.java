@@ -1,6 +1,5 @@
 package club.iananderson.pocketgps.accessories.item;
 
-import club.iananderson.pocketgps.items.PocketGpsItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.wispforest.accessories.api.AccessoriesAPI;
 import io.wispforest.accessories.api.Accessory;
@@ -37,7 +36,7 @@ public class AccessoriesGps implements Accessory {
 
       matrices.scale(0.4F, 0.4F, 0.4F);
       AccessoryRenderer.transformToModelPart(matrices, humanoidModel.body, 0.75, -1, null);
-      matrices.translate(-0.25F, -1.75F, -0.72F);
+      matrices.translate(-0.25F, -1.7F, -0.72F);
     }
   }
 }

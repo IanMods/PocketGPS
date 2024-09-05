@@ -21,7 +21,8 @@ public class ForgeRegistration {
 
   public static RegistryObject<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
       .title(Component.translatable("tab.pocketgps"))
-      .icon(() -> POCKET_GPS.get().getDefaultInstance()).displayItems((par, out) -> out.accept(POCKET_GPS.get()))
+      .icon(() -> POCKET_GPS.get().getDefaultInstance())
+      .displayItems((par, out) -> out.accept(POCKET_GPS.get()))
       .build());
 
   public static void init(IEventBus modEventBus) {

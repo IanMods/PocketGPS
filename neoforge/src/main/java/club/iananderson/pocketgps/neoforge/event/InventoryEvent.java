@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.neoforge.event;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.items.PocketGpsItems;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import club.iananderson.pocketgps.neoforge.registry.NeoForgeRegistration;
 import club.iananderson.pocketgps.util.FindItem;

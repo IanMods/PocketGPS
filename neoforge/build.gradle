@@ -36,7 +36,7 @@ dependencies {
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
 
     //JourneyMap
-    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version_fabric, changing: true
+    modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
     modCompileOnly "maven.modrinth:journeymap:1.21-${project.journeymap_version}+neoforge"
 
     //FTB Chunks + Dependencies
@@ -50,10 +50,6 @@ dependencies {
     modCompileOnly("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-
-    // Development QOL
-    modLocalRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
-
     // Development QOL
     modLocalRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") { transitive = false }
 
@@ -64,7 +60,9 @@ dependencies {
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
             break
         case "journey":
-            modLocalRuntime "maven.modrinth:journeymap:1.21-${project.journeymap_version}+neoforge"
+            modImplementation group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
+            modImplementation "maven.modrinth:journeymap:1.21-${project.journeymap_version}+neoforge"
+            modImplementation("maven.modrinth:common-network:${project.common_network_version}-neoforge")
             break
         case "ftb":
             modLocalRuntime "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"

@@ -3,7 +3,6 @@ package club.iananderson.pocketgps.neoforge.registry;
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.items.PocketGpsItems;
 import java.util.function.Supplier;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -18,11 +17,12 @@ public class NeoForgeRegistration {
   public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(
       Registries.CREATIVE_MODE_TAB, PocketGps.MOD_ID);
 
-  public static final DeferredItem<Item> POCKET_GPS = ITEMS.registerSimpleItem("gps", new Item.Properties());
+  public static final DeferredItem<Item> POCKET_GPS = ITEMS.register("gps", PocketGpsItems.GPS_ITEM_SUPPLIER);
 
   public static Supplier<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
       .title(Component.translatable("tab.pocketgps"))
-      .icon(() -> POCKET_GPS.get().getDefaultInstance()).displayItems((par, out) -> out.accept(POCKET_GPS.get()))
+      .icon(POCKET_GPS::toStack)
+      .displayItems((par, out) -> out.accept(POCKET_GPS.get()))
       .build());
 
   public static void init(IEventBus modEventBus) {

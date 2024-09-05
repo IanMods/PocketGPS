@@ -1,12 +1,7 @@
 package club.iananderson.pocketgps;
 
-import club.iananderson.pocketgps.items.PocketGpsItems;
 import club.iananderson.pocketgps.platform.Services;
-import java.util.function.Supplier;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTab.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

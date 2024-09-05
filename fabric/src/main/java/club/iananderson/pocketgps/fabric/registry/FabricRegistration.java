@@ -2,7 +2,6 @@ package club.iananderson.pocketgps.fabric.registry;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.items.PocketGpsItems;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.CreativeModeTab;
