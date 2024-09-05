@@ -102,7 +102,7 @@ modrinth {
     versionNumber = minecraft_version + "-" + version
     versionName = base.archivesName.get() + "-" + mod_version
     versionType = "release"
-    uploadFile = jar
+    uploadFile = remapJar
 
     List<String> mcVersions = minecraft_game_versions.split(",")
     gameVersions = mcVersions
