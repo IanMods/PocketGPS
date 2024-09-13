@@ -34,7 +34,7 @@ subprojects {
         maven { url = "https://maven.parchmentmc.org" } // Parchment mappings
         maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
         maven { url = 'https://maven.ladysnake.org/releases' } // Cardinal Components
-        maven { url = "https://maven.theillusivec4.top/" } // Curios
+        maven {url = "https://maven.theillusivec4.top/"} // Curios
         exclusiveContent {
             forRepository {
                 maven { url = "https://cursemaven.com" }
@@ -83,6 +83,7 @@ subprojects {
                 "minecraft_version_range"   : minecraft_version_range,
                 "fabric_api_version"        : fabric_api_version,
                 "fabric_loader_version"     : fabric_loader_version,
+                "fabric_version_range"      : fabric_version_range,
                 "mod_name"                  : mod_name,
                 "mod_author"                : mod_author,
                 "mod_id"                    : mod_id,

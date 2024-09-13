@@ -51,8 +51,9 @@ dependencies {
     modCompileOnly "curse.maven:architectury-api-419699:${project.architectury_api_forge_version}"
 
     //Curios + Accessories
-    modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_forge_version}:api"
-    modLocalRuntime "top.theillusivec4.curios:curios-forge:${project.curios_forge_version}"
+    modCompileOnly "curse.maven:accessories-938917:${project.accessories_forge_version}"
+    modCompileOnly "curse.maven:accessories-cc-layer-1005683:${project.cclayer_forge_version}"
+    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 
     // Development QOL
     modLocalRuntime("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive = false }
