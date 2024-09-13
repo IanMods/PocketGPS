@@ -36,38 +36,68 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     //Xaero's Minimap
-    modLocalRuntime "curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}"
+    modCompileOnly("curse.maven:xaeros-minimap-263420:${project.xaeros_minimap_fabric_version}")
 
     //JourneyMap
-    modCompileOnly"curse.maven:journeymap-32274:${project.journeymap_fabric_version}"
+    modCompileOnly("curse.maven:journeymap-32274:${project.journeymap_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //FTB Chunks + Dependencies
-    modCompileOnly"curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}"
-
-    modCompileOnly"curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
-    modCompileOnly"curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}"
-    modCompileOnly"curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}"
+    modCompileOnly("curse.maven:ftb-chunks-fabric-472657:${project.ftb_chunks_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("curse.maven:ftb-teams-fabric-438497:${project.ftb_teams_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("curse.maven:architectury-api-419699:${project.architectury_api_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //Trinkets + Accessories
-    modCompileOnly"curse.maven:accessories-938917:${project.accessories_fabric_version}"
-    modCompileOnly "curse.maven:accessories-tc-layer-1005680:${project.tclayer_fabric_version}"
-    modCompileOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
-    modCompileOnly"dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1"
-    modCompileOnly"dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
+    modCompileOnly("dev.emi:trinkets:${project.trinkets_fabric_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.0.2") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modCompileOnly("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.0.2") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Development QOL
-    modLocalRuntime("maven.modrinth:lazydfu:${lazydfu_version}")
-    modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}")
+    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+
+    modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     // Recipe Viewers - Create Fabric supports JEI, REI, and EMI.
     // See root gradle.properties to choose which to use at runtime.
     switch (fabric_recipe_viewer.toLowerCase(Locale.ROOT)) {
-        case "jei": modLocalRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}") ; break
-        case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}") ; break
-        case "emi": modLocalRuntime("dev.emi:emi:${emi_version}") ; break
+        case "jei":
+            modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
+            break
+        case "rei":
+            modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
+            break
+        case "emi":
+            modLocalRuntime("dev.emi:emi:${project.emi_version}") {
+                exclude group: 'net.fabricmc', module: 'fabric-loader'
+            }
+            break
         case "disabled": break
-        default: println("Unknown recipe viewer specified: ${fabric_recipe_viewer}. Must be JEI, REI, EMI, or disabled.")
+        default: println("Unknown recipe viewer specified: ${project.fabric_recipe_viewer}. Must be JEI, REI, EMI, or" +
+                " disabled.")
     }
 }
 

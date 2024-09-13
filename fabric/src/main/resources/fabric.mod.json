@@ -8,8 +8,8 @@
     "${mod_author}"
   ],
   "contact": {
-    "repo": "https://github.com/lanAnderson/PocketGPS",
-    "issues": "https://github.com/lanAnderson/PocketGPS/issues"
+    "repo": "https://github.com/IanMods/PocketGPS",
+    "issues": "https://github.com/IanMods/PocketGPS/issues"
   },
   "license": "${license}",
   "icon": "${mod_id}.png",
