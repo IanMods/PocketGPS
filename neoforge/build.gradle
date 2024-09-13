@@ -46,7 +46,8 @@ dependencies {
     modCompileOnly "maven.modrinth:architectury-api:${project.architectury_version}+neoforge"
 
     //Curios + Accessories
-    modCompileOnly("io.wispforest:accessories-neoforge:${project.accessories_version}")
+    modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
+    modCompileOnly "maven.modrinth:accessories-cc-layer:${project.curios_version}"
     modCompileOnly("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }

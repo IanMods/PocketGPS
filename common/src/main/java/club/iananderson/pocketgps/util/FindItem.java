@@ -20,13 +20,6 @@ public class FindItem {
     boolean accessoryFound = false;
     boolean curioFound = Services.CURIO_HELPER.findCurios(player, item);
 
-    if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
-      Optional<AccessoriesCapability> accessoriesContainer = AccessoriesCapability.getOptionally(player);
-      if (accessoriesContainer.isPresent()) {
-        accessoryFound = !accessoriesContainer.get().getEquipped(item).isEmpty();
-      }
-    }
-
-    return findItem(player, item) || accessoryFound || curioFound;
+    return findItem(player, item) || curioFound;
   }
 }
