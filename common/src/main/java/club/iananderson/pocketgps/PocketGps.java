@@ -29,8 +29,4 @@ public final class PocketGps {
   public static boolean accessoriesLoaded() {
     return PocketGps.accessoriesLoaded;
   }
-
-  //TODO:
-  //      * Add CurseForge/Modrinth uploader.
-
 }
