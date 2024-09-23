@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -20,9 +21,7 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Bus.FORGE, value = Dist.CLIENT)
 public class InventoryEvent {
   private static boolean findCurio(Player player, Item item) {
-    Minecraft mc = Minecraft.getInstance();
-
-    if (mc.level == null || mc.player == null) {
+    if (player == null) {
       return false;
     }
 
@@ -43,11 +42,13 @@ public class InventoryEvent {
 
   @SubscribeEvent
   public static void onPlayerTickEvent(PlayerTickEvent event) {
-    if (event.player instanceof LocalPlayer player) {
+    if (event.side == LogicalSide.CLIENT) {
+      Player player = event.player;
+
       boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
       boolean hasGpsCurio = findCurio(player, ForgeRegistration.POCKET_GPS.get());
 
-      CurrentMinimap.displayMinimap(hasGpsInv || hasGpsCurio);
+      CurrentMinimap.displayMinimap(player,hasGpsInv || hasGpsCurio);
     }
   }
 }
