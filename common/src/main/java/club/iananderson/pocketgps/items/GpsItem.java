@@ -29,10 +29,12 @@ public class GpsItem extends Item {
     }
 
     if (Screen.hasShiftDown()) {
-      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip").withStyle(ChatFormatting.GRAY));
+      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip_1").withStyle(ChatFormatting.GRAY));
+      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip_2").withStyle(ChatFormatting.GRAY));
       tooltip.add(Component.literal(""));
-      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.minimap.current").withStyle(ChatFormatting.YELLOW)
-                      .append(loadedMinimap.withStyle(ChatFormatting.AQUA)));
+      tooltip.add(
+          Component.translatable("item.pocketgps.gps.tooltip.minimap.current").withStyle(ChatFormatting.YELLOW));
+      tooltip.add(loadedMinimap.withStyle(ChatFormatting.AQUA));
     } else {
       tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
     }
