@@ -22,7 +22,7 @@ public class InventoryEvent extends Event implements ICancellableEvent {
     if (player.level().isClientSide) {
       boolean hasGps = FindItem.itemFound(player, NeoForgeRegistration.POCKET_GPS.get());
 
-      CurrentMinimap.displayMinimap(hasGps);
+      CurrentMinimap.displayMinimap(player, hasGps);
     }
   }
 }

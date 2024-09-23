@@ -37,7 +37,7 @@ public class InventoryEvent {
       LocalPlayer player = client.player;
       boolean hasGps = FindItem.itemFound(player, FabricRegistration.POCKET_GPS);
 
-      CurrentMinimap.displayMinimap(player,hasGpsInv || hasGpsCurio);
+      CurrentMinimap.displayMinimap(player,hasGps);
     });
   }
 }
