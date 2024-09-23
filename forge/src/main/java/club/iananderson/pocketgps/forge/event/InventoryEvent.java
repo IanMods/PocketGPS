@@ -7,18 +7,20 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 
 @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Bus.FORGE, value = Dist.CLIENT)
 public class InventoryEvent {
-
   @SubscribeEvent
   public static void onPlayerTickEvent(PlayerTickEvent event) {
-    if (event.player instanceof LocalPlayer player) {
+    if (event.side == LogicalSide.CLIENT) {
+      Player player = event.player;
+
       boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
 
-      CurrentMinimap.displayMinimap(hasGpsInv);
+      CurrentMinimap.displayMinimap(player,hasGpsInv);
     }
   }
 }
