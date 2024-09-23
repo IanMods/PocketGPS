@@ -6,10 +6,9 @@ import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
 import journeymap.client.ui.UIManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import xaero.common.settings.ModOptions;
 import xaero.minimap.XaeroMinimap;
@@ -48,20 +47,16 @@ public class CurrentMinimap {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
   }
 
-  public static boolean hasGps(LocalPlayer player, Item item) {
-    Minecraft mc = Minecraft.getInstance();
-
-    if (mc.level == null || mc.player == null) {
+  public static boolean hasGps(Player player, Item item) {
+    if (player == null) {
       return false;
     }
 
     return FindItem.findItem(player.getInventory(), item);
   }
 
-  public static void displayMinimap(Boolean displayMap) {
-    Minecraft mc = Minecraft.getInstance();
-
-    if (mc.level == null || mc.player == null) {
+  public static void displayMinimap(Player player, Boolean displayMap) {
+    if (player == null) {
       return;
     }
 
@@ -73,6 +68,7 @@ public class CurrentMinimap {
     }
     if (onlyFtbChunksLoaded()) {
       FTBChunksClientConfig.MINIMAP_ENABLED.set(displayMap);
+
     }
   }
 

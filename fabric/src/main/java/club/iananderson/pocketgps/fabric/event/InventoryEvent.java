@@ -14,9 +14,7 @@ import net.minecraft.world.item.Item;
 
 public class InventoryEvent {
   private static boolean findCurio(Player player, Item item) {
-    Minecraft mc = Minecraft.getInstance();
-
-    if (mc.level == null || mc.player == null) {
+    if (player == null) {
       return false;
     }
 
@@ -39,7 +37,7 @@ public class InventoryEvent {
       boolean hasGpsInv = CurrentMinimap.hasGps(player, FabricRegistration.POCKET_GPS);
       boolean hasGpsCurio = findCurio(player, FabricRegistration.POCKET_GPS);
 
-      CurrentMinimap.displayMinimap(hasGpsInv || hasGpsCurio);
+      CurrentMinimap.displayMinimap(player,hasGpsInv || hasGpsCurio);
     });
   }
 }
