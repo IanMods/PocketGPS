@@ -5,7 +5,7 @@
   "item.pocketgps.gps.tooltip_1": "Having this item in your inventory",
   "item.pocketgps.gps.tooltip_2": "allows the use of minimaps",
   "item.pocketgps.gps.tooltip.minimap.current": "Current Loaded Minimap: ",
-  "item.pocketgps.gps.tooltip.energy.stored": "%s/%s E",
+  "item.pocketgps.gps.tooltip.energy.stored": "%s/%s %s",
   "item.pocketgps.gps.tooltip.energy.percent": "%d%% Charged",
   "minimap.pocketgps.none": "[NONE]",
   "minimap.pocketgps.journeymap": "[JourneyMap]",

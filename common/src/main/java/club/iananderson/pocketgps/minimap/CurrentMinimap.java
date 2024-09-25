@@ -55,6 +55,10 @@ public class CurrentMinimap {
     return FindItem.findItem(player.getInventory(), item);
   }
 
+  public static boolean hasChargedGps(Player player, Item item) {
+    return hasGps(player, item);
+  }
+
   public static void displayMinimap(Player player, Boolean displayMap) {
     if (player == null) {
       return;

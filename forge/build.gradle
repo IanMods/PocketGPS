@@ -39,9 +39,11 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
     //Energy
-    compileOnly "mekanism:Mekanism:${mekanism_version}:api"
-    runtimeOnly "mekanism:Mekanism:${mekanism_version}"
-    runtimeOnly "mekanism:Mekanism:${mekanism_version}:generators"
+    modLocalRuntime "maven.modrinth:mekanism:${project.mekanism_version}"
+    modLocalRuntime "maven.modrinth:mekanism-generators:${project.mekanism_version}"
+//    compileOnly "mekanism:Mekanism:${mekanism_version}:api"
+//    runtimeOnly "mekanism:Mekanism:${mekanism_version}"
+//    runtimeOnly "mekanism:Mekanism:${mekanism_version}:generators"
 
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
