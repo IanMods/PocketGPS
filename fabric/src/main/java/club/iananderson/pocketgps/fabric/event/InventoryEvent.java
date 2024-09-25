@@ -13,6 +13,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 
 public class InventoryEvent {
+  //Todo -- This needs to check for charged gps if it is enabled in the config
+  // Also need to have it tick while in the curio slot
   private static boolean findCurio(Player player, Item item) {
     if (player == null) {
       return false;
