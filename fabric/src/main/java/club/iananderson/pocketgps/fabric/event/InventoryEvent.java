@@ -18,17 +18,13 @@ public class InventoryEvent {
       return false;
     }
 
-    int slot = 0;
-
     if (PocketGps.curiosLoaded()) {
-      Optional<TrinketComponent> curiosInventory = TrinketsApi.getTrinketComponent(player);
-      if (curiosInventory.isPresent()) {
-        if (curiosInventory.get().isEquipped(item)) {
-          slot += 1;
-        }
+      Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
+      if (trinketInventory.isPresent()) {
+        return trinketInventory.get().isEquipped(item);
       }
     }
-    return slot > 0;
+    return false;
   }
 
   public static void register() {
