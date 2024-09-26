@@ -41,7 +41,7 @@ dependencies {
 //    modImplementation "TechReborn:TechReborn-1.20:${project.tech_reborn_version}"
 
     //Xaero's Minimap
-    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19") {
+    modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
@@ -74,7 +74,7 @@ dependencies {
 //        exclude group: 'net.fabricmc', module: 'fabric-loader'
 //    }
 
-    modCompileOnly("maven.modrinth:accessories-tc-layer:${project.trinkets_version}") {
+    modCompileOnly("maven.modrinth:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
@@ -104,7 +104,7 @@ dependencies {
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
-            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.20")
+            modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1")
             break
         case "journey":
             modLocalRuntime("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric")
