@@ -1,0 +1,14 @@
+{
+  "tab.pocketgps": "小型GPS",
+  "item.pocketgps.gps": "小型GPS",
+  "item.pocketgps.gps.tooltip.default": "按住 SHIFT 键获取更多信息",
+  "item.pocketgps.gps.tooltip": "背包中有此物品可使用最小地图",
+  "item.pocketgps.gps.tooltip.minimap.current": "当前加载的最小地图: ",
+  "minimap.pocketgps.none": "[无]",
+  "minimap.pocketgps.journeymap": "[旅行者地图]",
+  "minimap.pocketgps.xaero": "[Xaero 的小地图]",
+  "minimap.pocketgps.ftb": "[FTB 区块]",
+  "trinkets.slot.gps.gps_slot": "GPS",
+  "curios.identifier.gps_slot": "GPS",
+  "accessories.slot.gps_slot": "GPS"
+}
