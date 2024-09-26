@@ -4,9 +4,7 @@ import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import io.wispforest.accessories.api.AccessoriesCapability;
-import io.wispforest.accessories.api.AccessoriesContainer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import java.util.Optional;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,19 +23,21 @@ public class InventoryEvent {
       return false;
     }
 
-    int slot = 0;
-
     if (PocketGps.curiosLoaded()) {
-      ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(player).resolve().get();
-      if (curiosInventory.findFirstCurio(item).isPresent()) {
-        slot += 1;
+      Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player).resolve();
+      if (curiosInventory.isPresent()) {
+        return curiosInventory.get().isEquipped(item);
       }
     }
+
     if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
-      AccessoriesContainer accessoriesContainer = AccessoriesCapability.get(player).getContainers().get("gps_slot");
-      slot += accessoriesContainer.getAccessories().countItem(item);
+      Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
+      if (accessoriesInventory.isPresent()) {
+
+        return accessoriesInventory.get().isEquipped(item);
+      }
     }
-    return slot > 0;
+    return false;
   }
 
   @SubscribeEvent
@@ -48,7 +48,7 @@ public class InventoryEvent {
       boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
       boolean hasGpsCurio = findCurio(player, ForgeRegistration.POCKET_GPS.get());
 
-      CurrentMinimap.displayMinimap(player,hasGpsInv || hasGpsCurio);
+      CurrentMinimap.displayMinimap(player, hasGpsInv || hasGpsCurio);
     }
   }
 }
