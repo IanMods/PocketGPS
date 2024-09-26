@@ -3,16 +3,18 @@ architectury {
 }
 
 dependencies {
-    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
-    // Do NOT use other classes from fabric loader
+    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
+    // which get remapped to the correct annotations on each platform.
+    // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
     api group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
     modImplementation("io.wispforest:accessories-common:${project.accessories_version}")
+    //    api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
 
     // Minimap Mods
-    // Not used in common unless they are actually  loaded.
+    // Not used in common unless they are actually loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
-    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
-    modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_neoforge_version}"
+    modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
+    modCompileOnly "curse.maven:ftb-library-fabric-438495:${project.ftb_library_fabric_version}"
     modCompileOnly "maven.modrinth:journeymap:1.21-${project.journeymap_version}+neoforge"
 }
