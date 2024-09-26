@@ -36,6 +36,8 @@ subprojects {
         maven { url = "https://maven.theillusivec4.top/" } //Curios
         maven { url = "https://maven.ladysnake.org/releases" } // Cardinal Components
         maven { url = "https://jm.gserv.me/repository/maven-public/" } //Journeymap API for Fabric
+        maven { url = 'https://maven.minecraftforge.net' } //Forge
+        maven { url = 'https://maven.neoforged.net/releases' } //NeoForge
         maven { url 'https://maven.wispforest.io/releases' } //Accessories
         maven { url 'https://maven.su5ed.dev/releases' } //Accessories
         maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
