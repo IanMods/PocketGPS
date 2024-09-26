@@ -3,6 +3,7 @@ package club.iananderson.pocketgps.forge.event;
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
+import java.util.Optional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -14,7 +15,10 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.util.ICuriosHelper;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+
 
 @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Bus.FORGE, value = Dist.CLIENT)
 public class InventoryEvent {
@@ -23,15 +27,18 @@ public class InventoryEvent {
       return false;
     }
 
-    int slot = 0;
-
     if (PocketGps.curiosLoaded()) {
       ICuriosHelper curiosInventory = CuriosApi.getCuriosHelper();
-      if (curiosInventory.findFirstCurio(player, item).isPresent()) {
-        slot += 1;
+      return curiosInventory.findFirstCurio(player, item).isPresent();
       }
-    }
-    return slot > 0;
+//    if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
+//      Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
+//      if (accessoriesInventory.isPresent()) {
+//
+//        return accessoriesInventory.get().isEquipped(item);
+//      }
+//    }
+    return false;
   }
 
   @SubscribeEvent
@@ -42,7 +49,7 @@ public class InventoryEvent {
       boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
       boolean hasGpsCurio = findCurio(player, ForgeRegistration.POCKET_GPS.get());
 
-      CurrentMinimap.displayMinimap(player,hasGpsInv || hasGpsCurio);
+      CurrentMinimap.displayMinimap(player, hasGpsInv || hasGpsCurio);
     }
   }
 }
