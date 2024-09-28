@@ -4,10 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
-## [1.1.0] - 2024-09-25
+## [1.1.0] - 2024-09-28
 
 ### Added
 - Added optional energy requirement for the GPS
+
+## [1.0.5] - 2024-09-27
+
+### Added
+- Added Simplified Chinese translation (via @suoyukii)
 
 ## [1.0.4] - 2024-09-25
 
