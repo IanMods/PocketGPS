@@ -1,0 +1,14 @@
+{
+  "tab.pocketgps": "Карманный GPS",
+  "item.pocketgps.gps": "Карманный GPS",
+  "item.pocketgps.gps.tooltip.default": "Удерживайте SHIFT для подробной информации",
+  "item.pocketgps.gps.tooltip": "Наличие этого предмета в вашем инвентаре позволяет использовать миникарты",
+  "item.pocketgps.gps.tooltip.minimap.current": "Текущая загруженная миникарта:",
+  "minimap.pocketgps.none": "[Никакая]",
+  "minimap.pocketgps.journeymap": "[JourneyMap]",
+  "minimap.pocketgps.xaero": "[Xaero's Minimap]",
+  "minimap.pocketgps.ftb": "[FTB Chunks]",
+  "trinkets.slot.gps.gps_slot": "GPS",
+  "curios.identifier.gps_slot": "GPS",
+  "accessories.slot.gps_slot": "GPS"
+}
