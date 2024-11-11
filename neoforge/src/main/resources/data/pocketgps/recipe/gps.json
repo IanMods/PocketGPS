@@ -7,18 +7,10 @@
     "IDI"
   ],
   "key": {
-    "I": {
-      "tag": "c:ingots/iron"
-    },
-    "M": {
-      "item": "minecraft:map"
-    },
-    "C": {
-      "item": "minecraft:lightning_rod"
-    },
-    "D": {
-      "tag": "c:gems/diamond"
-    }
+    "I": "#c:ingots/iron",
+    "M": "minecraft:map",
+    "C": "minecraft:lightning_rod",
+    "D": "#c:gems/diamond"
   },
   "result": {
     "id": "pocketgps:gps",

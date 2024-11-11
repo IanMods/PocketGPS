@@ -18,25 +18,25 @@ public class AccessoriesGps implements Accessory {
   }
 
   public static void clientInit(Item gps) {
-    AccessoriesRendererRegistry.registerRenderer(gps, Renderer::new);
+//    AccessoriesRendererRegistry.registerRenderer(gps, Renderer::new);
   }
 
   public static void init(Item gps) {
     AccessoriesAPI.registerAccessory(gps, new AccessoriesGps());
   }
 
-  public static class Renderer implements SimpleAccessoryRenderer {
-
-    @Override
-    public <M extends LivingEntity> void align(ItemStack stack, SlotReference reference, EntityModel<M> model,
-        PoseStack matrices) {
-      if (!(model instanceof HumanoidModel<? extends LivingEntity> humanoidModel)) {
-        return;
-      }
-
-      matrices.scale(0.4F, 0.4F, 0.4F);
-      AccessoryRenderer.transformToModelPart(matrices, humanoidModel.body, 0.75, -1, null);
-      matrices.translate(-0.25F, -1.7F, -0.72F);
-    }
-  }
+//  public static class Renderer implements SimpleAccessoryRenderer {
+//
+//    @Override
+//    public <M extends LivingEntity> void align(ItemStack stack, SlotReference reference, EntityModel<M> model,
+//        PoseStack matrices) {
+//      if (!(model instanceof HumanoidModel<? extends LivingEntity> humanoidModel)) {
+//        return;
+//      }
+//
+//      matrices.scale(0.4F, 0.4F, 0.4F);
+//      AccessoryRenderer.transformToModelPart(matrices, humanoidModel.body, 0.75, -1, null);
+//      matrices.translate(-0.25F, -1.7F, -0.72F);
+//    }
+//  }
 }
