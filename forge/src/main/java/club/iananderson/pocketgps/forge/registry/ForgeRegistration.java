@@ -19,7 +19,10 @@ public class ForgeRegistration {
 
   public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps",
                                                                  () -> new ChargeableGpsItem(new Item.Properties(),
-                                                                                             40000, 128, 32));
+                                                                                             PocketGps.gpsEnergyCapacity(),
+                                                                                             PocketGps.gpsMaxInput(),
+                                                                                             PocketGps.gpsMaxOutput(),
+                                                                                             PocketGps.gpsEnergyCost()));
 
   public static RegistryObject<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
       .title(Component.translatable("tab.pocketgps"))

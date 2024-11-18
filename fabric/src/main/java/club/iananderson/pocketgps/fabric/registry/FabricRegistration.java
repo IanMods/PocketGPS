@@ -16,7 +16,10 @@ public class FabricRegistration {
   public static final CreativeModeTab.Builder TABS = FabricItemGroup.builder();
 
   //Todo -- Make energyCapacity, maxInput, maxOutput, and cost changable by config
-  public static final GpsItem POCKET_GPS = new ChargeableGpsItem(new Item.Properties(),40000,128,32, 2);
+  public static final ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem(new Item.Properties(),PocketGps.gpsEnergyCapacity(),
+                                                                 PocketGps.gpsMaxInput(),PocketGps.gpsMaxOutput(),
+                                                                 PocketGps.gpsEnergyCost());
+
 
   public static CreativeModeTab TAB = TABS.icon(() -> new ItemStack(POCKET_GPS))
       .title(Component.translatable("tab.pocketgps"))
@@ -25,7 +28,7 @@ public class FabricRegistration {
       })
       .build();
 
-  public static void init() {
+  public static void itemInit() {
     Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(PocketGps.MOD_ID, "gps"), POCKET_GPS);
     Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, new ResourceLocation(PocketGps.MOD_ID, "tab"), TAB);
   }

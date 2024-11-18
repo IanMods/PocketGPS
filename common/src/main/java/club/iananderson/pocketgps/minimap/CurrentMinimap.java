@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.minimap;
 
+import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.platform.Services;
 import club.iananderson.pocketgps.util.FindItem;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
@@ -52,11 +53,7 @@ public class CurrentMinimap {
       return false;
     }
 
-    return FindItem.findItem(player.getInventory(), item);
-  }
-
-  public static boolean hasChargedGps(Player player, Item item) {
-    return hasGps(player, item);
+    return FindItem.findItem(player.getInventory(), item, PocketGps.gpsNeedPower());
   }
 
   public static void displayMinimap(Player player, Boolean displayMap) {

@@ -68,7 +68,10 @@ public class ChargeableGpsItem extends GpsItem implements SimpleEnergyItem {
 
   public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
     if (entity instanceof Player player) {
-      if (player.getDeltaMovement().x() != 0 || player.getDeltaMovement().z() != 0) {
+      float deltaX = (float) (player.getDeltaMovement().x() * 100F);
+      float deltaZ = (float) (player.getDeltaMovement().z() * 100F);
+
+      if (deltaX != 0 || deltaZ != 0) {
         this.tryUseEnergy(stack, this.cost);
         if (player.isHolding(stack.getItem()) && player.isCreative()) {
           debug(stack, player);
@@ -144,7 +147,9 @@ public class ChargeableGpsItem extends GpsItem implements SimpleEnergyItem {
     DecimalFormat commaFormat = new DecimalFormat("#,###");
     DecimalFormat kFormat = new DecimalFormat("###.0k");
     DecimalFormat percentFormat = new DecimalFormat("###");
-
+    float deltaX = (float) (player.getDeltaMovement().x() * 100F);
+    float deltaZ = (float) (player.getDeltaMovement().z() * 100F);
+    
     float storedEnergy = this.getStoredEnergy(stack);
 
     String simpleStoredEnergy;
@@ -161,7 +166,11 @@ public class ChargeableGpsItem extends GpsItem implements SimpleEnergyItem {
         .withStyle(ChatFormatting.GOLD);
 
     Component message = storgedEnergy.append(" | Walk Time: " + (int)this.timeRemaining(stack)/60 + " minutes")
-        .withStyle(ChatFormatting.GREEN);
+        .withStyle(ChatFormatting.GREEN)
+        .append("| speed: " + deltaX + " dZ: " + deltaZ);
+        //.append("| dX: " + deltaX + " dY: " + deltaZ);
+
+
 
     player.displayClientMessage(message, true);
   }

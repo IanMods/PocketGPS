@@ -1,5 +1,7 @@
 package club.iananderson.pocketgps;
 
+import club.iananderson.pocketgps.config.EnergyUnit;
+import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.platform.Services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,12 @@ public final class PocketGps {
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;
+  private static EnergyUnit energyUnit;
+  private static boolean gpsNeedPower;
+  private static int gpsEnergyCapacity;
+  private static int gpsMaxInput;
+  private static int gpsMaxOutput;
+  private static int gpsEnergyCost;
 
   //public static final GpsItem POCKET_GPS = new GpsItem();
   private PocketGps() {
@@ -20,6 +28,15 @@ public final class PocketGps {
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
   }
 
+  public static void clientInit() {
+    energyUnit = PocketGpsConfig.getEnergyUnit();
+    gpsNeedPower = PocketGpsConfig.getGpsNeedPower();
+    gpsEnergyCapacity = PocketGpsConfig.getGpsEnergyCapacity();
+    gpsMaxInput = PocketGpsConfig.getGpsMaxInput();
+    gpsMaxOutput = PocketGpsConfig.getGpsMaxOutput();
+    gpsEnergyCost = PocketGpsConfig.getGpsEnergyCost();
+  }
+
   public static boolean curiosLoaded() {
     return PocketGps.curiosLoaded;
   }
@@ -28,7 +45,27 @@ public final class PocketGps {
     return PocketGps.accessoriesLoaded;
   }
 
-  //TODO:
-  //      * Add CurseForge/Modrinth uploader.
+  public static EnergyUnit energyUnit(){
+    return energyUnit;
+  }
 
+  public static boolean gpsNeedPower(){
+    return gpsNeedPower;
+  }
+
+  public static int gpsEnergyCapacity(){
+    return gpsEnergyCapacity;
+  }
+
+  public static int gpsMaxInput(){
+    return gpsMaxInput;
+  }
+
+  public static int gpsMaxOutput(){
+    return gpsMaxOutput;
+  }
+
+  public static int gpsEnergyCost(){
+    return gpsEnergyCost;
+  }
 }

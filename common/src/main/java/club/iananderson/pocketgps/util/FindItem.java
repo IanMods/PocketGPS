@@ -6,11 +6,11 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 
 public class FindItem {
-  private static boolean needPower = true;   //Todo - move to config once created
 
-  public static boolean findItem(Inventory inv, Item item) {
+  public static boolean findItem(Inventory inv, Item item, boolean needPower) {
     return contains(inv, item.getDefaultInstance(), needPower);
   }
 
