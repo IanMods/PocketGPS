@@ -1,49 +1,43 @@
 package club.iananderson.pocketgps.forge.energy;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
 
-public class ItemEnergyStorage extends EnergyStorage  {
-  private static final String NBT_ENERGY = "Energy";
+public class ItemEnergyStorage extends EnergyStorage {
+  private static final String ENERGY_TAG = "Energy";
 
-  private final ItemStack stack;
+  private ItemStack stack;
 
-  public ItemEnergyStorage(ItemStack stack, int capacity) {
-    super(capacity, Integer.MAX_VALUE, Integer.MAX_VALUE);
+  public ItemEnergyStorage(ItemStack stack, int capacity, int maxReceive, int maxExtract) {
+    super(capacity, maxReceive, maxExtract);
 
     this.stack = stack;
-    this.energy = stack.hasTag() && stack.getTag().contains(NBT_ENERGY) ? stack.getTag().getInt(NBT_ENERGY) : 0;
-  }
-
-  @Override
-  public int receiveEnergy(int maxReceive, boolean simulate) {
-    int received = super.receiveEnergy(maxReceive, simulate);
-
-    if (received > 0 && !simulate) {
-      if (!stack.hasTag()) {
-        stack.setTag(new CompoundTag());
-      }
-
-      stack.getTag().putInt(NBT_ENERGY, getEnergyStored());
-    }
-
-    return received;
+    this.energy = stack.hasTag() && stack .getTag().contains(ENERGY_TAG) ? stack.getTag().getInt(ENERGY_TAG) : 0;
   }
 
   @Override
   public int extractEnergy(int maxExtract, boolean simulate) {
-    int extracted = super.extractEnergy(maxExtract, simulate);
+    int extractedEnergy = super.extractEnergy(maxExtract, simulate);
 
-    if (extracted > 0 && !simulate) {
-      if (!stack.hasTag()) {
-        stack.setTag(new CompoundTag());
-      }
-
-      stack.getTag().putInt(NBT_ENERGY, getEnergyStored());
+    if (extractedEnergy != 0) {
+      onEnergyChanged();
     }
 
-    return extracted;
+    return extractedEnergy;
+  }
+
+  @Override
+  public int receiveEnergy(int maxReceive, boolean simulate) {
+    int receivedEnergy = super.receiveEnergy(maxExtract, simulate);
+
+    if (receivedEnergy != 0) {
+      onEnergyChanged();
+    }
+
+    return receivedEnergy;
+  }
+
+  public void onEnergyChanged() {
+    stack.getOrCreateTag().putInt(ENERGY_TAG, this.energy);
   }
 }

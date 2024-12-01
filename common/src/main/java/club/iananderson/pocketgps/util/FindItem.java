@@ -6,7 +6,6 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 public class FindItem {
 
@@ -20,10 +19,11 @@ public class FindItem {
     for (NonNullList<ItemStack> compartment : compartments) {
       for (ItemStack invItemStack : compartment) {
         if (!invItemStack.isEmpty() && ItemStack.isSameItem(invItemStack, itemStack)) {
-          if(needPower){
+          if (needPower) {
             return invItemStack.hasTag();
+          } else {
+            return true;
           }
-          else return true;
         }
       }
     }

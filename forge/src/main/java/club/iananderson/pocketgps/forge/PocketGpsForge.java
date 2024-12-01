@@ -9,24 +9,25 @@ import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod(PocketGps.MOD_ID)
 public final class PocketGpsForge {
-  public PocketGpsForge() {
-    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+  public PocketGpsForge(FMLJavaModLoadingContext context) {
+    IEventBus modEventBus = context.getModEventBus();
     PocketGps.init();
-    ForgeRegistration.init(modEventBus);
-    ModLoadingContext.get().registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
     MinecraftForge.EVENT_BUS.addListener(InventoryEvent::onPlayerTickEvent);
+
+    ForgeRegistration.init(modEventBus);
+    context.registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
+
     modEventBus.addListener(ClientModEvents::commonSetup);
+    MinecraftForge.EVENT_BUS.register(this);
   }
 
   @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -41,6 +42,7 @@ public final class PocketGpsForge {
         PocketGps.LOG.info("Talking to Accessories");
         new AccessoriesCompat().setup(event);
       }
+      PocketGps.clientInit();
     }
   }
 }

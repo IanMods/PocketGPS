@@ -2,24 +2,21 @@ package club.iananderson.pocketgps.fabric.registry;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.fabric.items.ChargeableGpsItem;
-import club.iananderson.pocketgps.items.GpsItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class FabricRegistration {
   public static final CreativeModeTab.Builder TABS = FabricItemGroup.builder();
 
-  //Todo -- Make energyCapacity, maxInput, maxOutput, and cost changable by config
-  public static final ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem(new Item.Properties(),PocketGps.gpsEnergyCapacity(),
-                                                                 PocketGps.gpsMaxInput(),PocketGps.gpsMaxOutput(),
-                                                                 PocketGps.gpsEnergyCost());
-
+  public static final ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem(PocketGps.gpsEnergyCapacity(),
+                                                                           PocketGps.gpsMaxInput(),
+                                                                           PocketGps.gpsMaxOutput(),
+                                                                           PocketGps.gpsEnergyCost());
 
   public static CreativeModeTab TAB = TABS.icon(() -> new ItemStack(POCKET_GPS))
       .title(Component.translatable("tab.pocketgps"))

@@ -1,11 +1,7 @@
 package club.iananderson.pocketgps.config;
 
-import net.minecraft.network.chat.Component;
-
 public enum EnergyUnit {
-  FE(0, "FE"),
-  RF(1, "RF"),
-  E(2, "E");
+  FE(0, "FE"), RF(1, "RF"), E(2, "E");
 
   private final int idNum;
   private final String displayName;

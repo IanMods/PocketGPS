@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.fabric.event;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.fabric.items.ChargeableGpsItem;
 import club.iananderson.pocketgps.fabric.registry.FabricRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import com.google.common.collect.ImmutableList;
@@ -21,6 +20,8 @@ import org.jetbrains.annotations.Nullable;
 public class InventoryEvent {
   //Todo -- This needs to check for charged gps if it is enabled in the config
   // Also need to have it tick while in the curio slot
+  // Setup for accessories as well
+
   private static boolean findCurio(Player player, Item item) {
     if (player == null) {
       return false;
@@ -36,8 +37,15 @@ public class InventoryEvent {
   }
 
   @Nullable
-  public static ItemStack findCharged(Inventory inv) {
+  public static ItemStack findCharged(Player player) {
+    Inventory inv = player.getInventory();
     List<NonNullList<ItemStack>> compartments = ImmutableList.of(inv.items, inv.armor, inv.offhand);
+
+    if(PocketGps.curiosLoaded()){
+      Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
+      trinketInventory.ifPresent(trinketComponent -> trinketComponent.forEach(
+          (slotReference, stack) -> compartments.add(NonNullList.of(stack))));
+    }
 
     for (NonNullList<ItemStack> compartment : compartments) {
       for (ItemStack invItemStack : compartment) {
@@ -51,19 +59,19 @@ public class InventoryEvent {
     return null;
   }
 
-    public static void register () {
-      ClientTickEvents.END_CLIENT_TICK.register(client -> {
-        LocalPlayer player = client.player;
+  public static void register() {
+    ClientTickEvents.END_CLIENT_TICK.register(client -> {
+      LocalPlayer player = client.player;
 
-        if (player != null) {
+      if (player != null) {
 
-          @Nullable ItemStack powerGps = findCharged(player.getInventory());
-          boolean hasGpsInv = CurrentMinimap.hasGps(player, FabricRegistration.POCKET_GPS);
-          boolean hasGpsCurio = findCurio(player, FabricRegistration.POCKET_GPS);
+        @Nullable ItemStack powerGps = findCharged(player);
+        boolean hasGpsInv = CurrentMinimap.hasGps(player, FabricRegistration.POCKET_GPS);
+        boolean hasGpsCurio = findCurio(player, FabricRegistration.POCKET_GPS);
 
-          CurrentMinimap.displayMinimap(player, (hasGpsInv || hasGpsCurio) && (!PocketGps.gpsNeedPower()
-              || FabricRegistration.POCKET_GPS.getEnergyPercentage(powerGps) > 0F));
-        }
-      });
-    }
+        CurrentMinimap.displayMinimap(player, (hasGpsInv || hasGpsCurio) && (!PocketGps.gpsNeedPower()
+            || FabricRegistration.POCKET_GPS.getEnergyPercentage(powerGps) > 0F));
+      }
+    });
   }
+}

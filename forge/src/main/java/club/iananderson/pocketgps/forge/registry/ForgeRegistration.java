@@ -18,15 +18,18 @@ public class ForgeRegistration {
       Registries.CREATIVE_MODE_TAB, PocketGps.MOD_ID);
 
   public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps",
-                                                                 () -> new ChargeableGpsItem(new Item.Properties(),
-                                                                                             PocketGps.gpsEnergyCapacity(),
-                                                                                             PocketGps.gpsMaxInput(),
-                                                                                             PocketGps.gpsMaxOutput(),
-                                                                                             PocketGps.gpsEnergyCost()));
+                                                                 () -> new ChargeableGpsItem(PocketGps.gpsEnergyCapacity(),
+                                                                                       PocketGps.gpsMaxInput(),
+                                                                                       PocketGps.gpsMaxOutput(),
+                                                                                       PocketGps.gpsEnergyCost()));
 
   public static RegistryObject<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
       .title(Component.translatable("tab.pocketgps"))
-      .icon(() -> POCKET_GPS.get().getDefaultInstance()).displayItems((par, out) -> out.accept(POCKET_GPS.get()))
+      .icon(() -> POCKET_GPS.get().getDefaultInstance())
+      .displayItems((par, out) -> ITEMS.getEntries().forEach(e -> {
+        Item item = e.get();
+        out.accept(item);
+      }))
       .build());
 
   public static void init(IEventBus modEventBus) {

@@ -11,7 +11,6 @@ public class PocketGpsConfig {
   private static ForgeConfigSpec.IntValue gpsMaxOutput;
   private static ForgeConfigSpec.IntValue gpsEnergyCost;
 
-
   static {
     ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
     setupConfig(builder);
@@ -27,17 +26,21 @@ public class PocketGpsConfig {
     energyUnit = builder.comment("Which energy unit to display for Forge?\n" + "Default is FE.")
         .defineEnum("energy_unit", EnergyUnit.FE);
 
-    gpsNeedPower = builder.comment("Require the Gps to have power in order to display the minimap?\n" + "(true/false)\n" +
-                            "Default is false.").define("need_power", false);
+    gpsNeedPower = builder.comment(
+            "Require the Gps to have power in order to display the minimap?\n" + "(true/false)\n" + "Default is false.")
+        .define("need_power", false);
 
     gpsEnergyCapacity = builder.comment("How much the power the GPS can hold.\n" + "Default 40000")
         .defineInRange("gps_capacity", 40000, 0, Integer.MAX_VALUE);
     gpsMaxInput = builder.comment("The maximum input the GPS can receive when charging.\n" + "Default 128")
-        .defineInRange("gps_max_input", 128, 0, Integer.MAX_VALUE);;
-    gpsMaxOutput = builder.comment("How much power the GPS can output.\n" + "Default 32")
-        .defineInRange("gps_max_output", 32, 0, Integer.MAX_VALUE);;
+        .defineInRange("gps_max_input", 128, 0, Integer.MAX_VALUE);
+    ;
+    gpsMaxOutput = builder.comment("How much power the GPS can output.\n" + "Default 128")
+        .defineInRange("gps_max_output", 128, 0, Integer.MAX_VALUE);
+    ;
     gpsEnergyCost = builder.comment("Power cost of the GPS while moving (per tick).\n" + "Default 2")
-        .defineInRange("gps_energy_cost", 2, 0, Integer.MAX_VALUE);;
+        .defineInRange("gps_energy_cost", 2, 0, Integer.MAX_VALUE);
+    ;
 
     builder.pop();
     builder.pop();
@@ -68,6 +71,7 @@ public class PocketGpsConfig {
   public static void setGpsEnergyCapacity(int power) {
     PocketGpsConfig.gpsEnergyCapacity.set(power);
   }
+
   public static int getGpsMaxInput() {
     return PocketGpsConfig.gpsMaxInput.get();
   }
@@ -75,6 +79,7 @@ public class PocketGpsConfig {
   public static void setGpsMaxInput(int power) {
     PocketGpsConfig.gpsMaxInput.set(power);
   }
+
   public static int getGpsMaxOutput() {
     return PocketGpsConfig.gpsMaxOutput.get();
   }
@@ -82,6 +87,7 @@ public class PocketGpsConfig {
   public static void setGpsMaxOutput(int power) {
     PocketGpsConfig.gpsMaxOutput.set(power);
   }
+
   public static int getGpsEnergyCost() {
     return PocketGpsConfig.gpsEnergyCost.get();
   }
@@ -89,6 +95,5 @@ public class PocketGpsConfig {
   public static void setGpsEnergyCost(int power) {
     PocketGpsConfig.gpsEnergyCost.set(power);
   }
-
 
 }

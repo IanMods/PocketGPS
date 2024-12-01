@@ -45,27 +45,27 @@ public final class PocketGps {
     return PocketGps.accessoriesLoaded;
   }
 
-  public static EnergyUnit energyUnit(){
+  public static EnergyUnit energyUnit() {
     return energyUnit;
   }
 
-  public static boolean gpsNeedPower(){
+  public static boolean gpsNeedPower() {
     return gpsNeedPower;
   }
 
-  public static int gpsEnergyCapacity(){
+  public static int gpsEnergyCapacity() {
     return gpsEnergyCapacity;
   }
 
-  public static int gpsMaxInput(){
+  public static int gpsMaxInput() {
     return gpsMaxInput;
   }
 
-  public static int gpsMaxOutput(){
+  public static int gpsMaxOutput() {
     return gpsMaxOutput;
   }
 
-  public static int gpsEnergyCost(){
+  public static int gpsEnergyCost() {
     return gpsEnergyCost;
   }
 }
