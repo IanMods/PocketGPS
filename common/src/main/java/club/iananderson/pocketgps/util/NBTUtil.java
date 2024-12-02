@@ -44,4 +44,24 @@ public class NBTUtil {
   public static int getInt(ItemStack stack, String key) {
     return stack.hasTag() ? stack.getTag().getInt(key) : 0;
   }
+
+  public static ItemStack setInitBoolean(ItemStack stack, String key) {
+    validateCompound(stack);
+    stack.getTag().putBoolean(key, true);
+    return stack;
+  }
+
+  public static void setBoolean(ItemStack stack, String key, boolean value) {
+    validateCompound(stack);
+    stack.getTag().putBoolean(key, value);
+  }
+
+  public static boolean getBoolean(ItemStack stack, String key) {
+    return stack.hasTag() && stack.getTag().getBoolean(key);
+  }
+
+  public static void flipBoolean(ItemStack stack, String key) {
+    validateCompound(stack);
+    setBoolean(stack, key, !getBoolean(stack, key));
+  }
 }

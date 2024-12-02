@@ -4,14 +4,19 @@ import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.energy.EnergyUnit;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
+import club.iananderson.pocketgps.util.ItemUtil;
 import club.iananderson.pocketgps.util.NBTUtil;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -168,9 +173,6 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
   @Override
   public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
     super.appendHoverText(stack, worldIn, tooltip, flagIn);
-
-    tooltip.add(Component.literal(""));
-
     tooltip.addAll(energyTooltips(stack));
   }
 

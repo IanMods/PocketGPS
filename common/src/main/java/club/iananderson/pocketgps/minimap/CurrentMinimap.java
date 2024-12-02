@@ -48,14 +48,6 @@ public class CurrentMinimap {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
   }
 
-  public static boolean hasGps(Player player, Item item) {
-    if (player == null) {
-      return false;
-    }
-
-    return FindItem.findItem(player.getInventory(), item, PocketGps.gpsNeedPower());
-  }
-
   public static void displayMinimap(Player player, Boolean displayMap) {
     if (player == null) {
       return;

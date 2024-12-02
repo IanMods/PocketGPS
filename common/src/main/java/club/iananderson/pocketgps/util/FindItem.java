@@ -21,9 +21,9 @@ public class FindItem {
       for (ItemStack invItemStack : compartment) {
         if (!invItemStack.isEmpty() && ItemStack.isSameItem(invItemStack, itemStack)) {
           if (!needPower) {
-            return true;
+            return ItemUtil.isGpsOn(invItemStack);
           } else if (invItemStack.hasTag()) {
-            return NBTUtil.getInt(invItemStack, ItemEnergyStorage.ENERGY_TAG) > 0;
+            return ItemUtil.isGpsOn(invItemStack) && NBTUtil.getInt(invItemStack, ItemEnergyStorage.ENERGY_TAG) > 0;
           }
         }
       }

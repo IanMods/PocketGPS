@@ -4,6 +4,7 @@ import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.fabric.registry.FabricRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
+import club.iananderson.pocketgps.util.ItemUtil;
 import club.iananderson.pocketgps.util.NBTUtil;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -16,8 +17,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class InventoryEvent {
-  //Todo -- Need to have it tick while in the curio/trinket/accessories slot to use energy
-
   private static boolean findCurio(Player player, Item item) {
     if (player == null) {
       return false;
@@ -50,7 +49,7 @@ public class InventoryEvent {
       LocalPlayer player = client.player;
 
       if (player != null) {
-        boolean hasGpsInv = CurrentMinimap.hasGps(player, FabricRegistration.POCKET_GPS);
+        boolean hasGpsInv = ItemUtil.hasGps(player, FabricRegistration.POCKET_GPS);
         boolean hasGpsCurio = findCurio(player, FabricRegistration.POCKET_GPS);
 
         CurrentMinimap.displayMinimap(player, (hasGpsInv || hasGpsCurio));

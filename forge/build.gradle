@@ -63,6 +63,7 @@ dependencies {
 
     // Development QOL
     modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}") { transitive = false }
+    modImplementation "curse.maven:item-nbt-viewer-514135:4578522"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
