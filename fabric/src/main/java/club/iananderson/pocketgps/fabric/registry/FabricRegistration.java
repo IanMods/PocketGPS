@@ -13,10 +13,7 @@ import net.minecraft.world.item.ItemStack;
 public class FabricRegistration {
   public static final CreativeModeTab.Builder TABS = FabricItemGroup.builder();
 
-  public static final ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem(PocketGps.gpsEnergyCapacity(),
-                                                                           PocketGps.gpsMaxInput(),
-                                                                           PocketGps.gpsMaxOutput(),
-                                                                           PocketGps.gpsEnergyCost());
+  public static final ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem();
 
   public static CreativeModeTab TAB = TABS.icon(() -> new ItemStack(POCKET_GPS))
       .title(Component.translatable("tab.pocketgps"))

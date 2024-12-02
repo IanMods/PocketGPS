@@ -1,4 +1,4 @@
-package club.iananderson.pocketgps.config;
+package club.iananderson.pocketgps.energy;
 
 public enum EnergyUnit {
   FE(0, "FE"), RF(1, "RF"), E(2, "E");

@@ -1,7 +1,7 @@
 package club.iananderson.pocketgps;
 
-import club.iananderson.pocketgps.config.EnergyUnit;
 import club.iananderson.pocketgps.config.PocketGpsConfig;
+import club.iananderson.pocketgps.energy.EnergyUnit;
 import club.iananderson.pocketgps.platform.Services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

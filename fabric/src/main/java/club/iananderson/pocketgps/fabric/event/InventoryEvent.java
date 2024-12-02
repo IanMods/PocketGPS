@@ -41,7 +41,7 @@ public class InventoryEvent {
     Inventory inv = player.getInventory();
     List<NonNullList<ItemStack>> compartments = ImmutableList.of(inv.items, inv.armor, inv.offhand);
 
-    if(PocketGps.curiosLoaded()){
+    if (PocketGps.curiosLoaded()) {
       Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
       trinketInventory.ifPresent(trinketComponent -> trinketComponent.forEach(
           (slotReference, stack) -> compartments.add(NonNullList.of(stack))));

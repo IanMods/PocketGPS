@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.config;
 
+import club.iananderson.pocketgps.energy.EnergyUnit;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class PocketGpsConfig {

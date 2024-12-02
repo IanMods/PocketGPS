@@ -1,18 +1,12 @@
 package club.iananderson.pocketgps.items;
 
-import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.config.EnergyUnit;
-import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import club.iananderson.pocketgps.minimap.CurrentMinimap.Minimaps;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
