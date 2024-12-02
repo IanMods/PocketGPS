@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.util;
 
+import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import com.google.common.collect.ImmutableList;
 import java.util.List;
 import net.minecraft.core.NonNullList;
@@ -19,10 +20,10 @@ public class FindItem {
     for (NonNullList<ItemStack> compartment : compartments) {
       for (ItemStack invItemStack : compartment) {
         if (!invItemStack.isEmpty() && ItemStack.isSameItem(invItemStack, itemStack)) {
-          if (needPower) {
-            return invItemStack.hasTag();
-          } else {
+          if (!needPower) {
             return true;
+          } else if (invItemStack.hasTag()) {
+            return NBTUtil.getInt(invItemStack, ItemEnergyStorage.ENERGY_TAG) > 0;
           }
         }
       }

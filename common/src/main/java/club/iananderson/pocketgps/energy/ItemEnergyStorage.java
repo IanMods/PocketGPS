@@ -3,7 +3,7 @@ package club.iananderson.pocketgps.energy;
 import net.minecraft.world.item.ItemStack;
 
 public interface ItemEnergyStorage {
-  public static final String ENERGY_TAG = "Energy";
+  String ENERGY_TAG = "energy";
 
   int receiveEnergy(ItemStack energyStorage, int maxReceive, boolean simulate);
 

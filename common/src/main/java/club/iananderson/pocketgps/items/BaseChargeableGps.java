@@ -12,14 +12,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,10 +30,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     if (value < min) {
       return min;
     }
-    if (value > max) {
-      return max;
-    }
-    return value;
+    return Math.min(value, max);
   }
 
   private void setEnergyStored(ItemStack energyStorage, int value) {
@@ -114,8 +108,8 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     }
   }
 
-  public void useGPS(Player player, ItemStack energyStorage, int cost){
-    if (getEnergy(energyStorage) > 0){
+  public void useGPS(Player player, ItemStack energyStorage, int cost) {
+    if (getEnergy(energyStorage) > 0) {
       useEnergy(energyStorage, cost);
     }
   }
@@ -193,7 +187,6 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     DecimalFormat percentFormat = new DecimalFormat("###");
     EnergyUnit unit = PocketGpsConfig.getEnergyUnit();
 
-
     float energyStored = getEnergy(energyStorage);
     float energyCapacity = getCapacity(energyStorage);
 
@@ -210,8 +203,8 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
                                                                simpleStoredEnergy, simpleMaxEnergy,
                                                                unit.getDisplayName()).withStyle(ChatFormatting.GOLD);
 
-    Component message = storedEnergyText.append(" | Walk Time: " + (int) timeRemaining(energyStorage) / 60 + " "
-                                                    + "minutes" + " Cost: " + energyCost)
+    Component message = storedEnergyText.append(
+            " | Walk Time: " + (int) timeRemaining(energyStorage) / 60 + " " + "minutes" + " Cost: " + energyCost)
         .withStyle(ChatFormatting.GREEN);
 
     storedEnergyText.append(" | Distance: " + thousandths.format(distance));
@@ -229,10 +222,10 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
       float energyCost = getEnergyCost();
 
       if (distance > 0.001) {
-        if(player.isCrouching()) {
+        if (player.isCrouching()) {
           energyCost *= 0.5F;
         }
-        if(player.isSprinting()) {
+        if (player.isSprinting()) {
           energyCost *= 1.5F;
         }
         useGPS(player, energyStorage, (int) energyCost);

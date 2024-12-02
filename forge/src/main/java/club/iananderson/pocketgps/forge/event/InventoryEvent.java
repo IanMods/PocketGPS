@@ -1,15 +1,12 @@
 package club.iananderson.pocketgps.forge.event;
 
 import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
-import com.google.common.collect.ImmutableList;
+import club.iananderson.pocketgps.util.NBTUtil;
 import io.wispforest.accessories.api.AccessoriesCapability;
-import java.util.List;
 import java.util.Optional;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +16,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
-import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
@@ -33,41 +29,22 @@ public class InventoryEvent {
     if (PocketGps.curiosLoaded()) {
       Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player).resolve();
       if (curiosInventory.isPresent()) {
-        return curiosInventory.get().isEquipped(item);
-      }
-    }
-
-    if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
-      Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
-      if (accessoriesInventory.isPresent()) {
-
-        return accessoriesInventory.get().isEquipped(item);
-      }
-    }
-    return false;
-  }
-
-  @Nullable
-  public static ItemStack findCharged(Player player) {
-    Inventory inv = player.getInventory();
-    List<NonNullList<ItemStack>> compartments = ImmutableList.of(inv.items, inv.armor, inv.offhand);
-
-    if (PocketGps.curiosLoaded()) {
-      Optional<TrinketComponent> trinketInventory = TrinketsApi.getTrinketComponent(player);
-      trinketInventory.ifPresent(trinketComponent -> trinketComponent.forEach(
-          (slotReference, stack) -> compartments.add(NonNullList.of(stack))));
-    }
-
-    for (NonNullList<ItemStack> compartment : compartments) {
-      for (ItemStack invItemStack : compartment) {
-        if (!invItemStack.isEmpty() && ItemStack.isSameItem(invItemStack,
-                                                            FabricRegistration.POCKET_GPS.getDefaultInstance())) {
-
-          return invItemStack;
+        if (curiosInventory.get().findFirstCurio(item).isPresent()) {
+          ItemStack foundCurioGPS = curiosInventory.get().findFirstCurio(item).get().stack();
+          return NBTUtil.getInt(foundCurioGPS, ItemEnergyStorage.ENERGY_TAG) > 0;
         }
       }
     }
-    return null;
+    if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
+      Optional<AccessoriesCapability> accessoriesInventory = AccessoriesCapability.getOptionally(player);
+      if (accessoriesInventory.isPresent()) {
+        if (accessoriesInventory.get().isEquipped(item)) {
+          ItemStack foundAccessoriesGPS = accessoriesInventory.get().getEquipped(item).get(0).stack();
+          return NBTUtil.getInt(foundAccessoriesGPS, ItemEnergyStorage.ENERGY_TAG) > 0;
+        }
+      }
+    }
+    return false;
   }
 
   @SubscribeEvent
@@ -76,20 +53,11 @@ public class InventoryEvent {
       Player player = event.player;
 
       if (player != null) {
+        boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
+        boolean hasGpsCurio = findCurio(player, ForgeRegistration.POCKET_GPS.get());
 
-        @Nullable ItemStack powerGps = findCharged(player);
-        boolean hasGpsInv = CurrentMinimap.hasGps(player, FabricRegistration.POCKET_GPS);
-        boolean hasGpsCurio = findCurio(player, FabricRegistration.POCKET_GPS);
-
-        CurrentMinimap.displayMinimap(player, (hasGpsInv || hasGpsCurio) && (!PocketGps.gpsNeedPower()
-            || ChargeableGpsItem.(powerGps) > 0F));
+        CurrentMinimap.displayMinimap(player, (hasGpsInv || hasGpsCurio));
       }
-    });
-  }
-      boolean hasGpsInv = CurrentMinimap.hasGps(player, ForgeRegistration.POCKET_GPS.get());
-      boolean hasGpsCurio = findCurio(player, ForgeRegistration.POCKET_GPS.get());
-
-      CurrentMinimap.displayMinimap(player, hasGpsInv || hasGpsCurio);
     }
   }
 }

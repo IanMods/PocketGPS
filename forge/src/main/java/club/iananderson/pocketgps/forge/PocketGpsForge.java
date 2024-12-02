@@ -3,9 +3,9 @@ package club.iananderson.pocketgps.forge;
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.forge.event.InventoryEvent;
-import club.iananderson.pocketgps.forge.impl.accessories.AccessoriesCompat;
 import club.iananderson.pocketgps.forge.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
+import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,7 +38,7 @@ public final class PocketGpsForge {
       }
       if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
         PocketGps.LOG.info("Talking to Accessories");
-        new AccessoriesCompat().setup(event);
+        AccessoriesCompat.init(ForgeRegistration.POCKET_GPS.get());
       }
       PocketGps.clientInit();
     }
