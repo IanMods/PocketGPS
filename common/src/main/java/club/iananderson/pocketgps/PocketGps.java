@@ -2,13 +2,17 @@ package club.iananderson.pocketgps;
 
 import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.energy.EnergyUnit;
+import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.platform.Services;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class PocketGps {
   public static final String MOD_ID = "pocketgps";
   public static final String MOD_NAME = "PocketGPS";
+  public static ResourceLocation TOGGLE_GPS = new ResourceLocation(MOD_ID, ItemEnergyStorage.TOGGLE_GPS_TAG);
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;

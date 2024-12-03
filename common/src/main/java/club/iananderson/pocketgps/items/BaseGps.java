@@ -28,8 +28,6 @@ public abstract class BaseGps extends Item {
     super(new Properties().stacksTo(1));
   }
 
-  //Todo Make texture for when it's off
-
   @Override
   public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
     NBTUtil.setInitBoolean(itemStack, ItemEnergyStorage.TOGGLE_GPS_TAG);
