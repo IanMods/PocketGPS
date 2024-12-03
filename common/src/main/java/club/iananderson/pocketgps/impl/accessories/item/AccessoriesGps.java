@@ -1,6 +1,7 @@
 package club.iananderson.pocketgps.impl.accessories.item;
 
 import club.iananderson.pocketgps.items.BaseChargeableGps;
+import club.iananderson.pocketgps.util.ItemUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.wispforest.accessories.api.AccessoriesAPI;
 import io.wispforest.accessories.api.Accessory;
@@ -40,7 +41,7 @@ public class AccessoriesGps implements Accessory {
       double distance = Math.abs(deltaX) + Math.abs(deltaZ);
       float energyCost = gps.getEnergyCost();
 
-      if (distance > 0.001) {
+      if (distance > 0.001 && ItemUtil.isGpsOn(stack)) {
         if (player.isCrouching()) {
           energyCost *= 0.5F;
         }
@@ -50,11 +51,6 @@ public class AccessoriesGps implements Accessory {
         gps.useGPS(player, stack, (int) energyCost);
       }
     }
-  }
-
-  @Override
-  public boolean canEquipFromUse(ItemStack stack) {
-    return true;
   }
 
   public static class Renderer implements SimpleAccessoryRenderer {

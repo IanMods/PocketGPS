@@ -223,7 +223,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
       double distance = Math.abs(deltaX) + Math.abs(deltaZ);
       float energyCost = getEnergyCost();
 
-      if (distance > 0.001) {
+      if (distance > 0.001 && ItemUtil.isGpsOn(energyStorage)) {
         if (player.isCrouching()) {
           energyCost *= 0.5F;
         }
