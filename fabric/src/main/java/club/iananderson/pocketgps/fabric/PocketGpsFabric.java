@@ -9,6 +9,7 @@ public final class PocketGpsFabric implements ModInitializer {
   @Override
   public void onInitialize() {
     PocketGps.init();
+    FabricRegistration.itemInit();
 
     if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
       PocketGps.LOG.info("Talking to Accessories");

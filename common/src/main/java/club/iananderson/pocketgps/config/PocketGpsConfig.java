@@ -28,8 +28,8 @@ public class PocketGpsConfig {
         .defineEnum("energy_unit", EnergyUnit.FE);
 
     gpsNeedPower = builder.comment(
-            "Require the Gps to have power in order to display the minimap?\n" + "(true/false)\n" + "Default is false.")
-        .define("need_power", false);
+            "Require the Gps to have power in order to display the minimap?\n" + "(true/false)\n" + "Default is true.")
+        .define("need_power", true);
 
     gpsEnergyCapacity = builder.comment("How much the power the GPS can hold.\n" + "Default 40000")
         .defineInRange("gps_capacity", 40000, 0, Integer.MAX_VALUE);

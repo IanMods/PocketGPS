@@ -84,9 +84,9 @@ dependencies {
     }
 
     // Development QOL
-    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
-        exclude group: 'net.fabricmc', module: 'fabric-loader'
-    }
+//    modLocalRuntime("maven.modrinth:lazydfu:${project.lazydfu_version}") {
+//        exclude group: 'net.fabricmc', module: 'fabric-loader'
+//    }
     modLocalRuntime("com.terraformersmc:modmenu:${project.modmenu_version}")
 
     modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}") {

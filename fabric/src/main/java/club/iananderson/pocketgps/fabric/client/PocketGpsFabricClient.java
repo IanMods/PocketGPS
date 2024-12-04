@@ -18,7 +18,6 @@ public final class PocketGpsFabricClient implements ClientModInitializer {
                                           "pocketgps-common.toml");
 
     PocketGps.clientInit();
-    FabricRegistration.itemInit();
     InventoryEvent.register();
     ItemProperties.register(FabricRegistration.POCKET_GPS, PocketGps.TOGGLE_GPS, new GpsItemProperties());
 
