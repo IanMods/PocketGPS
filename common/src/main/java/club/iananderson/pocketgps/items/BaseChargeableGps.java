@@ -1,22 +1,16 @@
 package club.iananderson.pocketgps.items;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.config.PocketGpsConfig;
-import club.iananderson.pocketgps.energy.EnergyUnit;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.util.ItemUtil;
 import club.iananderson.pocketgps.util.NBTUtil;
-import java.text.DecimalFormat;
+import club.iananderson.pocketgps.util.TextUtil;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -102,6 +96,32 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     }
   }
 
+  public String getStoredEnergyText(ItemStack energyStorage) {
+    int storedEnergy = getEnergy(energyStorage);
+
+    if (storedEnergy < 1000 || Screen.hasShiftDown()) {
+      return TextUtil.commaFormat.format(storedEnergy);
+    } else {
+      return TextUtil.kFormat.format(storedEnergy / 1000);
+    }
+  }
+
+  public String getEnergyCapacityText(ItemStack energyStorage) {
+    int energyCapacity = getCapacity(energyStorage);
+
+    if (energyCapacity < 1000 || Screen.hasShiftDown()) {
+      return TextUtil.commaFormat.format(energyCapacity);
+    } else {
+      return TextUtil.kFormat.format(energyCapacity / 1000);
+    }
+  }
+
+  public String getPercentageText(ItemStack energyStorage) {
+    float percentage = getEnergyPercentage(energyStorage);
+
+    return TextUtil.percentFormat.format(percentage * 100);
+  }
+
   public void useEnergy(ItemStack energyStorage, int amount) {
     if (energyStorage.getTag() != null || energyStorage.getTag().contains(ItemEnergyStorage.ENERGY_TAG)) {
       int stored = Math.min(energyStorage.getTag().getInt(ItemEnergyStorage.ENERGY_TAG), getCapacity(energyStorage));
@@ -136,33 +156,17 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
 
   public List<Component> energyTooltips(ItemStack energyStorage) {
     List<Component> energyTooltips = new ArrayList<>();
-    DecimalFormat commaFormat = new DecimalFormat("#,###");
-    DecimalFormat kFormat = new DecimalFormat("###.0k");
-    DecimalFormat percentFormat = new DecimalFormat("###");
 
-    float energyStored = getEnergy(energyStorage);
-    float energyCapacity = getCapacity(energyStorage);
+    String storedEnergy = getStoredEnergyText(energyStorage);
+    String energyCapacity = getEnergyCapacityText(energyStorage);
+    String energyUnit = PocketGps.energyUnit().getDisplayName();
+    String percentageText = getPercentageText(energyStorage);
 
-    String simpleStoredEnergy;
-    String simpleMaxEnergy = kFormat.format(energyCapacity / 1000);
-    String percentageText = percentFormat.format(getEnergyPercentage(energyStorage) * 100);
-    String expandedStoredEnergy = commaFormat.format(energyStored);
-    String expandedMaxEnergy = commaFormat.format(energyCapacity);
+    energyTooltips.add(
+        Component.translatable("item.pocketgps.gps.tooltip.energy.stored", storedEnergy, energyCapacity, energyUnit)
+            .withStyle(ChatFormatting.GOLD));
 
-    if (energyStored < 1000) {
-      simpleStoredEnergy = commaFormat.format(energyStored);
-    } else {
-      simpleStoredEnergy = kFormat.format(energyStored / 1000);
-    }
-
-    if (!Screen.hasShiftDown()) {
-      energyTooltips.add(
-          Component.translatable("item.pocketgps.gps.tooltip.energy.stored", simpleStoredEnergy, simpleMaxEnergy, "E")
-              .withStyle(ChatFormatting.GOLD));
-    } else {
-      energyTooltips.add(
-          Component.translatable("item.pocketgps.gps.tooltip.energy.stored", expandedStoredEnergy, expandedMaxEnergy,
-                                 "E").withStyle(ChatFormatting.GOLD));
+    if (Screen.hasShiftDown()) {
       energyTooltips.add(Component.translatable("item.pocketgps.gps.tooltip.energy.percent", percentageText)
                              .withStyle(ChatFormatting.DARK_GRAY));
     }
@@ -183,33 +187,19 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
   }
 
   public void debug(ItemStack energyStorage, Player player, double distance, int energyCost) {
-    DecimalFormat commaFormat = new DecimalFormat("#,###");
-    DecimalFormat thousandths = new DecimalFormat("#.###");
-    DecimalFormat kFormat = new DecimalFormat("###.0k");
-    DecimalFormat percentFormat = new DecimalFormat("###");
-    EnergyUnit unit = PocketGpsConfig.getEnergyUnit();
+    String storedEnergy = getStoredEnergyText(energyStorage);
+    String energyCapacity = getEnergyCapacityText(energyStorage);
+    String energyUnit = PocketGps.energyUnit().getDisplayName();
 
-    float energyStored = getEnergy(energyStorage);
-    float energyCapacity = getCapacity(energyStorage);
-
-    String simpleStoredEnergy;
-    String simpleMaxEnergy = kFormat.format(energyCapacity / 1000);
-
-    if (energyStored < 1000) {
-      simpleStoredEnergy = commaFormat.format(energyStored);
-    } else {
-      simpleStoredEnergy = kFormat.format(energyStored / 1000);
-    }
-
-    MutableComponent storedEnergyText = Component.translatable("item.pocketgps.gps.tooltip.energy.stored",
-                                                               simpleStoredEnergy, simpleMaxEnergy,
-                                                               unit.getDisplayName()).withStyle(ChatFormatting.GOLD);
+    MutableComponent storedEnergyText = Component.translatable("item.pocketgps.gps.tooltip.energy.stored", storedEnergy,
+                                                               energyCapacity, energyUnit)
+        .withStyle(ChatFormatting.GOLD);
 
     Component message = storedEnergyText.append(
             " | Walk Time: " + (int) timeRemaining(energyStorage) / 60 + " " + "minutes" + " Cost: " + energyCost)
         .withStyle(ChatFormatting.GREEN);
 
-    storedEnergyText.append(" | Distance: " + thousandths.format(distance));
+    storedEnergyText.append(" | Distance: " + TextUtil.thousandths.format(distance));
 
     player.displayClientMessage(message, true);
   }
@@ -232,9 +222,9 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
         }
         useGPS(player, energyStorage, (int) energyCost);
 
-        if (player.isHolding(energyStorage.getItem()) && player.isCreative()) {
-          debug(energyStorage, player, distance, Math.round(energyCost));
-        }
+//        if (player.isHolding(energyStorage.getItem()) && player.isCreative()) {
+//          debug(energyStorage, player, distance, Math.round(energyCost));
+//        }
       }
     }
     super.inventoryTick(energyStorage, level, entity, slot, selected);
