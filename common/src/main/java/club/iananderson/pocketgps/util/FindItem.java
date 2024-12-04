@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.util;
 
+import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import com.google.common.collect.ImmutableList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class FindItem {
           if (!needPower) {
             return ItemUtil.isGpsOn(invItemStack);
           } else if (invItemStack.hasTag()) {
-            return ItemUtil.isGpsOn(invItemStack) && NBTUtil.getInt(invItemStack, ItemEnergyStorage.ENERGY_TAG) > 0;
+            return ItemUtil.isGpsOn(invItemStack) && NBTUtil.getInt(invItemStack, PocketGps.ENERGY_TAG) > 0;
           }
         }
       }

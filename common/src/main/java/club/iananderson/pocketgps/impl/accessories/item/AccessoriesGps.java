@@ -53,6 +53,11 @@ public class AccessoriesGps implements Accessory {
     }
   }
 
+  @Override
+  public boolean canEquipFromUse(ItemStack stack) {
+    return false;
+  }
+
   public static class Renderer implements SimpleAccessoryRenderer {
 
     @Override

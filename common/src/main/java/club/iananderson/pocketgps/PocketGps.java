@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory;
 public final class PocketGps {
   public static final String MOD_ID = "pocketgps";
   public static final String MOD_NAME = "PocketGPS";
-  public static ResourceLocation TOGGLE_GPS = new ResourceLocation(MOD_ID, ItemEnergyStorage.TOGGLE_GPS_TAG);
+  public static String ENERGY_TAG = "energy";
+  public static String TOGGLE_GPS_TAG = "toggle_gps";
+  public static ResourceLocation TOGGLE_GPS = new ResourceLocation(MOD_ID, TOGGLE_GPS_TAG);
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;

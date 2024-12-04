@@ -30,7 +30,7 @@ public class EnergyStorageImpl implements IEnergyStorage {
 
   @Override
   public int getMaxEnergyStored() {
-    return container.getCapacity(stack);
+    return container.getCapacity();
   }
 
   @Override

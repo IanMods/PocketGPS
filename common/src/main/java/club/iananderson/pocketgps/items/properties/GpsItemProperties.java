@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.items.properties;
 
+import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.util.ItemUtil;
 import club.iananderson.pocketgps.util.NBTUtil;
@@ -14,6 +15,6 @@ public class GpsItemProperties implements ClampedItemPropertyFunction {
   @Override
   public float unclampedCall(ItemStack itemStack, @Nullable ClientLevel clientLevel,
       @Nullable LivingEntity livingEntity, int i) {
-    return NBTUtil.getBoolean(itemStack, ItemEnergyStorage.TOGGLE_GPS_TAG) ? 1F : 0F;
+    return NBTUtil.getBoolean(itemStack, PocketGps.TOGGLE_GPS_TAG) ? 1F : 0F;
   }
 }

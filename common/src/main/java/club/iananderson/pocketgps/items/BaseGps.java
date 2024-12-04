@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.items;
 
+import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import club.iananderson.pocketgps.minimap.CurrentMinimap.Minimaps;
@@ -26,8 +27,13 @@ public abstract class BaseGps extends Item {
   }
 
   @Override
+  public boolean isBarVisible(ItemStack stack) {
+    return false;
+  }
+
+  @Override
   public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
-    NBTUtil.setInitBoolean(itemStack, ItemEnergyStorage.TOGGLE_GPS_TAG);
+    ItemUtil.initGpsState(itemStack);
   }
 
   public List<Component> expandedTooltips() {
@@ -75,6 +81,11 @@ public abstract class BaseGps extends Item {
     if (level.isClientSide()) {
       ItemUtil.toggleGps(heldItem, player);
     }
+
+    if(PocketGps.gpsNeedPower() && heldItem.getTag().get(PocketGps.ENERGY_TAG) == null){
+      NBTUtil.setInt(heldItem, PocketGps.ENERGY_TAG,0);
+    }
+
     return InteractionResultHolder.sidedSuccess(heldItem, level.isClientSide());
   }
 }

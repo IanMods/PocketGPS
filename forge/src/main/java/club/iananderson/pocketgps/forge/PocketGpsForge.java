@@ -21,7 +21,7 @@ public final class PocketGpsForge {
     PocketGps.init();
     MinecraftForge.EVENT_BUS.addListener(InventoryEvent::onPlayerTickEvent);
 
-    ForgeRegistration.init(modEventBus);
+    ForgeRegistration.register(modEventBus);
     context.registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
 
     modEventBus.addListener(ClientModEvents::commonSetup);

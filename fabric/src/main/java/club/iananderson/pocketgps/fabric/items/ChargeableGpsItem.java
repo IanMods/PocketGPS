@@ -13,7 +13,7 @@ public class ChargeableGpsItem extends BaseChargeableGps implements SimpleEnergy
 
   @Override
   public long getEnergyCapacity(ItemStack stack) {
-    return this.getCapacity(stack);
+    return this.getCapacity();
   }
 
   @Override

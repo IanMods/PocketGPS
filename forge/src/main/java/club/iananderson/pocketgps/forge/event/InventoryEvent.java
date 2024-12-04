@@ -32,7 +32,7 @@ public class InventoryEvent {
       if (curiosInventory.isPresent()) {
         if (curiosInventory.get().findFirstCurio(item).isPresent()) {
           ItemStack foundCurioGPS = curiosInventory.get().findFirstCurio(item).get().stack();
-          return NBTUtil.getInt(foundCurioGPS, ItemEnergyStorage.ENERGY_TAG) > 0;
+          return NBTUtil.getInt(foundCurioGPS, PocketGps.ENERGY_TAG) > 0;
         }
       }
     }
@@ -41,7 +41,7 @@ public class InventoryEvent {
       if (accessoriesInventory.isPresent()) {
         if (accessoriesInventory.get().isEquipped(item)) {
           ItemStack foundAccessoriesGPS = accessoriesInventory.get().getEquipped(item).get(0).stack();
-          return NBTUtil.getInt(foundAccessoriesGPS, ItemEnergyStorage.ENERGY_TAG) > 0;
+          return NBTUtil.getInt(foundAccessoriesGPS, PocketGps.ENERGY_TAG) > 0;
         }
       }
     }

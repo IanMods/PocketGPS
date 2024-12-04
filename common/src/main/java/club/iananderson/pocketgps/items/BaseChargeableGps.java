@@ -2,6 +2,7 @@ package club.iananderson.pocketgps.items;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
+import club.iananderson.pocketgps.platform.Services;
 import club.iananderson.pocketgps.util.ItemUtil;
 import club.iananderson.pocketgps.util.NBTUtil;
 import club.iananderson.pocketgps.util.TextUtil;
@@ -25,6 +26,15 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
 
   }
 
+  @Override
+  public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
+    if(PocketGps.gpsNeedPower()){
+      NBTUtil.setInt(itemStack, PocketGps.ENERGY_TAG,0);
+    }
+
+    super.onCraftedBy(itemStack, level, player);
+  }
+
   public static int clamp(int min, int value, int max) {
     if (value < min) {
       return min;
@@ -32,8 +42,8 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     return Math.min(value, max);
   }
 
-  private void setEnergyStored(ItemStack energyStorage, int value) {
-    NBTUtil.setInt(energyStorage, ItemEnergyStorage.ENERGY_TAG, clamp(value, 0, getCapacity(energyStorage)));
+  public void setEnergyStored(ItemStack energyStorage, int value) {
+    NBTUtil.setInt(energyStorage, PocketGps.ENERGY_TAG, clamp(value, 0, getCapacity()));
   }
 
   public int getEnergyReceive() {
@@ -54,7 +64,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
       return 0;
     }
     int energyStored = getEnergy(energyStorage);
-    int energyReceived = Math.min(getCapacity(energyStorage) - energyStored, Math.min(getEnergyReceive(), maxReceive));
+    int energyReceived = Math.min(getCapacity() - energyStored, Math.min(getEnergyReceive(), maxReceive));
     if (!simulate) {
       setEnergyStored(energyStorage, energyStored + energyReceived);
     }
@@ -76,11 +86,11 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
 
   @Override
   public int getEnergy(ItemStack energyStorage) {
-    return energyStorage.getOrCreateTag().getInt(ItemEnergyStorage.ENERGY_TAG);
+    return energyStorage.getOrCreateTag().getInt(PocketGps.ENERGY_TAG);
   }
 
   @Override
-  public int getCapacity(ItemStack energyStorage) {
+  public int getCapacity() {
     return PocketGps.gpsEnergyCapacity();
   }
 
@@ -90,14 +100,14 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
       return 1;
     } else {
       float energyStored = getEnergy(energyStorage);
-      float energyCapacity = getCapacity(energyStorage);
+      float energyCapacity = getCapacity();
 
       return (energyStored / energyCapacity);
     }
   }
 
   public String getStoredEnergyText(ItemStack energyStorage) {
-    int storedEnergy = getEnergy(energyStorage);
+    float storedEnergy = getEnergy(energyStorage);
 
     if (storedEnergy < 1000 || Screen.hasShiftDown()) {
       return TextUtil.commaFormat.format(storedEnergy);
@@ -107,7 +117,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
   }
 
   public String getEnergyCapacityText(ItemStack energyStorage) {
-    int energyCapacity = getCapacity(energyStorage);
+    int energyCapacity = getCapacity();
 
     if (energyCapacity < 1000 || Screen.hasShiftDown()) {
       return TextUtil.commaFormat.format(energyCapacity);
@@ -123,13 +133,13 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
   }
 
   public void useEnergy(ItemStack energyStorage, int amount) {
-    if (energyStorage.getTag() != null || energyStorage.getTag().contains(ItemEnergyStorage.ENERGY_TAG)) {
-      int stored = Math.min(energyStorage.getTag().getInt(ItemEnergyStorage.ENERGY_TAG), getCapacity(energyStorage));
+    if (energyStorage.getTag() != null || energyStorage.getTag().contains(PocketGps.ENERGY_TAG)) {
+      int stored = Math.min(energyStorage.getTag().getInt(PocketGps.ENERGY_TAG), getCapacity());
       stored -= amount;
       if (stored < 0) {
         stored = 0;
       }
-      energyStorage.getTag().putInt(ItemEnergyStorage.ENERGY_TAG, stored);
+      energyStorage.getTag().putInt(PocketGps.ENERGY_TAG, stored);
     }
   }
 
@@ -141,7 +151,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
 
   @Override
   public boolean isBarVisible(ItemStack energyStorage) {
-    return getEnergy(energyStorage) > 0;
+    return PocketGps.gpsNeedPower();
   }
 
   @Override
@@ -161,6 +171,10 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     String energyCapacity = getEnergyCapacityText(energyStorage);
     String energyUnit = PocketGps.energyUnit().getDisplayName();
     String percentageText = getPercentageText(energyStorage);
+
+    if(Services.PLATFORM.getPlatformName().equals("Fabric")){
+      energyUnit = "E";
+    }
 
     energyTooltips.add(
         Component.translatable("item.pocketgps.gps.tooltip.energy.stored", storedEnergy, energyCapacity, energyUnit)

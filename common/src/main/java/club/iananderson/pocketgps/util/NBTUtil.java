@@ -45,12 +45,6 @@ public class NBTUtil {
     return stack.hasTag() ? stack.getTag().getInt(key) : 0;
   }
 
-  public static ItemStack setInitBoolean(ItemStack stack, String key) {
-    validateCompound(stack);
-    stack.getTag().putBoolean(key, true);
-    return stack;
-  }
-
   public static void setBoolean(ItemStack stack, String key, boolean value) {
     validateCompound(stack);
     stack.getTag().putBoolean(key, value);
