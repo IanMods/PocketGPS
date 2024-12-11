@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.items;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import club.iananderson.pocketgps.minimap.CurrentMinimap.Minimaps;
 import club.iananderson.pocketgps.util.ItemUtil;
@@ -82,8 +81,8 @@ public abstract class BaseGps extends Item {
       ItemUtil.toggleGps(heldItem, player);
     }
 
-    if(PocketGps.gpsNeedPower() && heldItem.getTag().get(PocketGps.ENERGY_TAG) == null){
-      NBTUtil.setInt(heldItem, PocketGps.ENERGY_TAG,0);
+    if (PocketGps.gpsNeedPower() && heldItem.getTag().get(PocketGps.ENERGY_TAG) == null) {
+      NBTUtil.setInt(heldItem, PocketGps.ENERGY_TAG, 0);
     }
 
     return InteractionResultHolder.sidedSuccess(heldItem, level.isClientSide());

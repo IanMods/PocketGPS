@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.util;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import com.google.common.collect.ImmutableList;
 import java.util.List;
 import net.minecraft.core.NonNullList;

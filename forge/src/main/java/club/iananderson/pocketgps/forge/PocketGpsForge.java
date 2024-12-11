@@ -1,14 +1,17 @@
 package club.iananderson.pocketgps.forge;
 
 import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.client.PocketGpsClient;
 import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.forge.event.InventoryEvent;
 import club.iananderson.pocketgps.forge.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -19,7 +22,7 @@ public final class PocketGpsForge {
   public PocketGpsForge(FMLJavaModLoadingContext context) {
     IEventBus modEventBus = context.getModEventBus();
     PocketGps.init();
-    MinecraftForge.EVENT_BUS.addListener(InventoryEvent::onPlayerTickEvent);
+//    MinecraftForge.EVENT_BUS.addListener(InventoryEvent::onPlayerTickEvent);
 
     ForgeRegistration.register(modEventBus);
     context.registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
@@ -41,6 +44,14 @@ public final class PocketGpsForge {
         AccessoriesCompat.init(ForgeRegistration.POCKET_GPS.get());
       }
       PocketGps.clientInit();
+    }
+  }
+
+  @SubscribeEvent
+  public void pocketGpsPlayerTick(TickEvent.PlayerTickEvent event) {
+    if (event.phase != TickEvent.Phase.END) return;
+    if (event.side == LogicalSide.CLIENT) {
+      PocketGpsClient.cachePlayerState(event.player);
     }
   }
 }

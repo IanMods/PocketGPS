@@ -1,8 +1,7 @@
 package club.iananderson.pocketgps.minimap;
 
-import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.client.PocketGpsClient;
 import club.iananderson.pocketgps.platform.Services;
-import club.iananderson.pocketgps.util.FindItem;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,6 @@ import journeymap.client.ui.UIManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import xaero.common.settings.ModOptions;
 import xaero.minimap.XaeroMinimap;
 
@@ -48,10 +46,12 @@ public class CurrentMinimap {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
   }
 
-  public static void displayMinimap(Player player, Boolean displayMap) {
+  public static void displayMinimap(Player player) {
     if (player == null) {
       return;
     }
+
+    boolean displayMap = PocketGpsClient.isDrawingMap();
 
     if (journeyMapLoaded()) {
       UIManager.INSTANCE.setMiniMapEnabled(displayMap);

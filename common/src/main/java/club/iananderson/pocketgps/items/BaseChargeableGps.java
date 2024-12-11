@@ -23,16 +23,6 @@ import org.jetbrains.annotations.Nullable;
 public abstract class BaseChargeableGps extends BaseGps implements ItemEnergyStorage {
   public BaseChargeableGps() {
     super();
-
-  }
-
-  @Override
-  public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
-    if(PocketGps.gpsNeedPower()){
-      NBTUtil.setInt(itemStack, PocketGps.ENERGY_TAG,0);
-    }
-
-    super.onCraftedBy(itemStack, level, player);
   }
 
   public static int clamp(int min, int value, int max) {
@@ -40,6 +30,15 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
       return min;
     }
     return Math.min(value, max);
+  }
+
+  @Override
+  public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
+    if (PocketGps.gpsNeedPower()) {
+      NBTUtil.setInt(itemStack, PocketGps.ENERGY_TAG, 0);
+    }
+
+    super.onCraftedBy(itemStack, level, player);
   }
 
   public void setEnergyStored(ItemStack energyStorage, int value) {
@@ -172,7 +171,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     String energyUnit = PocketGps.energyUnit().getDisplayName();
     String percentageText = getPercentageText(energyStorage);
 
-    if(Services.PLATFORM.getPlatformName().equals("Fabric")){
+    if (Services.PLATFORM.getPlatformName().equals("Fabric")) {
       energyUnit = "E";
     }
 

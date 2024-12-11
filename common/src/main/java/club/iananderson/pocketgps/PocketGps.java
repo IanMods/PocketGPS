@@ -2,22 +2,25 @@ package club.iananderson.pocketgps;
 
 import club.iananderson.pocketgps.config.PocketGpsConfig;
 import club.iananderson.pocketgps.energy.EnergyUnit;
-import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import club.iananderson.pocketgps.platform.Services;
-import net.minecraft.client.renderer.item.ItemProperties;
+import java.util.function.Supplier;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class PocketGps {
   public static final String MOD_ID = "pocketgps";
   public static final String MOD_NAME = "PocketGPS";
+  public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   public static String ENERGY_TAG = "energy";
   public static String TOGGLE_GPS_TAG = "toggle_gps";
+  public static Supplier<Item> BASIC_GPS;
+  public static Supplier<Item> GPS;
   public static ResourceLocation TOGGLE_GPS = new ResourceLocation(MOD_ID, TOGGLE_GPS_TAG);
-  public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;
+  private static boolean trinketsLoaded;
   private static EnergyUnit energyUnit;
   private static boolean gpsNeedPower;
   private static int gpsEnergyCapacity;
@@ -31,6 +34,7 @@ public final class PocketGps {
 
   public static void init() {
     curiosLoaded = Services.PLATFORM.isModLoaded("trinkets") || Services.PLATFORM.isModLoaded("curios");
+    trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
   }
 
@@ -45,6 +49,10 @@ public final class PocketGps {
 
   public static boolean curiosLoaded() {
     return PocketGps.curiosLoaded;
+  }
+
+  public static boolean trinketsLoaded() {
+    return PocketGps.trinketsLoaded;
   }
 
   public static boolean accessoriesLoaded() {
@@ -73,5 +81,9 @@ public final class PocketGps {
 
   public static int gpsEnergyCost() {
     return gpsEnergyCost;
+  }
+
+  public static ResourceLocation location(String path) {
+    return new ResourceLocation(MOD_ID, path);
   }
 }
