@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.minimap;
 
+import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.client.PocketGpsClient;
 import club.iananderson.pocketgps.platform.Services;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
@@ -8,9 +9,9 @@ import java.util.List;
 import journeymap.client.ui.UIManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
-import xaero.common.settings.ModOptions;
-import xaero.minimap.XaeroMinimap;
 
 public class CurrentMinimap {
   private static boolean minimapLoaded(Minimaps minimap) {
@@ -56,9 +57,33 @@ public class CurrentMinimap {
     if (journeyMapLoaded()) {
       UIManager.INSTANCE.setMiniMapEnabled(displayMap);
     }
+
     if (xaeroLoaded()) {
-      XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, displayMap);
+      MobEffect NO_MINIMAP = xaero.common.effect.Effects.NO_MINIMAP;
+      MobEffectInstance noMiniMap = new MobEffectInstance(NO_MINIMAP, -1, 0, false, false, false, null,
+                                                          NO_MINIMAP.createFactorData());
+      if (!displayMap && !player.hasEffect(NO_MINIMAP)) {
+        player.addEffect(noMiniMap);
+        //XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, displayMap);
+      } else if (displayMap && player.hasEffect(NO_MINIMAP)) {
+        player.removeEffect(NO_MINIMAP);
+      }
+
     }
+
+    if (PocketGps.worldMapLoaded()) {
+      MobEffect NO_WORLD_MAP = xaero.map.effects.Effects.NO_WORLD_MAP;
+      MobEffectInstance noWorldMap = new MobEffectInstance(NO_WORLD_MAP, -1, 0, false, false, false);
+
+      if (!displayMap && !player.hasEffect(NO_WORLD_MAP)) {
+        player.addEffect(noWorldMap);
+
+      } else if (displayMap && player.hasEffect(NO_WORLD_MAP)) {
+        player.removeEffect(NO_WORLD_MAP);
+      }
+
+    }
+
     if (onlyFtbChunksLoaded()) {
       FTBChunksClientConfig.MINIMAP_ENABLED.set(displayMap);
 

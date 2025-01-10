@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
-## [1.1.0] - 2024-11-11
+## [1.1.0] - 2025-01-10
 
 ### Added
 
 - Added optional energy requirement for the GPS
+- Reworked GPS detection
+- Added support for Xaero's Worldmap
+
+### Changed
+
+- Changed to use the build in effects from Xaero's Minimap/Worldmap for disabling their mini/world maps.
 
 ## [1.0.6] - 2024-11-11
 

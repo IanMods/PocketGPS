@@ -44,6 +44,9 @@ dependencies {
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.20") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+    modCompileOnly("maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Fabric_1.20") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 
     //JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version_fabric, changing: true
@@ -98,6 +101,7 @@ dependencies {
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.20")
+            modLocalRuntime("maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Fabric_1.20")
             break
         case "journey":
             modLocalRuntime("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric")

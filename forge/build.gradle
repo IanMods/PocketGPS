@@ -43,6 +43,7 @@ dependencies {
 
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
+    modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Forge_1.20"
 
     //JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
@@ -70,6 +71,7 @@ dependencies {
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
+            modLocalRuntime "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Forge_1.20"
             break
         case "journey":
             modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"

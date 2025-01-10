@@ -21,6 +21,7 @@ public final class PocketGps {
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
+  private static boolean worldMapLoaded;
   private static EnergyUnit energyUnit;
   private static boolean gpsNeedPower;
   private static int gpsEnergyCapacity;
@@ -36,6 +37,7 @@ public final class PocketGps {
     curiosLoaded = Services.PLATFORM.isModLoaded("trinkets") || Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
+    worldMapLoaded = Services.PLATFORM.isModLoaded("xaeroworldmap");
   }
 
   public static void clientInit() {
@@ -57,6 +59,10 @@ public final class PocketGps {
 
   public static boolean accessoriesLoaded() {
     return PocketGps.accessoriesLoaded;
+  }
+
+  public static boolean worldMapLoaded() {
+    return PocketGps.worldMapLoaded;
   }
 
   public static EnergyUnit energyUnit() {
