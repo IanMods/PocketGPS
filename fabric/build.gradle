@@ -85,8 +85,8 @@ dependencies {
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
 
     //Forge Config API Port
-    modApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modImplementation("maven.modrinth:forge-config-api-port:v${project.forge_config_api_port_version}-${project.minecraft_version}-Fabric") {
+    modApi "net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
+    modImplementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 
