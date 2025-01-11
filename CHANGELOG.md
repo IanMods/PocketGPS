@@ -9,12 +9,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Added optional energy requirement for the GPS
+- Added a config file
 - Reworked GPS detection
 - Added support for Xaero's Worldmap
 
 ### Changed
 
-- Changed to use the build in effects from Xaero's Minimap/Worldmap for disabling their mini/world maps.
+- Switched to the built-in effects from Xaero's Minimap/Worldmap for disabling their mini/world maps.
 
 ## [1.0.6] - 2024-11-11
 
