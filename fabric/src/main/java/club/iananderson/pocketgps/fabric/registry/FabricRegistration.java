@@ -22,17 +22,16 @@ public class FabricRegistration {
   public static final CreativeModeTab.Builder TABS = FabricItemGroup.builder();
   private static final ResourceKey<CreativeModeTab> ITEM_GROUP;
   ;
-  public static Supplier<Item> BASIC_GPS = CommonRegistration.registerItem(PocketGps.location("basic_gps"),
-                                                                           BasicGps::new);
-  public static Supplier<Item> POCKET_GPS = CommonRegistration.registerItem(PocketGps.location("gps"),
-                                                                            ChargeableGpsItem::new);
+  public static BasicGps BASIC_GPS = new BasicGps();
+  public static ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem();
+
   public static CreativeModeTab TAB = TABS.title(Component.translatable("tab.pocketgps"))
       .icon(() -> new ItemStack(PocketGps.BASIC_GPS.get())).displayItems((par, out) -> entries(out))
       .build();
 
   static {
-    PocketGps.BASIC_GPS = BASIC_GPS;
-    PocketGps.GPS = POCKET_GPS;
+    PocketGps.BASIC_GPS = () -> BASIC_GPS;
+    PocketGps.GPS = () -> POCKET_GPS;
     ITEM_GROUP = ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(PocketGps.MOD_ID, "item_group"));
   }
 
@@ -42,6 +41,8 @@ public class FabricRegistration {
 
   public static void register() {
     Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, PocketGps.location("tab"), TAB);
+    Registry.register(BuiltInRegistries.ITEM, PocketGps.location("basic_gps"), BASIC_GPS);
+    Registry.register(BuiltInRegistries.ITEM, PocketGps.location("gps"), POCKET_GPS);
 
     ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP)
         .register(FabricRegistration::entries);
