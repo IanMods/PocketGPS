@@ -6,7 +6,7 @@
     "4": "pocketgps:item/gps/red_button",
     "5": "pocketgps:item/gps/glass",
     "particle": "pocketgps:item/gps/gps_back",
-    "layer0": "pocketgps:item/gps/gps_front"
+    "layer0": "pocketgps:item/gps/gps_front_off"
   },
   "elements": [
     {
@@ -795,20 +795,6 @@
         7,
         8
       ]
-    }
-  ],
-  "overrides": [
-    {
-      "predicate": {
-        "pocketgps:toggle_gps": 0
-      },
-      "model": "pocketgps:item/gps_off"
-    },
-    {
-      "predicate": {
-        "pocketgps:toggle_gps": 1
-      },
-      "model": "pocketgps:item/gps"
     }
   ]
 }

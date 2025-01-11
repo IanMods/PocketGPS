@@ -8,12 +8,18 @@ dependencies {
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 
-//    api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
+    api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
     modCompileOnly("io.wispforest:accessories-common:${project.accessories_version}-mojmap")
+    modCompileOnly("maven.modrinth:accessories-tc-layer:${project.trinkets_version}")
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1"
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
+    modCompileOnly "maven.modrinth:accessories-cc-layer:${project.curios_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.20"
+    modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Forge_1.20"
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_forge_version}"
     modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_forge_version}"
     modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"

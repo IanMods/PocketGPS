@@ -796,19 +796,5 @@
         8
       ]
     }
-  ],
-  "overrides": [
-    {
-      "predicate": {
-        "pocketgps:toggle_gps": 0
-      },
-      "model": "pocketgps:item/gps_off"
-    },
-    {
-      "predicate": {
-        "pocketgps:toggle_gps": 1
-      },
-      "model": "pocketgps:item/gps"
-    }
   ]
 }
