@@ -1,5 +1,6 @@
 {
   "tab.pocketgps": "小型GPS",
+  "itemGroup.pocketgps.tab": "小型GPS",
   "item.pocketgps.gps": "小型GPS",
   "item.pocketgps.gps.tooltip.default": "按住 SHIFT 键获取更多信息",
   "item.pocketgps.gps.tooltip_1": "Having this item in your inventory",

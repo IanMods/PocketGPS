@@ -38,8 +38,8 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
-//    modLocalRuntime "maven.modrinth:mekanism:${project.mekanism_version}"
-//    modLocalRuntime "maven.modrinth:mekanism-generators:${project.mekanism_version}"
+    modLocalRuntime "maven.modrinth:mekanism:${project.mekanism_version}"
+    modLocalRuntime "maven.modrinth:mekanism-generators:${project.mekanism_version}"
 
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.19.1"

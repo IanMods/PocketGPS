@@ -1,7 +1,6 @@
 package club.iananderson.pocketgps.client;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
 import club.iananderson.pocketgps.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.impl.trinkets.TrinketsCompat;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
@@ -57,13 +56,6 @@ public class PocketGpsClient {
       ItemStack trinketItem = TrinketsCompat.getGpsInTrinket(player);
       if (!trinketItem.isEmpty()) {
         return trinketItem;
-      }
-    }
-
-    if (PocketGps.accessoriesLoaded()) {
-      ItemStack accessoryItem = AccessoriesCompat.getGpsInAccessory(player);
-      if (!accessoryItem.isEmpty()) {
-        return accessoryItem;
       }
     }
     return inventoryItem;

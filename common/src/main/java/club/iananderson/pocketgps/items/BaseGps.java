@@ -21,8 +21,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 public abstract class BaseGps extends Item {
-  public BaseGps() {
-    super(new Properties().stacksTo(1));
+  public BaseGps(Properties properties) {
+    super(properties);
   }
 
   @Override
