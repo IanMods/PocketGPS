@@ -73,8 +73,10 @@ public class PocketGpsClient {
     if (player != Minecraft.getInstance().player) {
       return;
     }
+
     ItemStack gps = getGpsFromPlayer(player);
     currentActiveGps = gps;
+
     if (gps.isEmpty()) {
       setIsDrawingMap(false);
       CurrentMinimap.displayMinimap(player);
