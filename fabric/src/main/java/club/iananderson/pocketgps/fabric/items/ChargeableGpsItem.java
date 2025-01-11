@@ -1,12 +1,13 @@
 package club.iananderson.pocketgps.fabric.items;
 
 import club.iananderson.pocketgps.items.BaseChargeableGps;
+import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import team.reborn.energy.api.base.SimpleEnergyItem;
 
-public class ChargeableGpsItem extends BaseChargeableGps implements SimpleEnergyItem {
+public class ChargeableGpsItem extends BaseChargeableGps implements SimpleEnergyItem, FabricItem {
   public ChargeableGpsItem() {
     super();
   }

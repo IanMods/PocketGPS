@@ -3,7 +3,6 @@ package club.iananderson.pocketgps.forge;
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.client.PocketGpsClient;
 import club.iananderson.pocketgps.config.PocketGpsConfig;
-import club.iananderson.pocketgps.forge.event.InventoryEvent;
 import club.iananderson.pocketgps.forge.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
@@ -31,6 +30,16 @@ public final class PocketGpsForge {
     MinecraftForge.EVENT_BUS.register(this);
   }
 
+  @SubscribeEvent
+  public void pocketGpsPlayerTick(TickEvent.PlayerTickEvent event) {
+    if (event.phase != TickEvent.Phase.END) {
+      return;
+    }
+    if (event.side == LogicalSide.CLIENT) {
+      PocketGpsClient.cachePlayerState(event.player);
+    }
+  }
+
   @Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class ClientModEvents {
     @SubscribeEvent
@@ -44,14 +53,6 @@ public final class PocketGpsForge {
         AccessoriesCompat.init(ForgeRegistration.POCKET_GPS.get());
       }
       PocketGps.clientInit();
-    }
-  }
-
-  @SubscribeEvent
-  public void pocketGpsPlayerTick(TickEvent.PlayerTickEvent event) {
-    if (event.phase != TickEvent.Phase.END) return;
-    if (event.side == LogicalSide.CLIENT) {
-      PocketGpsClient.cachePlayerState(event.player);
     }
   }
 }

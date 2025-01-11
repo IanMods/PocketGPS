@@ -190,7 +190,9 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
   @Override
   public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
     super.appendHoverText(stack, worldIn, tooltip, flagIn);
-    tooltip.addAll(energyTooltips(stack));
+    if (PocketGps.gpsNeedPower()) {
+      tooltip.addAll(energyTooltips(stack));
+    }
   }
 
   public float timeRemaining(ItemStack energyStorage) {

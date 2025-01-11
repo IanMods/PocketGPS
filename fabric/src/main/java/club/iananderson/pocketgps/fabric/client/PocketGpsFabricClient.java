@@ -3,7 +3,6 @@ package club.iananderson.pocketgps.fabric.client;
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.client.PocketGpsClient;
 import club.iananderson.pocketgps.config.PocketGpsConfig;
-import club.iananderson.pocketgps.fabric.event.InventoryEvent;
 import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
 import club.iananderson.pocketgps.items.properties.GpsItemProperties;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
@@ -27,7 +26,9 @@ public final class PocketGpsFabricClient implements ClientModInitializer {
     }
 
     ClientTickEvents.END_CLIENT_TICK.register(client -> {
-      if (client.player != null) PocketGpsClient.cachePlayerState(client.player);
+      if (client.player != null) {
+        PocketGpsClient.cachePlayerState(client.player);
+      }
     });
   }
 }

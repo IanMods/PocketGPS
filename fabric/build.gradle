@@ -37,8 +37,8 @@ dependencies {
 
     //Energy
     include modApi("teamreborn:energy:${project.tech_reborn_energy_version}")
-    modImplementation "RebornCore:RebornCore-1.20:${project.tech_reborn_version}"
-    modImplementation "TechReborn:TechReborn-1.20:${project.tech_reborn_version}"
+    //modImplementation "RebornCore:RebornCore-1.20:${project.tech_reborn_version}"
+    //modImplementation "TechReborn:TechReborn-1.20:${project.tech_reborn_version}"
 
     //Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.20") {
