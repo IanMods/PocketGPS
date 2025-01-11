@@ -1,7 +1,10 @@
 package club.iananderson.pocketgps.forge.registry;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.items.GpsItem;
+import club.iananderson.pocketgps.forge.items.ChargeableGpsItem;
+import club.iananderson.pocketgps.items.BasicGps;
+import club.iananderson.pocketgps.registry.CommonRegistration;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -14,21 +17,27 @@ import org.jetbrains.annotations.NotNull;
 public class ForgeRegistration {
   public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PocketGps.MOD_ID);
 
-  private static Item.Properties defaultProperties() {
-    return new Item.Properties().tab(TAB);
+  public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(
+      Registries.CREATIVE_MODE_TAB, PocketGps.MOD_ID);
+
+  public static RegistryObject<Item> BASIC_GPS = ITEMS.register("basic_gps", BasicGps::new);
+  public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps", ChargeableGpsItem::new);
+  public static RegistryObject<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
+      .title(Component.translatable("tab.pocketgps"))
+      .icon(() -> new ItemStack(PocketGps.BASIC_GPS.get())).displayItems((par, out) -> entries(out))
+      .build());
+
+  static {
+    PocketGps.BASIC_GPS = BASIC_GPS;
+    PocketGps.GPS = POCKET_GPS;
   }
 
-  public static final RegistryObject<Item> POCKET_GPS = ITEMS.register("gps", () -> new GpsItem(
-      defaultProperties().stacksTo(1)));
+  private static void entries(CreativeModeTab.Output entries) {
+    entries.acceptAll(CommonRegistration.addPoweredItem(PocketGps.GPS.get(), true));
+  }
 
-  public static final CreativeModeTab TAB = new CreativeModeTab(PocketGps.MOD_ID + ".tab") {
-    @Override
-    public @NotNull ItemStack makeIcon() {
-      return POCKET_GPS.get().getDefaultInstance();
-    }
-  };
-
-  public static void init(IEventBus modEventBus) {
+  public static void register(IEventBus modEventBus) {
     ITEMS.register(modEventBus);
+    CREATIVE_TAB.register(modEventBus);
   }
 }
