@@ -39,7 +39,7 @@ public class ChargeableGpsItem extends BaseChargeableGps implements SimpleBatter
 
   @Override
   public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks) {
-    if (!allowedIn(group)) {
+    if (!allowdedIn(group)) {
       return;
     }
     CommonRegistration.addPoweredItem(this, stacks, true);

@@ -40,8 +40,8 @@ dependencies {
         transitive = false
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
-    modImplementation "RebornCore:RebornCore-1.19:${project.tech_reborn_version}"
-    modImplementation "TechReborn:TechReborn-1.19:${project.tech_reborn_version}"
+    modImplementation "RebornCore:RebornCore-1.18:${project.tech_reborn_version}"
+    modImplementation "TechReborn:TechReborn-1.18:${project.tech_reborn_version}"
 
     //Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.18.2") {
@@ -111,7 +111,7 @@ dependencies {
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.18.2")
-            modLocalRuntime("maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Fabric_1.19.1")
+            modLocalRuntime("maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Fabric_1.18.2")
             break
         case "journey":
             modLocalRuntime("maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-fabric")

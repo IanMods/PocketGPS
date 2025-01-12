@@ -13,9 +13,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
 import org.jetbrains.annotations.Nullable;
 
 public class ChargeableGpsItem extends BaseChargeableGps implements ItemEnergyStorage {
@@ -30,7 +30,7 @@ public class ChargeableGpsItem extends BaseChargeableGps implements ItemEnergySt
       @Nonnull
       @Override
       public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ENERGY) {
+        if (cap == CapabilityEnergy.ENERGY) {
           return LazyOptional.of(() -> new EnergyStorageImpl(stack, container)).cast();
         }
         return LazyOptional.empty();
@@ -40,7 +40,7 @@ public class ChargeableGpsItem extends BaseChargeableGps implements ItemEnergySt
 
   @Override
   public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> stacks) {
-    if (!allowedIn(group)) {
+    if (!allowdedIn(group)) {
       return;
     }
     CommonRegistration.addPoweredItem(this, stacks, true);

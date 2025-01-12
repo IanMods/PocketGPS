@@ -10,6 +10,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -17,16 +18,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(PocketGps.MOD_ID)
 public final class PocketGpsForge {
-  public PocketGpsForge(FMLJavaModLoadingContext context) {
-    IEventBus modEventBus = context.getModEventBus();
-    PocketGps.init();
-//    MinecraftForge.EVENT_BUS.addListener(InventoryEvent::onPlayerTickEvent);
+  public PocketGpsForge() {
+    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    MinecraftForge.EVENT_BUS.register(this);
 
+    PocketGps.init();
     ForgeRegistration.register(modEventBus);
-    context.registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
+
+    ModLoadingContext.get().registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
 
     modEventBus.addListener(ClientModEvents::commonSetup);
-    MinecraftForge.EVENT_BUS.register(this);
   }
 
   @SubscribeEvent

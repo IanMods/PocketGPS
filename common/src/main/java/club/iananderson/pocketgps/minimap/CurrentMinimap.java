@@ -7,16 +7,11 @@ import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
 import journeymap.client.ui.UIManager;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
-import xaero.common.settings.ModOptions;
-import xaero.minimap.XaeroMinimap;
 
 public class CurrentMinimap {
   private static boolean minimapLoaded(Minimaps minimap) {
@@ -65,8 +60,7 @@ public class CurrentMinimap {
 
     if (xaeroLoaded()) {
       MobEffect NO_MINIMAP = xaero.common.effect.Effects.NO_MINIMAP;
-      MobEffectInstance noMiniMap = new MobEffectInstance(NO_MINIMAP, -1, 0, false, false, false, null,
-                                                          NO_MINIMAP.createFactorData());
+      MobEffectInstance noMiniMap = new MobEffectInstance(NO_MINIMAP, -1, 0, false, false, false, null);
       if (!displayMap && !player.hasEffect(NO_MINIMAP)) {
         player.addEffect(noMiniMap);
         //XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, displayMap);

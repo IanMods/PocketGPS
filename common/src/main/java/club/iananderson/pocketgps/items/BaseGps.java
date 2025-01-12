@@ -12,6 +12,8 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -40,19 +42,19 @@ public abstract class BaseGps extends Item {
     MutableComponent loadedMinimap;
 
     if (currentMinimaps.isEmpty()) {
-      loadedMinimap = Component.translatable("minimap.pocketgps.none");
+      loadedMinimap = new TranslatableComponent("minimap.pocketgps.none");
     } else {
       loadedMinimap = currentMinimaps.get(0).getModName();
     }
 
     return new ArrayList<>(
-        List.of(Component.translatable("item.pocketgps.gps.tooltip_1").withStyle(ChatFormatting.GRAY),
-                Component.translatable("item.pocketgps.gps.tooltip_2").withStyle(ChatFormatting.GRAY),
-                Component.literal(""),
-                Component.translatable("item.pocketgps.gps.tooltip_3").withStyle(ChatFormatting.GRAY),
-                Component.literal(""),
-                Component.translatable("item.pocketgps.gps.tooltip.minimap.current").withStyle(ChatFormatting.YELLOW),
-                loadedMinimap.withStyle(ChatFormatting.AQUA)));
+        List.of(new TranslatableComponent("item.pocketgps.gps.tooltip_1").withStyle(ChatFormatting.GRAY),
+                new TranslatableComponent("item.pocketgps.gps.tooltip_2").withStyle(ChatFormatting.GRAY),
+                new TextComponent(""),
+                new TranslatableComponent("item.pocketgps.gps.tooltip_3").withStyle(ChatFormatting.GRAY),
+                new TextComponent(""),
+                new TranslatableComponent("item.pocketgps.gps.tooltip.minimap.current").withStyle(
+                    ChatFormatting.YELLOW), loadedMinimap.withStyle(ChatFormatting.AQUA)));
 
   }
 
@@ -63,10 +65,10 @@ public abstract class BaseGps extends Item {
       tooltip.addAll(expandedTooltips());
 
     } else {
-      tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
+      tooltip.add(new TranslatableComponent("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
     }
 
-    tooltip.add(Component.literal(""));
+    tooltip.add(new TextComponent(""));
     tooltip.add(CommonComponents.optionStatus(ItemUtil.isGpsOn(stack)).copy()
                     .withStyle(ItemUtil.isGpsOn(stack) ? ChatFormatting.GREEN : ChatFormatting.RED));
 

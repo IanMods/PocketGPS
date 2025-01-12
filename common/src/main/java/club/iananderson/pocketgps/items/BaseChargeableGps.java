@@ -12,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -176,12 +177,13 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     }
 
     energyTooltips.add(
-        Component.translatable("item.pocketgps.gps.tooltip.energy.stored", storedEnergy, energyCapacity, energyUnit)
-            .withStyle(ChatFormatting.GOLD));
+        new TranslatableComponent("item.pocketgps.gps.tooltip.energy.stored", storedEnergy, energyCapacity,
+                                  energyUnit).withStyle(ChatFormatting.GOLD));
 
     if (Screen.hasShiftDown()) {
-      energyTooltips.add(Component.translatable("item.pocketgps.gps.tooltip.energy.percent", percentageText)
-                             .withStyle(ChatFormatting.DARK_GRAY));
+      energyTooltips.add(
+          new TranslatableComponent("item.pocketgps.gps.tooltip.energy.percent", percentageText).withStyle(
+              ChatFormatting.DARK_GRAY));
     }
 
     return energyTooltips;
@@ -206,9 +208,9 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
     String energyCapacity = getEnergyCapacityText(energyStorage);
     String energyUnit = PocketGps.energyUnit().getDisplayName();
 
-    MutableComponent storedEnergyText = Component.translatable("item.pocketgps.gps.tooltip.energy.stored", storedEnergy,
-                                                               energyCapacity, energyUnit)
-        .withStyle(ChatFormatting.GOLD);
+    MutableComponent storedEnergyText = new TranslatableComponent("item.pocketgps.gps.tooltip.energy.stored",
+                                                                  storedEnergy, energyCapacity, energyUnit).withStyle(
+        ChatFormatting.GOLD);
 
     Component message = storedEnergyText.append(
             " | Walk Time: " + (int) timeRemaining(energyStorage) / 60 + " " + "minutes" + " Cost: " + energyCost)

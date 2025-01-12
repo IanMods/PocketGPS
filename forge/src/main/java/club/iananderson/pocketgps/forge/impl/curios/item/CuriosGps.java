@@ -1,6 +1,6 @@
 package club.iananderson.pocketgps.forge.impl.curios.item;
 
-import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
+import club.iananderson.pocketgps.PocketGps;
 import javax.annotation.Nonnull;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -19,7 +19,7 @@ public class CuriosGps implements ICurioItem {
 
   public static ICapabilityProvider initCapabilities() {
     ICurio curio = new ICurio() {
-      final ItemStack stack = new ItemStack(ForgeRegistration.POCKET_GPS.get());
+      final ItemStack stack = new ItemStack(PocketGps.GPS.get());
 
       @Override
       public ItemStack getStack() {

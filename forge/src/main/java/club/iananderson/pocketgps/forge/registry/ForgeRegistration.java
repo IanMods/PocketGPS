@@ -4,6 +4,7 @@ import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.forge.items.ChargeableGpsItem;
 import club.iananderson.pocketgps.items.BasicGps;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +23,7 @@ public class ForgeRegistration {
 
     @Override
     public @NotNull Component getDisplayName() {
-      return Component.translatable("tab." + PocketGps.MOD_ID);
+      return new TranslatableComponent("tab." + PocketGps.MOD_ID);
 
     }
   };

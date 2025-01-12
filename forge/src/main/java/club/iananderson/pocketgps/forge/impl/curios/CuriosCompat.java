@@ -16,7 +16,7 @@ public class CuriosCompat {
 
   public static void registerSlots() {
     InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE,
-        () -> new SlotTypeMessage.Builder("gps_slot").icon(PocketGps.slotIcon).size(1)
+                         () -> new SlotTypeMessage.Builder("gps_slot").icon(PocketGps.slotIcon).size(1)
                              .build());
   }
 
