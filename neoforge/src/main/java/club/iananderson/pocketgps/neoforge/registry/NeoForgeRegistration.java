@@ -17,6 +17,7 @@ public class NeoForgeRegistration {
   public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(
       Registries.CREATIVE_MODE_TAB, PocketGps.MOD_ID);
 
+  //Todo - Find why textures broke in 1.21.4
   public static final DeferredItem<Item> POCKET_GPS = ITEMS.register("gps", PocketGpsItems.GPS_ITEM_SUPPLIER);
 
   public static Supplier<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()

@@ -21,6 +21,8 @@ public class AccessoriesGps implements Accessory {
 //    AccessoriesRendererRegistry.registerRenderer(gps, Renderer::new);
   }
 
+  //Todo - Port this to new version
+
   public static void init(Item gps) {
     AccessoriesAPI.registerAccessory(gps, new AccessoriesGps());
   }
