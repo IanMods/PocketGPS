@@ -38,11 +38,12 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
 
-//    modLocalRuntime "maven.modrinth:mekanism:${project.mekanism_version}"
-//    modLocalRuntime "maven.modrinth:mekanism-generators:${project.mekanism_version}"
+    modLocalRuntime "maven.modrinth:mekanism:${project.mekanism_version}"
+    modLocalRuntime "maven.modrinth:mekanism-generators:${project.mekanism_version}"
 
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.18.2"
+    modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Forge_1.18.2"
 
     //JourneyMap
     modCompileOnly "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
@@ -55,7 +56,7 @@ dependencies {
 
     //Curios + Accessories
 //    modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
-//    modCompileOnly ("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"){
+//    modCompileOnly("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}") {
 //        exclude group: 'net.fabricmc', module: 'fabric-loader'
 //    }
 //    modCompileOnly "maven.modrinth:accessories-cc-layer:${project.curios_version}"
@@ -66,12 +67,14 @@ dependencies {
 
     // Development QOL
     modLocalRuntime("mezz.jei:jei-${project.minecraft_version}-forge:${project.jei_version}") { transitive = false }
+//    modImplementation "curse.maven:item-nbt-viewer-514135:4578522"
 
     // Minimap Mod Dev Tests
     // See root gradle.properties to choose which to use at runtime.
     switch (project.minimap_mod.toLowerCase(Locale.ROOT)) {
         case "xaero":
             modLocalRuntime "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Forge_1.18.2"
+            modLocalRuntime "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Forge_1.18.2"
             break
         case "journey":
             modLocalRuntime "maven.modrinth:journeymap:${project.minecraft_version}-${project.journeymap_version}-forge"
