@@ -1,5 +1,6 @@
 {
   "tab.pocketgps": "Карманный GPS",
+  "itemGroup.pocketgps.tab": "Карманный GPS",
   "item.pocketgps.gps": "Карманный GPS",
   "item.pocketgps.gps.tooltip.default": "Удерживайте SHIFT для подробной информации",
   "item.pocketgps.gps.tooltip_1": "Having this item in your inventory",

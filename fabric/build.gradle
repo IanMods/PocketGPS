@@ -36,9 +36,12 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     //Energy
-    include modApi("teamreborn:energy:${project.tech_reborn_energy_version}")
-    //modImplementation "RebornCore:RebornCore-1.20:${project.tech_reborn_version}"
-    //modImplementation "TechReborn:TechReborn-1.20:${project.tech_reborn_version}"
+    include modApi("teamreborn:energy:${project.tech_reborn_energy_version}") {
+        transitive = false
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    modImplementation "RebornCore:RebornCore-1.19:${project.tech_reborn_version}"
+    modImplementation "TechReborn:TechReborn-1.19:${project.tech_reborn_version}"
 
     //Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.19.1") {
@@ -85,8 +88,9 @@ dependencies {
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
 
     //Forge Config API Port
-    modApi "net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modImplementation("maven.modrinth:forge-config-api-port:${project.forge_config_api_port_version}") {
+    modImplementation 'com.electronwill.night-config:core:3.6.5'
+    modImplementation 'com.electronwill.night-config:toml:3.6.5'
+    modImplementation("net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
 

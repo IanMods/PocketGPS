@@ -8,14 +8,17 @@ dependencies {
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 
+    implementation 'com.electronwill.night-config:core:3.6.3'
+    implementation 'com.electronwill.night-config:toml:3.6.3'
     modApi "net.minecraftforge:forgeconfigapiport-fabric:${project.forge_config_api_port_version}"
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1"
-    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
+
     modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
     modCompileOnly("maven.modrinth:trinkets:${project.trinkets_version}") {
         exclude group: 'net.fabricmc', module: 'fabric-loader'
     }
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1" //Trinkets
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1" //Trinkets
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1" //Trinkets
 
     // Minimap Mods
     // Not used in common unless they are actually loaded.
