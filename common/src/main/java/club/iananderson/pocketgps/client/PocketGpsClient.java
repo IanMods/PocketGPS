@@ -44,26 +44,25 @@ public class PocketGpsClient {
     if (offhandItem.is(PocketGps.GPS.get())) {
       return offhandItem;
     }
-
-    //then curios
+    //then Accessories
+    if (PocketGps.accessoriesLoaded()) {
+      ItemStack accessoryItem = AccessoriesCompat.getGpsInAccessory(player);
+      if (!accessoryItem.isEmpty()) {
+        return accessoryItem;
+      }
+    }
+    //then Curio
     if (PocketGps.curiosLoaded()) {
       ItemStack curioItem = CuriosCompat.getGpsInCurio(player);
       if (!curioItem.isEmpty()) {
         return curioItem;
       }
     }
-
+    //Then Trinkets
     if (PocketGps.trinketsLoaded()) {
       ItemStack trinketItem = TrinketsCompat.getGpsInTrinket(player);
       if (!trinketItem.isEmpty()) {
         return trinketItem;
-      }
-    }
-
-    if (PocketGps.accessoriesLoaded()) {
-      ItemStack accessoryItem = AccessoriesCompat.getGpsInAccessory(player);
-      if (!accessoryItem.isEmpty()) {
-        return accessoryItem;
       }
     }
     return inventoryItem;
@@ -75,6 +74,7 @@ public class PocketGpsClient {
     }
 
     ItemStack gps = getGpsFromPlayer(player);
+
     currentActiveGps = gps;
 
     if (gps.isEmpty()) {

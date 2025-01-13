@@ -34,7 +34,7 @@ public final class PocketGps {
   }
 
   public static void init() {
-    curiosLoaded = Services.PLATFORM.isModLoaded("trinkets") || Services.PLATFORM.isModLoaded("curios");
+    curiosLoaded = Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
     worldMapLoaded = Services.PLATFORM.isModLoaded("xaeroworldmap");
