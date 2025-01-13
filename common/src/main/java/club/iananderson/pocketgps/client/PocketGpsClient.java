@@ -44,12 +44,12 @@ public class PocketGpsClient {
       return offhandItem;
     }
     //then Accessories
-    if (PocketGps.accessoriesLoaded()) {
-      ItemStack accessoryItem = AccessoriesCompat.getGpsInAccessory(player);
-      if (!accessoryItem.isEmpty()) {
-        return accessoryItem;
-      }
-    }
+//    if (PocketGps.accessoriesLoaded()) {
+//      ItemStack accessoryItem = AccessoriesCompat.getGpsInAccessory(player);
+//      if (!accessoryItem.isEmpty()) {
+//        return accessoryItem;
+//      }
+//    }
     //then Curio
     if (PocketGps.curiosLoaded()) {
       ItemStack curioItem = CuriosCompat.getGpsInCurio(player);
