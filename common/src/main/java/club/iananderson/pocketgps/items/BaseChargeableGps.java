@@ -150,7 +150,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
 
   @Override
   public boolean isBarVisible(ItemStack energyStorage) {
-    return PocketGps.gpsNeedPower();
+    return PocketGps.gpsNeedPower() && NBTUtil.getInt(energyStorage, PocketGps.ENERGY_TAG) < getCapacity();
   }
 
   @Override
