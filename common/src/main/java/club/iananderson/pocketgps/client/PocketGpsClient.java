@@ -88,7 +88,7 @@ public class PocketGpsClient {
       boolean hasPower = NBTUtil.getInt(gps, PocketGps.ENERGY_TAG) > 0;
       boolean gpsOn = ItemUtil.isGpsOn(getCurrentActiveGps());
 
-      if (isDrawingMap() && !gpsOn){
+      if (isDrawingMap() && (!gpsOn || (PocketGps.gpsNeedPower() && !hasPower))){
         CurrentMinimap.removeMinimap(player);
         setIsDrawingMap(false);
       }
