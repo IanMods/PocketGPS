@@ -15,6 +15,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseChargeableGps extends BaseGps implements ItemEnergyStorage {
   public BaseChargeableGps(Properties properties) {
-    super(properties);
+    super(properties.stacksTo(1));
   }
 
   public static int clamp(int min, int value, int max) {
@@ -151,7 +152,7 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
 
   @Override
   public boolean isBarVisible(ItemStack energyStorage) {
-    return PocketGps.gpsNeedPower();
+    return PocketGps.gpsNeedPower() && NBTUtil.getInt(energyStorage, PocketGps.ENERGY_TAG) < getCapacity();
   }
 
   @Override

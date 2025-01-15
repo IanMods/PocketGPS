@@ -19,8 +19,8 @@ import net.minecraftforge.energy.CapabilityEnergy;
 import org.jetbrains.annotations.Nullable;
 
 public class ChargeableGpsItem extends BaseChargeableGps implements ItemEnergyStorage {
-  public ChargeableGpsItem() {
-    super(new Item.Properties().tab(ForgeRegistration.TAB).stacksTo(1));
+  public ChargeableGpsItem(Properties properties) {
+    super(properties);
   }
 
   @Override

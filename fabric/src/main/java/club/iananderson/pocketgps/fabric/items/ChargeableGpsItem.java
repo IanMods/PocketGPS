@@ -13,8 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import team.reborn.energy.api.base.SimpleBatteryItem;
 
 public class ChargeableGpsItem extends BaseChargeableGps implements SimpleBatteryItem, FabricItem {
-  public ChargeableGpsItem() {
-    super(new Item.Properties().tab(FabricRegistration.TAB).stacksTo(1));
+  public ChargeableGpsItem(Properties properties) {
+    super(properties);
   }
 
   @Override

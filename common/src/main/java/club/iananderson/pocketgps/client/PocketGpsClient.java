@@ -76,28 +76,20 @@ public class PocketGpsClient {
 
     currentActiveGps = gps;
 
-
-
     if (getCurrentActiveGps().isEmpty() && isDrawingMap()) {
       CurrentMinimap.removeMinimap(player);
       setIsDrawingMap(false);
-    }
-
-    else if (!getCurrentActiveGps().isEmpty()) {
+    } else if (!getCurrentActiveGps().isEmpty()) {
       boolean hasPower = NBTUtil.getInt(gps, PocketGps.ENERGY_TAG) > 0;
       boolean gpsOn = ItemUtil.isGpsOn(getCurrentActiveGps());
 
-      if (isDrawingMap() && !gpsOn){
+      if (isDrawingMap() && (!gpsOn || (PocketGps.gpsNeedPower() && !hasPower))) {
         CurrentMinimap.removeMinimap(player);
         setIsDrawingMap(false);
-      }
-
-      else if (!isDrawingMap() && PocketGps.gpsNeedPower() && gpsOn  && hasPower) {
-          CurrentMinimap.displayMinimap(player);
-          setIsDrawingMap(true);
-      }
-
-      else if(!isDrawingMap() && !PocketGps.gpsNeedPower() && gpsOn) {
+      } else if (!isDrawingMap() && PocketGps.gpsNeedPower() && gpsOn && hasPower) {
+        CurrentMinimap.displayMinimap(player);
+        setIsDrawingMap(true);
+      } else if (!isDrawingMap() && !PocketGps.gpsNeedPower() && gpsOn) {
         CurrentMinimap.displayMinimap(player);
         setIsDrawingMap(true);
       }
