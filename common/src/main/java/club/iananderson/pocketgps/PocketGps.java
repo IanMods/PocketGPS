@@ -15,7 +15,6 @@ public final class PocketGps {
   public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
   public static String ENERGY_TAG = "energy";
   public static String TOGGLE_GPS_TAG = "toggle_gps";
-  public static Supplier<Item> BASIC_GPS;
   public static Supplier<Item> GPS;
   public static ResourceLocation TOGGLE_GPS = new ResourceLocation(MOD_ID, TOGGLE_GPS_TAG);
   private static boolean accessoriesLoaded;
