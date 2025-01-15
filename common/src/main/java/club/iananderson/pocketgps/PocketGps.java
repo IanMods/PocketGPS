@@ -50,19 +50,19 @@ public final class PocketGps {
   }
 
   public static boolean curiosLoaded() {
-    return PocketGps.curiosLoaded;
+    return curiosLoaded;
   }
 
   public static boolean trinketsLoaded() {
-    return PocketGps.trinketsLoaded;
+    return trinketsLoaded;
   }
 
   public static boolean accessoriesLoaded() {
-    return PocketGps.accessoriesLoaded;
+    return accessoriesLoaded;
   }
 
   public static boolean worldMapLoaded() {
-    return PocketGps.worldMapLoaded;
+    return worldMapLoaded;
   }
 
   public static EnergyUnit energyUnit() {
