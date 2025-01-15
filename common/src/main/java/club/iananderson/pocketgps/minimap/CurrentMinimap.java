@@ -2,6 +2,8 @@ package club.iananderson.pocketgps.minimap;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.client.PocketGpsClient;
+import club.iananderson.pocketgps.impl.xaero.minimap.MinimapEffect;
+import club.iananderson.pocketgps.impl.xaero.worldmap.WorldMapEffect;
 import club.iananderson.pocketgps.platform.Services;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
@@ -48,44 +50,54 @@ public class CurrentMinimap {
   }
 
   public static void displayMinimap(Player player) {
-    if (player == null) {
+    if (player == null || PocketGpsClient.isDrawingMap()) {
       return;
     }
 
-    boolean displayMap = PocketGpsClient.isDrawingMap();
-
     if (journeyMapLoaded()) {
-      UIManager.INSTANCE.setMiniMapEnabled(displayMap);
+      UIManager.INSTANCE.setMiniMapEnabled(true);
     }
 
     if (xaeroLoaded()) {
-      MobEffect NO_MINIMAP = xaero.common.effect.Effects.NO_MINIMAP;
-      MobEffectInstance noMiniMap = new MobEffectInstance(NO_MINIMAP, -1, 0, false, false, false, null);
-      if (!displayMap && !player.hasEffect(NO_MINIMAP)) {
-        player.addEffect(noMiniMap);
-        //XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, displayMap);
-      } else if (displayMap && player.hasEffect(NO_MINIMAP)) {
-        player.removeEffect(NO_MINIMAP);
+      if (player.hasEffect(MinimapEffect.NO_MINIMAP)) {
+        player.removeEffect(MinimapEffect.NO_MINIMAP);
       }
 
-    }
-
-    if (PocketGps.worldMapLoaded()) {
-      MobEffect NO_WORLD_MAP = xaero.map.effects.Effects.NO_WORLD_MAP;
-      MobEffectInstance noWorldMap = new MobEffectInstance(NO_WORLD_MAP, -1, 0, false, false, false);
-
-      if (!displayMap && !player.hasEffect(NO_WORLD_MAP)) {
-        player.addEffect(noWorldMap);
-
-      } else if (displayMap && player.hasEffect(NO_WORLD_MAP)) {
-        player.removeEffect(NO_WORLD_MAP);
+      if (PocketGps.worldMapLoaded()) {
+        if (player.hasEffect(WorldMapEffect.NO_WORLD_MAP)) {
+          player.removeEffect(WorldMapEffect.NO_WORLD_MAP);
+        }
       }
-
     }
 
     if (onlyFtbChunksLoaded()) {
-      FTBChunksClientConfig.MINIMAP_ENABLED.set(displayMap);
+      FTBChunksClientConfig.MINIMAP_ENABLED.set(true);
+    }
+  }
 
+  public static void removeMinimap(Player player) {
+    if (player == null || !PocketGpsClient.isDrawingMap()) {
+      return;
+    }
+
+    if (journeyMapLoaded()) {
+      UIManager.INSTANCE.setMiniMapEnabled(false);
+    }
+
+    if (xaeroLoaded()) {
+      if (!player.hasEffect(MinimapEffect.NO_MINIMAP)) {
+        player.addEffect(MinimapEffect.noMiniMap);
+      }
+
+      if (PocketGps.worldMapLoaded()) {
+        if (!player.hasEffect(WorldMapEffect.NO_WORLD_MAP)) {
+          player.addEffect(WorldMapEffect.noWorldMap);
+        }
+      }
+    }
+
+    if (onlyFtbChunksLoaded()) {
+      FTBChunksClientConfig.MINIMAP_ENABLED.set(false);
     }
   }
 

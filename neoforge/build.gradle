@@ -15,6 +15,11 @@ architectury {
     forge()
 }
 
+base {
+    // Set up a suffixed format for the mod jar names, e.g. `example-fabric`.
+    archivesName = "${project.mod_id}-forge-${project.minecraft_version}"
+}
+
 configurations {
     common {
         canBeResolved = true
