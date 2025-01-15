@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.1.4] - 2025-01-15
+
+### Changed
+
+- Improved logic of detecting power level
+- Made the GPS screen turn off if there is no power
+- Change the energy bar to not show if the GPS is fully charged
+- Reworked the item used for the icon
+
+### Fixed
+
+- If the GPS is set to not use power in the config, the uncharged GPS will no longer be added to the creative tab or 
+  REI/JEI
+
 ## [1.1.3] - 2025-01-15
 
 ### Fixed

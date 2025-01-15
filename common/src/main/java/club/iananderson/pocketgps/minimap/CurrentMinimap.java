@@ -11,8 +11,6 @@ import java.util.List;
 import journeymap.client.ui.UIManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 
 public class CurrentMinimap {

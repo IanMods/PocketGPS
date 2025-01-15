@@ -1,5 +1,6 @@
 package club.iananderson.pocketgps.registry;
 
+import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.items.BaseChargeableGps;
 import club.iananderson.pocketgps.util.ItemUtil;
 import net.minecraft.core.NonNullList;
@@ -18,11 +19,22 @@ public class CommonRegistration {
     gps.setEnergyStored(uncharged, 0);
     gps.setEnergyStored(charged, gps.getCapacity());
 
-    if (includeUncharged) {
+    if (includeUncharged && PocketGps.gpsNeedPower()) {
       itemList.add(uncharged);
       itemList.add(charged);
     } else {
       itemList.add(charged);
     }
+  }
+
+  public static ItemStack addIcon(Item item) {
+    ItemStack charged = new ItemStack(item);
+    BaseChargeableGps gps = (BaseChargeableGps) item;
+
+    ItemUtil.initGpsState(charged);
+
+    gps.setEnergyStored(charged, gps.getCapacity());
+
+    return charged;
   }
 }
