@@ -7,6 +7,7 @@ import club.iananderson.pocketgps.registry.CommonRegistration;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,12 +25,12 @@ public class ForgeRegistration {
     @Override
     public @NotNull Component getDisplayName() {
       return Component.translatable("tab." + PocketGps.MOD_ID);
-
     }
   };
 
   public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PocketGps.MOD_ID);
-  public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps", ChargeableGpsItem::new);
+  public static RegistryObject<Item> POCKET_GPS = ITEMS.register("gps",
+                                                                 () -> new ChargeableGpsItem(defaultProperties()));
 
   static {
     PocketGps.GPS = POCKET_GPS;
