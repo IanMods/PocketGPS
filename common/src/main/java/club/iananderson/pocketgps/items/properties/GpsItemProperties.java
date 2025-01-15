@@ -12,6 +12,7 @@ public class GpsItemProperties implements ClampedItemPropertyFunction {
   @Override
   public float unclampedCall(ItemStack itemStack, @Nullable ClientLevel clientLevel,
       @Nullable LivingEntity livingEntity, int i) {
-    return NBTUtil.getBoolean(itemStack, PocketGps.TOGGLE_GPS_TAG) ? 1F : 0F;
+    return (!NBTUtil.getBoolean(itemStack, PocketGps.TOGGLE_GPS_TAG) || (PocketGps.gpsNeedPower() && NBTUtil.getInt(itemStack, PocketGps.ENERGY_TAG) == 0)) ? 0F :
+           1F;
   }
 }
