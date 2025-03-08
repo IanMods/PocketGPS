@@ -4,6 +4,12 @@ plugins {
     id 'com.modrinth.minotaur'
 }
 
+loom {
+    forge {
+        mixinConfig "pocketgps.mixins.json"
+    }
+}
+
 architectury {
     platformSetupLoomIde()
     neoForge()
@@ -24,6 +30,10 @@ configurations {
         canBeResolved = true
         canBeConsumed = false
     }
+
+    configureEach {
+        resolutionStrategy.force("net.sf.jopt-simple:jopt-simple:5.0.4")
+    }
 }
 
 dependencies {
@@ -32,8 +42,12 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 
+    modLocalRuntime "maven.modrinth:mekanism:${project.mekanism_version}"
+    modLocalRuntime "maven.modrinth:mekanism-generators:${project.mekanism_version}"
+
     //Xaero's Minimap
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
+    modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_NeoForge_1.21"
 
     //JourneyMap
     modCompileOnlyApi group: 'info.journeymap', name: 'journeymap-api-neoforge', version: project.journeymap_api_version, changing: true
@@ -47,6 +61,9 @@ dependencies {
 
     //Curios + Accessories
     modCompileOnly "io.wispforest:accessories-neoforge:${project.accessories_version}"
+    modCompileOnly("me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
     modCompileOnly "maven.modrinth:accessories-cc-layer:${project.curios_version}"
     modCompileOnly("me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}") {
         exclude(group: "net.fabricmc.fabric-api")
@@ -121,6 +138,8 @@ modrinth {
 }
 
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    group = "curseforge"
+
     int firstHeading = changelogText.indexOf("## [")
     int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
     String recentChangelogText = changelogText.substring(firstHeading, nextHeading)

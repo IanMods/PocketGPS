@@ -9,10 +9,16 @@ dependencies {
     api group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
     modImplementation("io.wispforest:accessories-common:${project.accessories_version}")
     //    api "fuzs.forgeconfigapiport:forgeconfigapiport-common:${project.forge_config_api_port_version}"
+    modCompileOnly("maven.modrinth:accessories-tc-layer:${project.trinkets_version}")
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1"
+    modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:5.2.1"
+    modCompileOnly "maven.modrinth:accessories-cc-layer:${project.curios_version}"
 
     // Minimap Mods
     // Not used in common unless they are actually loaded.
     modCompileOnly "maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_NeoForge_1.21"
+    modCompileOnly "maven.modrinth:xaeros-world-map:${project.xaeros_worldmap_version}_Forge_1.20"
     modCompileOnly "curse.maven:ftb-chunks-forge-314906:${project.ftb_chunks_neoforge_version}"
     modCompileOnly "curse.maven:ftb-library-forge-404465:${project.ftb_library_neoforge_version}"
     modCompileOnly "maven.modrinth:journeymap:1.21.1-${project.journeymap_version}+neoforge"

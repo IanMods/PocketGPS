@@ -1,7 +1,10 @@
 package club.iananderson.pocketgps.minimap;
 
+import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.client.PocketGpsClient;
+import club.iananderson.pocketgps.impl.xaero.minimap.MinimapEffect;
+import club.iananderson.pocketgps.impl.xaero.worldmap.WorldMapEffect;
 import club.iananderson.pocketgps.platform.Services;
-import club.iananderson.pocketgps.util.FindItem;
 import dev.ftb.mods.ftbchunks.client.FTBChunksClientConfig;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import xaero.common.settings.ModOptions;
-import xaero.minimap.XaeroMinimap;
 
 public class CurrentMinimap {
   private static boolean minimapLoaded(Minimaps minimap) {
@@ -48,21 +48,60 @@ public class CurrentMinimap {
     return (minimapLoaded(Minimaps.FTB_CHUNKS) && loadedMinimaps().size() == 1);
   }
 
-  public static void displayMinimap(Player player, Boolean displayMap) {
-    if (player == null) {
+  public static void displayMinimap(Player player) {
+    if (player == null || PocketGpsClient.isDrawingMap()) {
       return;
     }
 
-    if (journeyMapLoaded()) {
-      UIManager.INSTANCE.setMiniMapEnabled(displayMap);
+    if (journeyMapLoaded() && player.level().isClientSide) {
+      UIManager.INSTANCE.setMiniMapEnabled(true);
     }
-    if (xaeroLoaded()) {
-      XaeroMinimap.INSTANCE.getSettings().setOptionValue(ModOptions.MINIMAP, displayMap);
-    }
-    if (onlyFtbChunksLoaded()) {
-      FTBChunksClientConfig.MINIMAP_ENABLED.set(displayMap);
 
+    if (xaeroLoaded()) {
+      if (player.hasEffect(MinimapEffect.NO_MINIMAP)) {
+        player.removeEffect(MinimapEffect.NO_MINIMAP);
+      }
+
+      if (PocketGps.worldMapLoaded()) {
+        if (player.hasEffect(WorldMapEffect.NO_WORLD_MAP)) {
+          player.removeEffect(WorldMapEffect.NO_WORLD_MAP);
+        }
+      }
     }
+
+    if (onlyFtbChunksLoaded() && player.level().isClientSide) {
+      FTBChunksClientConfig.MINIMAP_ENABLED.set(true);
+    }
+
+    PocketGpsClient.setIsDrawingMap(true);
+  }
+
+  public static void removeMinimap(Player player) {
+    if (player == null || !PocketGpsClient.isDrawingMap()) {
+      return;
+    }
+
+    if (journeyMapLoaded() && player.level().isClientSide) {
+      UIManager.INSTANCE.setMiniMapEnabled(false);
+    }
+
+    if (xaeroLoaded()) {
+      if (!player.hasEffect(MinimapEffect.NO_MINIMAP)) {
+        player.addEffect(MinimapEffect.noMiniMap);
+      }
+
+      if (PocketGps.worldMapLoaded()) {
+        if (!player.hasEffect(WorldMapEffect.NO_WORLD_MAP)) {
+          player.addEffect(WorldMapEffect.noWorldMap);
+        }
+      }
+    }
+
+    if (onlyFtbChunksLoaded() && player.level().isClientSide) {
+      FTBChunksClientConfig.MINIMAP_ENABLED.set(false);
+    }
+
+    PocketGpsClient.setIsDrawingMap(false);
   }
 
   public enum Minimaps {
