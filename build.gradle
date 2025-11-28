@@ -177,5 +177,5 @@ tasks.register('publishAll') {
 
     dependsOn("latestChangelog")
     dependsOn("fabric:publishFabric")
-    dependsOn("forge:publishForge")
+    dependsOn("neoforge:publishForge")
 }
