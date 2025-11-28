@@ -1,7 +1,24 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
+}
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
 }
 
 architectury {
@@ -135,16 +152,10 @@ shadowJar {
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
 }
 
-String changelogText = projectDir.toPath().getParent().resolve("CHANGELOG.md").getText('UTF-8')
-
 modrinth {
-    int firstHeading = changelogText.indexOf("## [")
-    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
-    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
-
     debugMode = false
     token = System.getenv("MODRINTH_TOKEN")
     projectId = modrinth_project_id
@@ -157,7 +168,7 @@ modrinth {
     gameVersions = mcVersions
     loaders = ["fabric"]
 
-    changelog = recentChangelogText
+    changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
 
     dependencies {
         required.project "forge-config-api-port"
@@ -169,12 +180,8 @@ modrinth {
     }
 }
 
-task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+tasks.register('publishCurseForge', net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     group = "curseforge"
-
-    int firstHeading = changelogText.indexOf("## [")
-    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
-    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
 
     debugMode = false
     disableVersionDetection()
@@ -182,7 +189,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
 
     def mainFile = upload(curseforge_project_id, remapJar)
     mainFile.changelogType = "markdown"
-    mainFile.changelog = recentChangelogText
+    mainFile.changelog = projectDir.toPath().getParent().resolve("LATEST_CHANGELOG.md").getText()
     mainFile.releaseType = "release"
 
     List<String> mcVersions = minecraft_game_versions.split(",")
@@ -199,10 +206,8 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addOptional("accessories")
 }
 
-task publishFabric {
+tasks.register('publishFabric') {
     group = "upload"
-    afterEvaluate {
-        dependsOn(tasks.publishCurseForge)
-        dependsOn(tasks.modrinth)
-    }
+    dependsOn(tasks.publishCurseForge)
+    dependsOn(tasks.modrinth)
 }
