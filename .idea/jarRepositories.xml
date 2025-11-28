@@ -147,14 +147,19 @@
       <option name="url" value="https://jm.gserv.me/repository/maven-public/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven11" />
-      <option name="name" value="maven11" />
-      <option name="url" value="https://maven.minecraftforge.net" />
+      <option name="id" value="maven13" />
+      <option name="name" value="maven13" />
+      <option name="url" value="https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven12" />
-      <option name="name" value="maven12" />
-      <option name="url" value="https://maven.neoforged.net/releases" />
+      <option name="id" value="maven14" />
+      <option name="name" value="maven14" />
+      <option name="url" value="https://maven.ftb.dev/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven15" />
+      <option name="name" value="maven15" />
+      <option name="url" value="https://maven.ftb.dev/snapshots" />
     </remote-repository>
   </component>
 </project>
