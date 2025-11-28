@@ -1,7 +1,24 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
+}
+
+loom {
+    runs {
+        client {
+            client()
+            setConfigName("Fabric Client")
+            ideConfigGenerated(true)
+            runDir("run-client")
+        }
+        server {
+            server()
+            setConfigName("Fabric Server")
+            ideConfigGenerated(true)
+            runDir("run-server")
+        }
+    }
 }
 
 architectury {
@@ -134,7 +151,7 @@ shadowJar {
 }
 
 remapJar {
-    input.set shadowJar.archiveFile
+    inputFile.set shadowJar.archiveFile
 }
 
 String changelogText = projectDir.toPath().getParent().resolve("CHANGELOG.md").getText('UTF-8')
@@ -198,10 +215,8 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addOptional("accessories")
 }
 
-task publishFabric {
+tasks.register('publishFabric') {
     group = "upload"
-    afterEvaluate {
-        dependsOn(tasks.publishCurseForge)
-        dependsOn(tasks.modrinth)
-    }
+    dependsOn(tasks.publishCurseForge)
+    dependsOn(tasks.modrinth)
 }

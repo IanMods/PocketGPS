@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
+## [1.1.6] - 2025-11-27
+
+### Changed
+
+- Updated to the latest version of Forge and Fabric
+
 ## [1.1.5] - 2025-01-24
 
 ### Fixed
