@@ -161,5 +161,10 @@
       <option name="name" value="maven15" />
       <option name="url" value="https://maven.ftb.dev/snapshots" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven7" />
+      <option name="name" value="maven7" />
+      <option name="url" value="https://maven.minecraftforge.net" />
+    </remote-repository>
   </component>
 </project>
