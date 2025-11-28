@@ -26,10 +26,12 @@
     "pocketgps.mixins.json"
   ],
   "depends": {
-    "fabricloader": "~${fabric_loader_version}",
     "minecraft": "${fabric_version_range}",
     "java": ">=${java_version}",
     "fabric-api": "*",
     "forgeconfigapiport": "*"
+  },
+  "recommends": {
+    "fabricloader": "~${fabric_loader_version}"
   }
 }

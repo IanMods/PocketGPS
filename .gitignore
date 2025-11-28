@@ -7,10 +7,16 @@
 /common/run/
 /fabric/.gradle/
 /fabric/build/
-/fabric/run/
+/fabric/run-client/
+/fabric/run-server/
 /forge/.gradle/
 /forge/build/
-/forge/run/
+/forge/run-client/
+/forge/run-server/
+/neoforge/.gradle/
+/neoforge/build/
+/neoforge/run-client/
+/neoforge/run-server/
 
 # eclipse
 bin
