@@ -5,20 +5,16 @@ plugins {
 }
 
 loom {
-    forge {
-        mixinConfig "pocketgps.mixins.json"
-    }
-
     runs {
         client {
             client()
-            setConfigName("Forge Client")
+            setConfigName("NeoForge Client")
             ideConfigGenerated(true)
             runDir("run-client")
         }
         server {
             server()
-            setConfigName("Forge Server")
+            setConfigName("NeoForge Server")
             ideConfigGenerated(true)
             runDir("run-server")
         }

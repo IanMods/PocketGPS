@@ -19,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class BaseGps extends Item {
   public BaseGps() {
@@ -57,7 +58,7 @@ public abstract class BaseGps extends Item {
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+  public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
 
     if (Screen.hasShiftDown()) {
       tooltip.addAll(expandedTooltips());
@@ -70,7 +71,7 @@ public abstract class BaseGps extends Item {
     tooltip.add(CommonComponents.optionStatus(ItemUtil.isGpsOn(stack)).copy()
                     .withStyle(ItemUtil.isGpsOn(stack) ? ChatFormatting.GREEN : ChatFormatting.RED));
 
-    super.appendHoverText(stack, level, tooltip, flag);
+    super.appendHoverText(stack, context, tooltip, flag);
   }
 
   @Override

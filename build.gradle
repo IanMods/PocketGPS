@@ -27,7 +27,6 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven { url 'https://modmaven.dev/' } //Mekanism
         maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
         maven { url = "https://maven.terraformersmc.com/releases/" } // Mod Menu
         maven { url = "https://maven.blamejared.com/" } // JEI
@@ -41,6 +40,7 @@ subprojects {
         maven { url 'https://maven.su5ed.dev/releases' } //Accessories
         maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
         maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
+        maven { url 'https://modmaven.dev/' } //Mekanism
         maven {
             url "https://maven.ftb.dev/releases"
             content {

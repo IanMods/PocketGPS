@@ -1,19 +1,20 @@
 package club.iananderson.pocketgps.config;
 
 import club.iananderson.pocketgps.energy.EnergyUnit;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 
 public class PocketGpsConfig {
-  public static final ForgeConfigSpec GENERAL_SPEC;
-  private static ForgeConfigSpec.ConfigValue<EnergyUnit> energyUnit;
-  private static ForgeConfigSpec.BooleanValue gpsNeedPower;
-  private static ForgeConfigSpec.IntValue gpsEnergyCapacity;
-  private static ForgeConfigSpec.IntValue gpsMaxInput;
-  private static ForgeConfigSpec.IntValue gpsMaxOutput;
-  private static ForgeConfigSpec.IntValue gpsEnergyCost;
+  public static final ModConfigSpec GENERAL_SPEC;
+  private static ConfigValue<EnergyUnit> energyUnit;
+  private static ConfigValue<Boolean> gpsNeedPower;
+  private static ConfigValue<Integer> gpsEnergyCapacity;
+  private static ConfigValue<Integer> gpsMaxInput;
+  private static ConfigValue<Integer> gpsMaxOutput;
+  private static ConfigValue<Integer> gpsEnergyCost;
 
   static {
-    ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+    ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
     setupConfig(builder);
     GENERAL_SPEC = builder.build();
   }
@@ -21,7 +22,7 @@ public class PocketGpsConfig {
   private PocketGpsConfig() {
   }
 
-  private static void setupConfig(ForgeConfigSpec.Builder builder) {
+  private static void setupConfig(ModConfigSpec.Builder builder) {
     builder.push("PocketGps");
     builder.push("Power");
     energyUnit = builder.comment("Which energy unit to display for Forge?\n" + "Default is FE.")

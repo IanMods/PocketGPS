@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class BaseChargeableGps extends BaseGps implements ItemEnergyStorage {
@@ -188,8 +189,8 @@ public abstract class BaseChargeableGps extends BaseGps implements ItemEnergySto
   }
 
   @Override
-  public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-    super.appendHoverText(stack, worldIn, tooltip, flagIn);
+  public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    super.appendHoverText(stack, context, tooltip, flag);
     if (PocketGps.gpsNeedPower()) {
       tooltip.addAll(energyTooltips(stack));
     }

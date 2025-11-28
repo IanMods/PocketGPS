@@ -1,6 +1,8 @@
-package club.iananderson.pocketgps.forge.impl.curios.item;
+package club.iananderson.pocketgps.neoforge.impl.curios.item;
 
+import club.iananderson.pocketgps.neoforge.registry.NeoForgeRegistration;
 import net.minecraft.world.item.ItemStack;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -15,5 +17,9 @@ public class CuriosGps implements ICurioItem {
   @Override
   public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
     return true;
+  }
+
+  public static void init(){
+    CuriosApi.registerCurio(NeoForgeRegistration.POCKET_GPS.get(), new CuriosGps());
   }
 }

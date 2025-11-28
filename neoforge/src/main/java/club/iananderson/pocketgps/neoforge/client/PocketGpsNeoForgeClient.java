@@ -1,17 +1,17 @@
-package club.iananderson.pocketgps.forge.client;
+package club.iananderson.pocketgps.neoforge.client;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.forge.registry.ForgeRegistration;
 import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
 import club.iananderson.pocketgps.items.properties.GpsItemProperties;
+import club.iananderson.pocketgps.neoforge.registry.NeoForgeRegistration;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod.EventBusSubscriber(modid = PocketGps.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class PocketGpsForgeClient {
+@EventBusSubscriber(value = Dist.CLIENT, modid = PocketGps.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+public class PocketGpsNeoForgeClient {
 
   @SubscribeEvent
   public static void onInitializeClient(FMLClientSetupEvent event) {
@@ -19,7 +19,7 @@ public class PocketGpsForgeClient {
 
     if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
       PocketGps.LOG.info("Talking to Accessories Client");
-      AccessoriesCompat.clientInit(ForgeRegistration.POCKET_GPS.get());
+      AccessoriesCompat.clientInit(NeoForgeRegistration.POCKET_GPS.get());
     }
   }
 }

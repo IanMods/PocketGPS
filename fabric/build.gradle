@@ -51,10 +51,12 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
-//    //Energy
-//    include modApi("teamreborn:energy:${project.tech_reborn_energy_version}")
-//    modImplementation "RebornCore:RebornCore-1.20:${project.tech_reborn_version}"
-//    modImplementation "TechReborn:TechReborn-1.20:${project.tech_reborn_version}"
+    //Energy
+    include(modApi("teamreborn:energy:${project.tech_reborn_energy_version}")) {
+        transitive = false
+    }
+    modImplementation "RebornCore:RebornCore-1.21.1:${project.tech_reborn_version}"
+    modImplementation "TechReborn:TechReborn-1.21.1:${project.tech_reborn_version}"
 
     //Xaero's Minimap
     modCompileOnly("maven.modrinth:xaeros-minimap:${project.xaeros_minimap_version}_Fabric_1.21") {

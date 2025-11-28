@@ -16,7 +16,7 @@ public final class PocketGps {
   public static String ENERGY_TAG = "energy";
   public static String TOGGLE_GPS_TAG = "toggle_gps";
   public static Supplier<Item> GPS;
-  public static ResourceLocation TOGGLE_GPS = new ResourceLocation(MOD_ID, TOGGLE_GPS_TAG);
+  public static ResourceLocation TOGGLE_GPS = location(TOGGLE_GPS_TAG);
   private static boolean accessoriesLoaded;
   private static boolean curiosLoaded;
   private static boolean trinketsLoaded;
@@ -31,12 +31,7 @@ public final class PocketGps {
   private PocketGps() {
   }
 
-  public static ResourceLocation location(String path) {
-    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
-  }
-
   public static void init() {
-    platformName = Services.PLATFORM.getPlatformName();
     curiosLoaded = Services.PLATFORM.isModLoaded("curios");
     trinketsLoaded = Services.PLATFORM.isModLoaded("trinkets");
     accessoriesLoaded = Services.PLATFORM.isModLoaded("accessories");
@@ -50,10 +45,6 @@ public final class PocketGps {
     gpsMaxInput = PocketGpsConfig.getGpsMaxInput();
     gpsMaxOutput = PocketGpsConfig.getGpsMaxOutput();
     gpsEnergyCost = PocketGpsConfig.getGpsEnergyCost();
-  }
-
-  public static String platformName() {
-    return PocketGps.platformName;
   }
 
   public static boolean curiosLoaded() {
@@ -95,8 +86,8 @@ public final class PocketGps {
   public static int gpsEnergyCost() {
     return gpsEnergyCost;
   }
-
+  
   public static ResourceLocation location(String path) {
-    return new ResourceLocation(MOD_ID, path);
+    return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
   }
 }

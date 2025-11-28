@@ -1,31 +1,41 @@
 package club.iananderson.pocketgps.neoforge.registry;
 
 import club.iananderson.pocketgps.PocketGps;
-import club.iananderson.pocketgps.items.PocketGpsItems;
+import club.iananderson.pocketgps.neoforge.items.ChargeableGpsItem;
+import club.iananderson.pocketgps.registry.CommonRegistration;
 import java.util.function.Supplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class NeoForgeRegistration {
-  public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(PocketGps.MOD_ID);
+  public static final DeferredRegister<Item> ITEMS = DeferredRegister.createItems(PocketGps.MOD_ID);
 
   public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB = DeferredRegister.create(
       Registries.CREATIVE_MODE_TAB, PocketGps.MOD_ID);
 
-  public static final DeferredItem<Item> POCKET_GPS = ITEMS.register("gps", PocketGpsItems.GPS_ITEM_SUPPLIER);
+  public static final Supplier<Item> POCKET_GPS = ITEMS.register("gps", ChargeableGpsItem::new);
 
   public static Supplier<CreativeModeTab> TAB = CREATIVE_TAB.register("tab", () -> CreativeModeTab.builder()
       .title(Component.translatable("tab.pocketgps"))
-      .icon(POCKET_GPS::toStack)
-      .displayItems((par, out) -> out.accept(POCKET_GPS.get()))
+      .icon(() -> CommonRegistration.addIcon(PocketGps.GPS.get()))
+      .displayItems((par, out) -> entries(out))
       .build());
 
-  public static void init(IEventBus modEventBus) {
+  static {
+    PocketGps.GPS = POCKET_GPS;
+  }
+
+  private static void entries(CreativeModeTab.Output entries) {
+    entries.acceptAll(CommonRegistration.addPoweredItem(PocketGps.GPS.get(), true));
+  }
+
+  public static void register(IEventBus modEventBus) {
     ITEMS.register(modEventBus);
     CREATIVE_TAB.register(modEventBus);
   }

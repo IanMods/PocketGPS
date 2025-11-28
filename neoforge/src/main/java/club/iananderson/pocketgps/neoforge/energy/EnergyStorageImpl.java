@@ -1,8 +1,8 @@
-package club.iananderson.pocketgps.forge.energy;
+package club.iananderson.pocketgps.neoforge.energy;
 
 import club.iananderson.pocketgps.energy.ItemEnergyStorage;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public class EnergyStorageImpl implements IEnergyStorage {
   public ItemStack stack;
