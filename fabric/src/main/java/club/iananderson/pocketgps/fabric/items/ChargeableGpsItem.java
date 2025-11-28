@@ -14,21 +14,22 @@ public class ChargeableGpsItem extends BaseChargeableGps implements SimpleEnergy
 
   @Override
   public long getEnergyCapacity(ItemStack stack) {
-    return this.getCapacity();
+    return this.capacity;
   }
 
   @Override
   public long getEnergyMaxInput(ItemStack stack) {
-    return this.getEnergyReceive();
+    return this.maxReceive;
   }
 
   @Override
   public long getEnergyMaxOutput(ItemStack stack) {
-    return this.getEnergyExtract();
+    return this.maxExtract;
   }
 
   @Override
-  public boolean allowNbtUpdateAnimation(Player player, InteractionHand hand, ItemStack oldStack, ItemStack newStack) {
+  public boolean allowComponentsUpdateAnimation(Player player, InteractionHand hand, ItemStack oldStack,
+      ItemStack newStack) {
     return false;
   }
 }

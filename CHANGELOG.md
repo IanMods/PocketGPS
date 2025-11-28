@@ -28,7 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Fixed
 
-- If the GPS is set to not use power in the config, the uncharged GPS will no longer be added to the creative tab or 
+- If the GPS is set to not use power in the config, the uncharged GPS will no longer be added to the creative tab or
   REI/JEI
 
 ## [1.1.3] - 2025-01-15

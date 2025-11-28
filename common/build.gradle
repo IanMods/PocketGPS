@@ -9,7 +9,7 @@ dependencies {
 
     api "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forge_config_api_port_version}"
     api group: 'info.journeymap', name: 'journeymap-api-common', version: project.journeymap_api_version, changing: true
-    modCompileOnly("io.wispforest:accessories-common:${project.accessories_version}-mojmap")
+    modCompileOnly "io.wispforest:accessories-common:${project.accessories_version}-mojmap"
     modCompileOnly("dev.emi:trinkets:${project.trinkets_version}")
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.2.1"
     modCompileOnly "dev.onyxstudios.cardinal-components-api:cardinal-components-item:5.2.1"

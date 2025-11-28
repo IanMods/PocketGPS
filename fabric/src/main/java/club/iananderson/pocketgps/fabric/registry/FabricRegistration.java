@@ -2,6 +2,9 @@ package club.iananderson.pocketgps.fabric.registry;
 
 import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.fabric.items.ChargeableGpsItem;
+import club.iananderson.pocketgps.items.components.GpsToggle;
+import club.iananderson.pocketgps.items.components.ItemEnergy;
+import club.iananderson.pocketgps.platform.Services;
 import club.iananderson.pocketgps.registry.CommonRegistration;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -10,12 +13,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 
 public class FabricRegistration {
 
-  public static final Item POCKET_GPS = PocketGpsItems.GPS_ITEM_SUPPLIER.get();
+  public static final CreativeModeTab.Builder TABS = FabricItemGroup.builder();
   private static final ResourceKey<CreativeModeTab> ITEM_GROUP;
 
   public static ChargeableGpsItem POCKET_GPS = new ChargeableGpsItem();
@@ -34,10 +36,16 @@ public class FabricRegistration {
   }
 
   public static void register() {
+    Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, PocketGps.ENERGY_TAG, ItemEnergy.ENERGY);
+    Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, PocketGps.TOGGLE_GPS_TAG, GpsToggle.TOGGLE);
     Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, PocketGps.location("tab"), TAB);
     Registry.register(BuiltInRegistries.ITEM, PocketGps.location("gps"), POCKET_GPS);
 
+    /* Todo: Check out:
+         https://github.com/TechReborn/Energy/blob/master/src/main/java/team/reborn/energy/api/EnergyStorage.java */
+
     ItemGroupEvents.modifyEntriesEvent(ITEM_GROUP)
         .register(FabricRegistration::entries);
+
   }
 }

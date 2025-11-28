@@ -10,6 +10,10 @@ public class CuriosGps implements ICurioItem {
   public CuriosGps() {
   }
 
+  public static void init() {
+    CuriosApi.registerCurio(NeoForgeRegistration.POCKET_GPS.get(), new CuriosGps());
+  }
+
   @Override
   public void curioTick(SlotContext slotContext, ItemStack stack) {
   }
@@ -17,9 +21,5 @@ public class CuriosGps implements ICurioItem {
   @Override
   public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
     return true;
-  }
-
-  public static void init(){
-    CuriosApi.registerCurio(NeoForgeRegistration.POCKET_GPS.get(), new CuriosGps());
   }
 }

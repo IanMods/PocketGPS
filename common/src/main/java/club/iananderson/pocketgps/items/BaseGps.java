@@ -1,6 +1,7 @@
 package club.iananderson.pocketgps.items;
 
 import club.iananderson.pocketgps.PocketGps;
+import club.iananderson.pocketgps.items.components.ItemEnergy;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import club.iananderson.pocketgps.minimap.CurrentMinimap.Minimaps;
 import club.iananderson.pocketgps.util.ItemUtil;
@@ -42,7 +43,8 @@ public abstract class BaseGps extends Item {
 
     if (currentMinimaps.isEmpty()) {
       loadedMinimap = Component.translatable("minimap.pocketgps.none");
-    } else {
+    }
+    else {
       loadedMinimap = currentMinimaps.get(0).getModName();
     }
 
@@ -58,12 +60,14 @@ public abstract class BaseGps extends Item {
   }
 
   @Override
-  public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+  public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context,
+      @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
 
     if (Screen.hasShiftDown()) {
       tooltip.addAll(expandedTooltips());
 
-    } else {
+    }
+    else {
       tooltip.add(Component.translatable("item.pocketgps.gps.tooltip.default").withStyle(ChatFormatting.YELLOW));
     }
 
@@ -82,8 +86,8 @@ public abstract class BaseGps extends Item {
       ItemUtil.toggleGps(heldItem, player);
     }
 
-    if (PocketGps.gpsNeedPower() && heldItem.getTag().get(PocketGps.ENERGY_TAG) == null) {
-      NBTUtil.setInt(heldItem, PocketGps.ENERGY_TAG, 0);
+    if (PocketGps.gpsNeedPower() && heldItem.get(ItemEnergy.ENERGY) == null) {
+      NBTUtil.setInt(heldItem, ItemEnergy.ENERGY, 0);
     }
 
     return InteractionResultHolder.sidedSuccess(heldItem, level.isClientSide());

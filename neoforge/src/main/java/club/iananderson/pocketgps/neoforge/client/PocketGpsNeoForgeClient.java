@@ -8,14 +8,18 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 
-@EventBusSubscriber(value = Dist.CLIENT, modid = PocketGps.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(value = Dist.CLIENT)
+@Mod(value = PocketGps.MOD_ID, dist = Dist.CLIENT)
 public class PocketGpsNeoForgeClient {
 
   @SubscribeEvent
   public static void onInitializeClient(FMLClientSetupEvent event) {
-    ItemProperties.register(PocketGps.GPS.get(), PocketGps.TOGGLE_GPS, new GpsItemProperties());
+    event.enqueueWork(() -> {
+      ItemProperties.register(PocketGps.GPS.get(), PocketGps.TOGGLE_GPS, new GpsItemProperties());
+    });
 
     if (PocketGps.accessoriesLoaded() && !PocketGps.curiosLoaded()) {
       PocketGps.LOG.info("Talking to Accessories Client");

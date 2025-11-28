@@ -23,7 +23,8 @@ public class CommonRegistration {
 
     if (includeUncharged && PocketGps.gpsNeedPower()) {
       return new ArrayList<>(List.of(uncharged, charged));
-    } else {
+    }
+    else {
       return new ArrayList<>(List.of(charged));
     }
   }

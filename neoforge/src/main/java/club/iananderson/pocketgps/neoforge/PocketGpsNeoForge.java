@@ -27,12 +27,17 @@ public final class PocketGpsNeoForge {
 
     modContainer.registerConfig(Type.COMMON, PocketGpsConfig.GENERAL_SPEC, "pocketgps-common.toml");
 
-    modEventBus.addListener(PocketGpsNeoForge.ClientModEvents::commonSetup);
+    modEventBus.addListener(CommonModEvents::commonSetup);
+    modEventBus.addListener(this::pocketGpsPlayerTick);
+    modEventBus.addListener(this::pocketGpsOnPlayerLoad);
+    modEventBus.addListener(this::pocketGpsOnPlayerRespawn);
   }
 
   @SubscribeEvent
   public void pocketGpsPlayerTick(PlayerTickEvent.Post event) {
-    if (event.getEntity().isLocalPlayer()) {
+    Player player = event.getEntity();
+
+    if (player.level().isClientSide()) {
       PocketGpsClient.cachePlayerState(event.getEntity());
     }
   }
@@ -55,8 +60,9 @@ public final class PocketGpsNeoForge {
     PocketGpsClient.cachePlayerState(player);
   }
 
-  @EventBusSubscriber(value = Dist.CLIENT, modid = PocketGps.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
-  public static class ClientModEvents {
+  @EventBusSubscriber(value = Dist.CLIENT)
+  @Mod(value = PocketGps.MOD_ID, dist = Dist.CLIENT)
+  public static class CommonModEvents {
     @SubscribeEvent
     public static void commonSetup(FMLCommonSetupEvent event) {
       if (PocketGps.curiosLoaded()) {

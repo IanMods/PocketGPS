@@ -3,11 +3,19 @@ package club.iananderson.pocketgps.energy;
 import net.minecraft.world.item.ItemStack;
 
 public interface ItemEnergyStorage {
-  int receiveEnergy(ItemStack energyStorage, int maxReceive, boolean simulate);
+  int receiveEnergy(ItemStack energyStorage, int toReceive, boolean simulate);
 
-  int extractEnergy(ItemStack energyStorage, int maxExtract, boolean simulate);
+  void extractEnergy(ItemStack energyStorage, int toExtract, boolean simulate);
 
-  int getEnergy(ItemStack energyStorage);
+  int getEnergyStored(ItemStack energyStorage);
 
-  int getCapacity();
+  boolean canExtract();
+
+  boolean canReceive();
+
+  boolean isPowerBarVisible(ItemStack stack);
+
+  int getPowerBarWidth(ItemStack stack);
+
+  int getPowerBarColor(ItemStack stack);
 }

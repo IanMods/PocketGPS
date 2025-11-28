@@ -4,10 +4,10 @@ import club.iananderson.pocketgps.PocketGps;
 import club.iananderson.pocketgps.impl.accessories.AccessoriesCompat;
 import club.iananderson.pocketgps.impl.curios.CuriosCompat;
 import club.iananderson.pocketgps.impl.trinkets.TrinketsCompat;
+import club.iananderson.pocketgps.items.components.ItemEnergy;
 import club.iananderson.pocketgps.minimap.CurrentMinimap;
 import club.iananderson.pocketgps.util.ItemUtil;
 import club.iananderson.pocketgps.util.NBTUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -77,7 +77,7 @@ public class PocketGpsClient {
     currentActiveGps = getGpsFromPlayer(player);
     boolean validGps = isValidGPS(currentActiveGps);
 
-    if(!initializedMapState){
+    if (!initializedMapState) {
       setIsDrawingMap(!validGps);
       setInitializedMapState(true);
     }
@@ -85,7 +85,7 @@ public class PocketGpsClient {
     if (getCurrentActiveGps().isEmpty()) {
       CurrentMinimap.removeMinimap(player);
     }
-    else if (!getCurrentActiveGps().isEmpty()) {
+    else {
       if (!validGps) {
         CurrentMinimap.removeMinimap(player);
       }
@@ -100,7 +100,7 @@ public class PocketGpsClient {
   }
 
   public static boolean isValidGPS(ItemStack gps) {
-    boolean hasPower = NBTUtil.getInt(gps, PocketGps.ENERGY_TAG) > 0;
+    boolean hasPower = NBTUtil.getInt(gps, ItemEnergy.ENERGY) > 0;
     boolean gpsOn = ItemUtil.isGpsOn(getCurrentActiveGps());
 
     if (PocketGps.gpsNeedPower()) {

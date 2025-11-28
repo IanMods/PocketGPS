@@ -86,7 +86,7 @@ public final class PocketGps {
   public static int gpsEnergyCost() {
     return gpsEnergyCost;
   }
-  
+
   public static ResourceLocation location(String path) {
     return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
   }
