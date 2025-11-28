@@ -16,4 +16,5 @@ plugins {
 rootProject.name = "pocketgps"
 
 include("common")
-include(enabled_platforms.split(','))
+include("fabric")
+include("neoforge")
