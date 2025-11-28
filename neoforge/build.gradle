@@ -6,7 +6,7 @@ plugins {
 
 loom {
     forge {
-        mixinConfig "seasonhud.mixins.json"
+        mixinConfig "pocketgps.mixins.json"
     }
 
     runs {
@@ -119,10 +119,6 @@ remapJar {
 }
 
 modrinth {
-    int firstHeading = changelogText.indexOf("## [")
-    int nextHeading = changelogText.indexOf("## [", firstHeading + 1)
-    String recentChangelogText = changelogText.substring(firstHeading, nextHeading)
-
     debugMode = false
     token = System.getenv("MODRINTH_TOKEN")
     projectId = modrinth_project_id
